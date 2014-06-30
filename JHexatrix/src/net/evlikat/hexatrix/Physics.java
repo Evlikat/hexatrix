@@ -35,6 +35,7 @@ public class Physics {
     private final AxialHexagonalField field;
     private final AxialPosition originPosition;
     private IFigureGenerator generator;
+    private volatile boolean active = true;
 
     public Physics() {
         this(INITIAL_FIELDS);
@@ -68,12 +69,55 @@ public class Physics {
         return field;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
     public void tick() {
+        if (!active) {
+            return;
+        }
         boolean result = field.tick();
         if (result) {
             return;
         }
         onFigureDropped();
+    }
+
+    private void dropAll(Map<Integer, Integer> demarkationPoints) {
+        if (!active) {
+            return;
+        }
+        field.dropAll(demarkationPoints);
+    }
+
+    public void turn(RotateDirection direction) {
+        if (!active) {
+            return;
+        }
+        field.turn(direction);
+    }
+
+    public void move(MoveDirection direction) {
+        if (!active) {
+            return;
+        }
+        field.move(direction);
+    }
+
+    public void drop() {
+        if (!active) {
+            return;
+        }
+        while (field.tick()) {
+        }
+        onFigureDropped();
+    }
+    
+    public void reset() {
+        field.clear();
+        field.addFields(INITIAL_FIELDS);
+        active = true;
     }
 
     private void onFigureDropped() {
@@ -88,7 +132,10 @@ public class Physics {
         // Generate new falling figure
         AxialFigure newFigure = generator.generate();
         newFigure.setPosition(new AxialPosition(originPosition));
-        field.setFloatFigure(newFigure);
+        boolean figureSet = field.setFloatFigure(newFigure);
+        if (!figureSet) {
+            active = false;
+        }
     }
 
     private boolean lineCompleted(int x) {
@@ -109,23 +156,5 @@ public class Physics {
             demarkationPoints.put(axQ, axR);
         }
         return demarkationPoints;
-    }
-
-    private void dropAll(Map<Integer, Integer> demarkationPoints) {
-        field.dropAll(demarkationPoints);
-    }
-
-    public void turn(RotateDirection direction) {
-        field.turn(direction);
-    }
-
-    public void move(MoveDirection direction) {
-        field.move(direction);
-    }
-
-    public void drop() {
-        while (field.tick()) {
-        }
-        onFigureDropped();
     }
 }

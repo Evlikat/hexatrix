@@ -1,7 +1,5 @@
 package net.evlikat.hexatrix;
 
-import java.lang.Console;
-import java.io.IOException;
 import net.evlikat.hexatrix.axial.AxialPosition;
 
 /**
@@ -73,14 +71,11 @@ class MyConsole {
     public final static String GRAY = "\u001B[0m";
 
     private String currentColor;
-    private Console console;
 
     void clear() {
-        console.flush();
     }
 
     void writeAt(String string, int x, int y) {
-        console.
         System.out.print(this.currentColor + string);
     }
 

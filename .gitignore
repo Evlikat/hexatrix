@@ -1,2 +1,5 @@
 ConsoleHexatrix/build/*
 ConsoleHexatrix/dist/*
+/JHexatrix/bin/
+/JHexatrix/gen/
+/JHexatrix/nbandroid/
