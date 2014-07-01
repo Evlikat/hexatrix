@@ -3,6 +3,8 @@ package net.evlikat.hexatrix;
 import android.graphics.Canvas;
 import android.util.Log;
 import android.view.SurfaceHolder;
+import net.evlikat.hexatrix.scenes.MainView;
+import net.evlikat.hexatrix.scenes.SceneManager;
 
 /**
  *
@@ -18,17 +20,13 @@ public class GameLoop extends Thread {
     private final static int FRAME_PERIOD = 1000 / MAX_FPS;
 
     private final SurfaceHolder surfaceHolder;
-    private final Physics physics;
-    private GamePanel panel;
+    private final MainView mainView;
+
     private boolean running;
 
-    public GameLoop(Physics physics, SurfaceHolder holder) {
-        this.physics = physics;
-        this.surfaceHolder = holder;
-    }
-
-    public void setOutput(GamePanel panel) {
-        this.panel = panel;
+    public GameLoop(SurfaceHolder surfaceHolder, MainView mainView) {
+        this.surfaceHolder = surfaceHolder;
+        this.mainView = mainView;
     }
 
     public void setRunning(boolean running) {
@@ -42,27 +40,31 @@ public class GameLoop extends Thread {
         int sleepTime;      // ms to sleep (<0 if we're behind)
         int framesSkipped;  // number of frames being skipped
 
-        while (running) {
-            beginTime = System.currentTimeMillis();
-            framesSkipped = 0;
-            update();
-            draw();
-            timeDiff = System.currentTimeMillis() - beginTime;
-            sleepTime = (int) (FRAME_PERIOD - timeDiff);
+        try {
+            while (running) {
+                beginTime = System.currentTimeMillis();
+                framesSkipped = 0;
+                update();
+                draw();
+                timeDiff = System.currentTimeMillis() - beginTime;
+                sleepTime = (int) (FRAME_PERIOD - timeDiff);
 
-            if (sleepTime > 0) {
-                try {
-                    Thread.sleep(sleepTime);
-                } catch (InterruptedException e) {
-                    // OK
+                if (sleepTime > 0) {
+                    try {
+                        Thread.sleep(sleepTime);
+                    } catch (InterruptedException e) {
+                        // OK
+                    }
+                }
+
+                while (sleepTime < 0 && framesSkipped < MAX_FRAME_SKIPS) {
+                    update();
+                    sleepTime += FRAME_PERIOD;
+                    framesSkipped++;
                 }
             }
-
-            while (sleepTime < 0 && framesSkipped < MAX_FRAME_SKIPS) {
-                update();
-                sleepTime += FRAME_PERIOD;
-                framesSkipped++;
-            }
+        } catch (Throwable ex) {
+            Log.e(TAG, "Error", ex);
         }
     }
 
@@ -70,9 +72,7 @@ public class GameLoop extends Thread {
         Canvas canvas = null;
         try {
             canvas = this.surfaceHolder.lockCanvas();
-            synchronized (surfaceHolder) {
-                this.panel.onDraw(canvas);
-            }
+            this.mainView.draw(canvas);
         } catch (Throwable ex) {
             Log.d(TAG, ex.getMessage(), ex);
         } finally {
@@ -83,9 +83,6 @@ public class GameLoop extends Thread {
     }
 
     private void update() {
-        if (!physics.isActive()) {
-            // new game
-            physics.reset();
-        }
+        mainView.update();
     }
 }

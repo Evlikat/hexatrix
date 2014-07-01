@@ -1,6 +1,5 @@
-package net.evlikat.hexatrix;
+package net.evlikat.hexatrix.scenes;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -10,28 +9,32 @@ import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
-import android.view.SurfaceView;
+import net.evlikat.hexatrix.GameLoop;
+import net.evlikat.hexatrix.Physics;
+import net.evlikat.hexatrix.R;
+import net.evlikat.hexatrix.Scene;
 import net.evlikat.hexatrix.axial.AxialPosition;
 import net.evlikat.hexatrix.axial.MoveDirection;
+import net.evlikat.hexatrix.axial.RandomFigureGenerator;
 import net.evlikat.hexatrix.axial.RotateDirection;
-import net.evlikat.hexatrix.axial.TrivialFigureGenerator;
+import net.evlikat.hexatrix.scenes.callbacks.GameMenuCallback;
 
 /**
  *
  * @author Roman Prokhorov
  * @version 1.0 (Jun 30, 2014)
  */
-public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
+public class GameScene extends Scene {
 
-    private static final String TAG = GamePanel.class.getSimpleName();
+    private static final String TAG = GameScene.class.getSimpleName();
 
     private final GameLoop loop;
     private final Physics physics;
     // 
     private GestureDetector gestureDetector;
+    private final GameMenuCallback gameMenuCallback;
+    private final MainView parentView;
     private final GestureDetector.OnGestureListener gestureListener = new SimpleOnGestureListener() {
-
-        private static final int SWIPE_MAX = 20;
 
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
@@ -84,21 +87,33 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private Bitmap borderBmp;
     private Bitmap figureBmp;
 
-    public GamePanel(Context context) {
-        super(context);
+    public GameScene(GameMenuCallback gameMenuCallback, MainView mainView, GameLoop loop) {
+        this.gameMenuCallback = gameMenuCallback;
         this.physics = new Physics();
-        this.physics.setGenerator(new TrivialFigureGenerator());
-        this.loop = new GameLoop(physics, getHolder());
-        setFocusable(true);
+        this.physics.setGenerator(new RandomFigureGenerator());
+        this.loop = loop;
+        this.parentView = mainView;
     }
 
     public void init() {
-        getHolder().addCallback(this);
-        gestureDetector = new GestureDetector(getContext(), gestureListener);
+        gestureDetector = new GestureDetector(parentView.getContext(), gestureListener);
         loadBitmaps();
-        loop.setOutput(this);
-        loop.setRunning(true);
-        loop.start();
+    }
+
+    public void draw(Canvas canvas) {
+        if (canvas != null) {
+            canvas.drawColor(Color.BLACK);
+            drawStackBorders(canvas);
+            drawFields(canvas);
+            drawFigure(canvas);
+        }
+    }
+
+    public void update() {
+        if (!physics.isActive()) {
+            physics.reset();
+            gameMenuCallback.toMainMenu();
+        }
     }
 
     public void surfaceCreated(SurfaceHolder sh) {
@@ -116,16 +131,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
             } catch (InterruptedException e) {
                 // OK
             }
-        }
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        if (canvas != null) {
-            canvas.drawColor(Color.BLACK);
-            drawStackBorders(canvas);
-            drawFields(canvas);
-            drawFigure(canvas);
         }
     }
 
@@ -155,7 +160,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         float q = position.getQ();
         float r = position.getR();
         float x = (SIZE * 3 / 2 * q) + (SIZE * 2);
-        float y = getHeight() - (SIZE * 3) - SIZE * ((float) Math.sqrt(3)) * (r + q / 2);
+        float y = parentView.getHeight() - (SIZE * 3) - SIZE * ((float) Math.sqrt(3)) * (r + q / 2);
         canvas.drawBitmap(bitmap, x, y, null);
     }
 
@@ -165,8 +170,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     private void loadBitmaps() {
-        hexagonBmp = BitmapFactory.decodeResource(getResources(), R.drawable.hexagon);
-        figureBmp = BitmapFactory.decodeResource(getResources(), R.drawable.figure);
-        borderBmp = BitmapFactory.decodeResource(getResources(), R.drawable.border);
+        hexagonBmp = BitmapFactory.decodeResource(parentView.getResources(), R.drawable.hexagon);
+        figureBmp = BitmapFactory.decodeResource(parentView.getResources(), R.drawable.figure);
+        borderBmp = BitmapFactory.decodeResource(parentView.getResources(), R.drawable.border);
     }
 }

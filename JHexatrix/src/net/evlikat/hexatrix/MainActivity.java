@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
+import net.evlikat.hexatrix.scenes.SceneManager;
 
 public class MainActivity extends Activity {
 
@@ -22,9 +23,8 @@ public class MainActivity extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             );
-            final GamePanel gamePanel = new GamePanel(this);
-            setContentView(gamePanel);
-            gamePanel.init();
+            final SceneManager sceneManager = new SceneManager(this);
+            sceneManager.start();
         } catch (Exception ex) {
             Log.e(TAG, ex.getMessage());
         }
