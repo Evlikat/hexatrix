@@ -2,6 +2,7 @@ package net.evlikat.hexatrix.scenes;
 
 import android.app.Activity;
 import net.evlikat.hexatrix.GameLoop;
+import net.evlikat.hexatrix.GameSession;
 import net.evlikat.hexatrix.Scene;
 import net.evlikat.hexatrix.scenes.callbacks.GameMenuCallback;
 import net.evlikat.hexatrix.scenes.callbacks.MainMenuCallback;
@@ -34,7 +35,7 @@ public class SceneManager implements MainMenuCallback, GameMenuCallback {
 
     public GameScene getGameScene() {
         if (gameScene == null) {
-            gameScene = new GameScene(this, mainView, loop);
+            gameScene = new GameScene(this, mainView);
             gameScene.init();
         }
         return gameScene;
@@ -54,7 +55,9 @@ public class SceneManager implements MainMenuCallback, GameMenuCallback {
         setScene(getGameScene());
     }
 
-    public void toMainMenu() {
-        setScene(getMainMenuScene());
+    public void toMainMenu(GameSession gameSession) {
+        final MainMenuScene newScene = getMainMenuScene();
+        newScene.setScores(gameSession);
+        setScene(newScene);
     }
 }

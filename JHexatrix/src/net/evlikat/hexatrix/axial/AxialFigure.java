@@ -16,7 +16,7 @@ public class AxialFigure {
         CubeCoordinates turn(CubeCoordinates xyz);
     }
 
-    public AxialPosition position;
+    public AxialPosition position = new AxialPosition(0, 0);
 
     public Collection<AxialPosition> parts;
 

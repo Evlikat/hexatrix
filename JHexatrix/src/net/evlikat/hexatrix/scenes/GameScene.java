@@ -4,12 +4,14 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
-import android.view.SurfaceHolder;
-import net.evlikat.hexatrix.GameLoop;
+import net.evlikat.hexatrix.GameSession;
 import net.evlikat.hexatrix.Physics;
 import net.evlikat.hexatrix.R;
 import net.evlikat.hexatrix.Scene;
@@ -17,6 +19,7 @@ import net.evlikat.hexatrix.axial.AxialPosition;
 import net.evlikat.hexatrix.axial.MoveDirection;
 import net.evlikat.hexatrix.axial.RandomFigureGenerator;
 import net.evlikat.hexatrix.axial.RotateDirection;
+import net.evlikat.hexatrix.axial.TrivialFieldGenerator;
 import net.evlikat.hexatrix.scenes.callbacks.GameMenuCallback;
 
 /**
@@ -28,7 +31,6 @@ public class GameScene extends Scene {
 
     private static final String TAG = GameScene.class.getSimpleName();
 
-    private final GameLoop loop;
     private final Physics physics;
     // 
     private GestureDetector gestureDetector;
@@ -83,16 +85,28 @@ public class GameScene extends Scene {
 
     };
     // Resources
-    private Bitmap hexagonBmp;
+    private Bitmap hexagon0Bmp;
+    private Bitmap hexagon1Bmp;
     private Bitmap borderBmp;
     private Bitmap figureBmp;
+    // Pre-calculated
+    private static final int HEXAGON_BITMAP_WIDTH = 200;
+    private static final int HEXAGON_BITMAP_HEIGHT = 173;
+    private static final float SQ3 = (float) Math.sqrt(3);
+    private final Rect srcRect = new Rect(0, 0, HEXAGON_BITMAP_WIDTH, HEXAGON_BITMAP_HEIGHT);
+    private final float size;
+    private final Paint hexPaint = new Paint();
 
-    public GameScene(GameMenuCallback gameMenuCallback, MainView mainView, GameLoop loop) {
+    public GameScene(GameMenuCallback gameMenuCallback, MainView mainView) {
         this.gameMenuCallback = gameMenuCallback;
-        this.physics = new Physics();
-        this.physics.setGenerator(new RandomFigureGenerator());
-        this.loop = loop;
+        this.physics = new Physics(new TrivialFieldGenerator());
+        this.physics.setFigureGenerator(new RandomFigureGenerator());
         this.parentView = mainView;
+        this.size = parentView.getHeight() / ((physics.getDepth() + 1) * (SQ3)); // pixels per hexagon
+        //
+        hexPaint.setAntiAlias(true);
+        hexPaint.setFilterBitmap(true);
+        hexPaint.setDither(true);
     }
 
     public void init() {
@@ -102,36 +116,28 @@ public class GameScene extends Scene {
 
     public void draw(Canvas canvas) {
         if (canvas != null) {
-            canvas.drawColor(Color.BLACK);
+            canvas.drawColor(Color.LTGRAY);
+            drawText(canvas);
             drawStackBorders(canvas);
             drawFields(canvas);
             drawFigure(canvas);
+            //drawNextFigure(canvas);
         }
     }
 
     public void update() {
         if (!physics.isActive()) {
+            final GameSession gameSession = physics.getGameSession();
             physics.reset();
-            gameMenuCallback.toMainMenu();
+            gameMenuCallback.toMainMenu(gameSession);
         }
+        physics.update();
     }
 
-    public void surfaceCreated(SurfaceHolder sh) {
-    }
-
-    public void surfaceChanged(SurfaceHolder sh, int i, int i1, int i2) {
-    }
-
-    public void surfaceDestroyed(SurfaceHolder sh) {
-        boolean retry = true;
-        while (retry) {
-            try {
-                loop.join();
-                retry = false;
-            } catch (InterruptedException e) {
-                // OK
-            }
-        }
+    private void drawText(Canvas canvas) {
+        final float stackWidth = size * 3 / 2 * (physics.getWidth() + 2) + size / 2;
+        canvas.drawText("L: " + physics.getCurrentLevel(), stackWidth + 10, 20, new Paint(Paint.ANTI_ALIAS_FLAG));
+        canvas.drawText("S: " + physics.getGameSession().getScores(), stackWidth + 10, 40, new Paint(Paint.ANTI_ALIAS_FLAG));
     }
 
     private void drawFigure(Canvas canvas) {
@@ -145,7 +151,11 @@ public class GameScene extends Scene {
 
     private void drawFields(Canvas canvas) {
         for (AxialPosition field : physics.getField().getFields()) {
-            drawBlock(hexagonBmp, canvas, field);
+            if (field.getLine() % 2 == 0) {
+                drawBlock(hexagon0Bmp, canvas, field);
+            } else {
+                drawBlock(hexagon1Bmp, canvas, field);
+            }
         }
     }
 
@@ -155,13 +165,27 @@ public class GameScene extends Scene {
         }
     }
 
+    private void drawNextFigure(Canvas canvas) {
+        for (AxialPosition field : physics.getNextFigure().getPartsPositions()) {
+            drawBlock(figureBmp, canvas, field, 100, -100);
+        }
+    }
+
     private void drawBlock(Bitmap bitmap, Canvas canvas, AxialPosition position) {
-        final int SIZE = 20;
-        float q = position.getQ();
-        float r = position.getR();
-        float x = (SIZE * 3 / 2 * q) + (SIZE * 2);
-        float y = parentView.getHeight() - (SIZE * 3) - SIZE * ((float) Math.sqrt(3)) * (r + q / 2);
-        canvas.drawBitmap(bitmap, x, y, null);
+        drawBlock(bitmap, canvas, position, 0, 0);
+    }
+
+    private void drawBlock(Bitmap bitmap, Canvas canvas, AxialPosition position, float leftShift, float topShift) {
+        final float q = position.getQ();
+        final float r = position.getR();
+        final float x = leftShift + (size * 3 / 2 * q) + (size * 2);
+        final float y = topShift + parentView.getHeight() - size * SQ3 * (r + q / 2) - (size * 2 * SQ3);
+        canvas.drawBitmap(
+            bitmap,
+            srcRect,
+            new RectF(x, y, x + 2 * size, y + size * SQ3),
+            hexPaint
+        );
     }
 
     @Override
@@ -170,7 +194,8 @@ public class GameScene extends Scene {
     }
 
     private void loadBitmaps() {
-        hexagonBmp = BitmapFactory.decodeResource(parentView.getResources(), R.drawable.hexagon);
+        hexagon0Bmp = BitmapFactory.decodeResource(parentView.getResources(), R.drawable.hexagon0);
+        hexagon1Bmp = BitmapFactory.decodeResource(parentView.getResources(), R.drawable.hexagon1);
         figureBmp = BitmapFactory.decodeResource(parentView.getResources(), R.drawable.figure);
         borderBmp = BitmapFactory.decodeResource(parentView.getResources(), R.drawable.border);
     }

@@ -1,5 +1,7 @@
 package net.evlikat.hexatrix.scenes.callbacks;
 
+import net.evlikat.hexatrix.GameSession;
+
 /**
  *
  * @author Roman Prokhorov
@@ -7,5 +9,5 @@ package net.evlikat.hexatrix.scenes.callbacks;
  */
 public interface GameMenuCallback {
 
-    void toMainMenu();
+    void toMainMenu(GameSession finishedSession);
 }

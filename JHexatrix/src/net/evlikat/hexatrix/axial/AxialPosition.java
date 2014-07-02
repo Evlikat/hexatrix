@@ -7,29 +7,29 @@ package net.evlikat.hexatrix.axial;
  */
 public class AxialPosition {
 
-    private final int Q;
-    private final int R;
+    private final int q;
+    private final int r;
 
     public AxialPosition(int q, int r) {
-        this.Q = q;
-        this.R = r;
+        this.q = q;
+        this.r = r;
     }
 
     public AxialPosition(AxialPosition position) {
-        this.Q = position.getQ();
-        this.R = position.getR();
+        this.q = position.getQ();
+        this.r = position.getR();
     }
 
     public int getQ() {
-        return Q;
+        return q;
     }
 
     public int getR() {
-        return R;
+        return r;
     }
 
     public AxialPosition relatedTo(AxialPosition otherPos) {
-        return new AxialPosition(Q + otherPos.Q, R + otherPos.R);
+        return new AxialPosition(q + otherPos.q, r + otherPos.r);
     }
 
     @Override
@@ -41,19 +41,23 @@ public class AxialPosition {
             return false;
         }
         final AxialPosition other = (AxialPosition) obj;
-        return this.Q == other.Q && this.R == other.R;
+        return this.q == other.q && this.r == other.r;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 71 * hash + this.Q;
-        hash = 71 * hash + this.R;
+        hash = 71 * hash + this.q;
+        hash = 71 * hash + this.r;
         return hash;
     }
 
     @Override
     public String toString() {
-        return String.format("[{0}, {1}]", Q, R);
+        return String.format("[{0}, {1}]", q, r);
+    }
+
+    public int getLine() {
+        return r + q / 2;
     }
 }
