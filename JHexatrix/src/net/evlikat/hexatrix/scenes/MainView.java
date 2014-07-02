@@ -1,10 +1,10 @@
 package net.evlikat.hexatrix.scenes;
 
 import android.content.Context;
-import android.graphics.Canvas;
+import android.opengl.GLSurfaceView;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
-import android.view.SurfaceView;
+import javax.microedition.khronos.opengles.GL10;
 import net.evlikat.hexatrix.Scene;
 
 /**
@@ -12,7 +12,7 @@ import net.evlikat.hexatrix.Scene;
  * @author Roman Prokhorov
  * @version 1.0 (Jul 01, 2014)
  */
-public class MainView extends SurfaceView implements SurfaceHolder.Callback {
+public class MainView extends GLSurfaceView implements SurfaceHolder.Callback {
 
     private Scene currentScene;
 
@@ -24,31 +24,26 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback {
         this.currentScene = currentScene;
     }
 
-    public void surfaceCreated(SurfaceHolder sh) {
-        sh.addCallback(this);
-    }
-
-    public void surfaceChanged(SurfaceHolder sh, int i, int i1, int i2) {
-    }
-
-    public void surfaceDestroyed(SurfaceHolder sh) {
-    }
-
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         return currentScene.onTouchEvent(event);
     }
 
-    @Override
-    public void draw(Canvas canvas) {
+    public void draw(GL10 dl) {
         if (currentScene != null) {
-            currentScene.draw(canvas);
+            currentScene.draw(dl);
         }
     }
 
     public void update() {
         if (currentScene != null) {
             currentScene.update();
+        }
+    }
+
+    void checkInit(GL10 gl) {
+        if (!currentScene.isInitialized()) {
+            currentScene.init(gl);
         }
     }
 

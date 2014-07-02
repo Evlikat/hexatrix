@@ -4,7 +4,6 @@ import android.graphics.Canvas;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import net.evlikat.hexatrix.scenes.MainView;
-import net.evlikat.hexatrix.scenes.SceneManager;
 
 /**
  *

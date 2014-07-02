@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.MotionEvent;
 import static android.view.View.VISIBLE;
+import javax.microedition.khronos.opengles.GL10;
 import net.evlikat.hexatrix.GameSession;
 import net.evlikat.hexatrix.Scene;
 import net.evlikat.hexatrix.scenes.callbacks.MainMenuCallback;
@@ -24,16 +25,15 @@ public class MainMenuScene extends Scene {
         this.mainMenuCallback = mainMenuCallback;
     }
 
-    public void draw(Canvas canvas) {
-        if (canvas != null) {
-            canvas.drawColor(Color.WHITE);
-            canvas.drawText("Main menu. Touch to start", 30, 30, new Paint(VISIBLE));
+    public void draw(GL10 gl) {
+        if (gl != null) {
+            /*gl.drawText("Main menu. Touch to start", 30, 30, new Paint(VISIBLE));
             if (lastScores >= 0) {
-                canvas.drawText("Your scores: " + lastScores, 30, 50, new Paint(VISIBLE));
+                gl.drawText("Your scores: " + lastScores, 30, 50, new Paint(VISIBLE));
             }
             if (topScores >= 0) {
-                canvas.drawText("Top: " + topScores, 30, 70, new Paint(VISIBLE));
-            }
+                gl.drawText("Top: " + topScores, 30, 70, new Paint(VISIBLE));
+            }*/
         }
     }
 
@@ -45,7 +45,7 @@ public class MainMenuScene extends Scene {
         return true;
     }
 
-    public void init() {
+    public void init(GL10 gl) {
     }
 
     void setScores(GameSession gameSession) {

@@ -1,6 +1,7 @@
 package net.evlikat.hexatrix.scenes;
 
 import android.app.Activity;
+import android.opengl.GLSurfaceView;
 import net.evlikat.hexatrix.GameLoop;
 import net.evlikat.hexatrix.GameSession;
 import net.evlikat.hexatrix.Scene;
@@ -21,6 +22,7 @@ public class SceneManager implements MainMenuCallback, GameMenuCallback {
 
     public SceneManager(Activity context) {
         this.mainView = new MainView(context);
+        this.mainView.setRenderer(new GlRenderer(mainView));
         this.loop = new GameLoop(mainView.getHolder(), mainView);
         context.setContentView(mainView);
     }
@@ -28,7 +30,6 @@ public class SceneManager implements MainMenuCallback, GameMenuCallback {
     public MainMenuScene getMainMenuScene() {
         if (mainMenuScene == null) {
             mainMenuScene = new MainMenuScene(this);
-            mainMenuScene.init();
         }
         return mainMenuScene;
     }
@@ -36,7 +37,6 @@ public class SceneManager implements MainMenuCallback, GameMenuCallback {
     public GameScene getGameScene() {
         if (gameScene == null) {
             gameScene = new GameScene(this, mainView);
-            gameScene.init();
         }
         return gameScene;
     }
@@ -59,5 +59,13 @@ public class SceneManager implements MainMenuCallback, GameMenuCallback {
         final MainMenuScene newScene = getMainMenuScene();
         newScene.setScores(gameSession);
         setScene(newScene);
+    }
+
+    public void onResume() {
+        mainView.onResume();
+    }
+
+    public void onPause() {
+        mainView.onPause();
     }
 }

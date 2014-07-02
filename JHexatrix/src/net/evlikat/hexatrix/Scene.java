@@ -1,7 +1,7 @@
 package net.evlikat.hexatrix;
 
-import android.graphics.Canvas;
 import android.view.MotionEvent;
+import javax.microedition.khronos.opengles.GL10;
 
 /**
  *
@@ -10,11 +10,17 @@ import android.view.MotionEvent;
  */
 public abstract class Scene {
 
-    public abstract void draw(Canvas canvas);
+    protected boolean initialized = false;
+    
+    public abstract void draw(GL10 gl);
 
-    public abstract void init();
+    public abstract void init(GL10 gl);
 
     public abstract void update();
     
     public abstract boolean onTouchEvent(MotionEvent event);
+
+    public boolean isInitialized() {
+        return initialized;
+    }
 }
