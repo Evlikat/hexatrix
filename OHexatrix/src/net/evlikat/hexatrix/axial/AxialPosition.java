@@ -28,7 +28,7 @@ public class AxialPosition {
         return r;
     }
 
-    public AxialPosition relatedTo(AxialPosition otherPos) {
+    public AxialPosition plus(AxialPosition otherPos) {
         return new AxialPosition(q + otherPos.q, r + otherPos.r);
     }
 
@@ -54,7 +54,7 @@ public class AxialPosition {
 
     @Override
     public String toString() {
-        return String.format("[{0}, {1}]", q, r);
+        return String.format("[%d, %d]", q, r);
     }
 
     public int getLine() {

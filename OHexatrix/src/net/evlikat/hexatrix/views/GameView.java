@@ -3,6 +3,7 @@ package net.evlikat.hexatrix.views;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
 import org.andengine.entity.scene.Scene;
+import org.andengine.input.touch.TouchEvent;
 
 /**
  *
@@ -18,8 +19,17 @@ public abstract class GameView {
     public GameView(Engine engine, Camera camera) {
         this.engine = engine;
         this.camera = camera;
-        this.scene = new Scene();
+        this.scene = new Scene() {
+            @Override
+            public boolean onSceneTouchEvent(TouchEvent pSceneTouchEvent) {
+                onTouch(pSceneTouchEvent);
+                return super.onSceneTouchEvent(pSceneTouchEvent);
+            }
+
+        };
     }
+
+    protected abstract void onTouch(TouchEvent pSceneTouchEvent);
 
     public Scene getScene() {
         return scene;

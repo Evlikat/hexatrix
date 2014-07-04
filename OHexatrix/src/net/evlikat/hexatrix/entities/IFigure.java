@@ -18,4 +18,7 @@ public interface IFigure {
 
     void turn(Collection<AxialPosition> forbiddenPositions, RotateDirection direction);
 
+    Collection<AxialPosition> getPartsPositions();
+
+    Collection<AxialPosition> getParts();
 }

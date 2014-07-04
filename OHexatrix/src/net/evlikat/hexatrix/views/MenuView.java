@@ -4,6 +4,7 @@ import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
 import org.andengine.entity.scene.background.Background;
 import org.andengine.entity.text.Text;
+import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.font.IFont;
 
 /**
@@ -28,6 +29,11 @@ public class MenuView extends GameView {
 
     @Override
     public void update() {
+    }
+
+    @Override
+    protected void onTouch(TouchEvent pSceneTouchEvent) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

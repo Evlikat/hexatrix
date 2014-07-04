@@ -1,11 +1,8 @@
 package net.evlikat.hexatrix.entities;
 
-import android.util.Log;
 import net.evlikat.hexatrix.axial.AxialPosition;
-import org.andengine.engine.camera.Camera;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.opengl.texture.region.ITextureRegion;
-import org.andengine.opengl.vbo.VertexBufferObjectManager;
 
 /**
  *
@@ -14,41 +11,39 @@ import org.andengine.opengl.vbo.VertexBufferObjectManager;
  */
 public abstract class AxialEntity extends Sprite {
 
-    protected static final float SQ3 = (float) Math.sqrt(3);
+    public static final float SQ3 = (float) Math.sqrt(3);
+    protected final SpriteContext spriteContext;
 
-    private final float size;
-    private final Camera camera;
-
-    public AxialEntity(float size,
-        Camera camera,
+    public AxialEntity(
         float pX, float pY,
         float width, float height,
         ITextureRegion pTextureRegion,
-        VertexBufferObjectManager pVertexBufferObjectManager
+        SpriteContext spriteContext
     ) {
-        super(pX, pY, width, height, pTextureRegion, pVertexBufferObjectManager);
-        this.size = size;
-        this.camera = camera;
+        super(pX, pY, width, height, pTextureRegion, spriteContext.getVertexBufferObjectManager());
+        this.spriteContext = spriteContext;
     }
 
     protected static float getX(float size, AxialPosition position) {
         final float q = position.getQ();
-        return (size * 3 / 2 * q) + (size * 2);
+        return (size * 3 / 2 * q);
     }
 
-    protected static float getY(float cameraHeight, float size, AxialPosition position) {
+    protected static float getY(float size, AxialPosition position) {
         final float q = position.getQ();
         final float r = position.getR();
-        return cameraHeight - size * SQ3 * (r + q / 2) - (size * 2 * SQ3);
+        return -size * SQ3 * (r + q / 2);
     }
 
     public void onMoved(float q, float r) {
-        final float x = (size * 3 / 2 * q) + (size * 2);
-        final float y = camera.getHeight() - size * SQ3 * (r + q / 2) - (size * 2 * SQ3);
+        final float size = spriteContext.getSize();
+        final float x = (size * 3 / 2 * q);
+        final float y = -size * SQ3 * (r + q / 2);
         setPosition(x, y);
     }
 
     public void onMoved(AxialPosition newPosition) {
         onMoved(newPosition.getQ(), newPosition.getR());
     }
+
 }

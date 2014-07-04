@@ -1,9 +1,7 @@
 package net.evlikat.hexatrix.entities;
 
 import net.evlikat.hexatrix.axial.AxialPosition;
-import org.andengine.engine.camera.Camera;
 import org.andengine.opengl.texture.region.ITextureRegion;
-import org.andengine.opengl.vbo.VertexBufferObjectManager;
 
 /**
  *
@@ -16,15 +14,14 @@ public class Hexagon extends AxialEntity {
 
     public Hexagon(
         AxialPosition position,
-        float size,
-        Camera camera,
         ITextureRegion pTextureRegion,
-        VertexBufferObjectManager pVertexBufferObjectManager
+        SpriteContext spriteContext
     ) {
-        super(size, camera,
-            getX(size, position), getY(camera.getHeight(), size, position),
-            size * 2, size * SQ3,
-            pTextureRegion, pVertexBufferObjectManager);
+        super(
+            getX(spriteContext.getSize(), position),
+            getY(spriteContext.getSize(), position),
+            spriteContext.getSize() * 2, spriteContext.getSize() * SQ3,
+            pTextureRegion, spriteContext);
         this.position = position;
     }
 
@@ -35,5 +32,27 @@ public class Hexagon extends AxialEntity {
     public void setPosition(AxialPosition position) {
         this.position = position;
         onMoved(position);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 97 * hash + (this.position != null ? this.position.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Hexagon other = (Hexagon) obj;
+        if (this.position != other.position && (this.position == null || !this.position.equals(other.position))) {
+            return false;
+        }
+        return true;
     }
 }

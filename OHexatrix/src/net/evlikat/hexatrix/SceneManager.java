@@ -69,7 +69,7 @@ public class SceneManager {
 
     public final PlayView getPlayView() {
         if (playView == null) {
-            playView = new PlayView(engine, camera, textures);
+            playView = new PlayView(activity, engine, camera, textures);
         }
         return playView;
     }

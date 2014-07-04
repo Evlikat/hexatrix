@@ -3,13 +3,14 @@ package net.evlikat.hexatrix.axial;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import net.evlikat.hexatrix.entities.IFigure;
 
 /**
  *
  * @author Roman Prokhorov
  * @version 1.0 (Jun 27, 2014)
  */
-public class AxialFigure {
+public class AxialFigure implements IFigure {
 
     private static interface CubeRotator {
 
@@ -81,7 +82,7 @@ public class AxialFigure {
             return false;
         }
         for (AxialPosition partPos : parts) {
-            if (forbiddenPositions.contains(partPos.relatedTo(newPosition))) {
+            if (forbiddenPositions.contains(partPos.plus(newPosition))) {
                 // Figure can't be moved
                 return false;
             }
@@ -94,7 +95,7 @@ public class AxialFigure {
         Collection<AxialPosition> newPartPositions = new ArrayList<AxialPosition>();
         for (AxialPosition partPos : parts) {
             AxialPosition newPos = From(turner.turn(From(partPos)));
-            if (forbiddenPositions.contains(newPos.relatedTo(position))) {
+            if (forbiddenPositions.contains(newPos.plus(position))) {
                 // Figure can't be turned
                 return;
             }

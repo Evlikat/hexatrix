@@ -1,15 +1,14 @@
 package net.evlikat.hexatrix.entities;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import net.evlikat.hexatrix.Textures;
 import net.evlikat.hexatrix.axial.AxialDirection;
 import net.evlikat.hexatrix.axial.AxialPosition;
 import net.evlikat.hexatrix.axial.RotateDirection;
-import org.andengine.engine.camera.Camera;
 import org.andengine.opengl.texture.region.ITextureRegion;
-import org.andengine.opengl.vbo.VertexBufferObjectManager;
 
 /**
  *
@@ -18,49 +17,77 @@ import org.andengine.opengl.vbo.VertexBufferObjectManager;
  */
 public class Figure extends AxialEntity implements IFigure {
 
-    private static interface CubeRotator {
+    private static interface Rotator {
 
-        CubeCoordinates turn(CubeCoordinates xyz);
+        AxialPosition turn(AxialPosition qr);
     }
-    private final Hexagon center;
-    private final Collection<Hexagon> parts;
+    private final Map<AxialPosition, Hexagon> parts;
+    private AxialPosition center;
 
     public Figure(
-        Hexagon center,
-        Collection<Hexagon> parts,
-        float size, Camera camera,
-        float pX, float pY,
+        IFigure prototype,
         ITextureRegion pTextureRegion,
-        VertexBufferObjectManager pVertexBufferObjectManager
+        SpriteContext spriteContext
     ) {
-        super(size, camera, pX, pY, size * 2, size * SQ3, pTextureRegion, pVertexBufferObjectManager);
-        this.center = center;
-        this.parts = parts;
+        super(
+            getX(spriteContext.getSize(), prototype.getPosition()),
+            getY(spriteContext.getSize(), prototype.getPosition()),
+            spriteContext.getSize() * 2, spriteContext.getSize() * SQ3,
+            pTextureRegion, spriteContext);
+        this.center = prototype.getPosition();
+        this.parts = new HashMap<AxialPosition, Hexagon>(prototype.getParts().size());
+        for (AxialPosition position : prototype.getParts()) {
+            final Hexagon hexagon = new Hexagon(position, pTextureRegion, spriteContext);
+            addPart(position, hexagon);
+            hexagon.setPosition(position);
+        }
     }
 
     @Override
     public AxialPosition getPosition() {
-        return center.getPosition();
-    }
-    
-    public Hexagon getCenter() {
         return center;
+    }
+
+    public Collection<AxialPosition> getParts() {
+        return parts.keySet();
+    }
+
+    public Collection<Hexagon> getHexagons() {
+        return parts.values();
+    }
+
+    public void setPosition(AxialPosition newPosition) {
+        this.center = newPosition;
+        onMoved(newPosition);
+    }
+
+    public final void addPart(AxialPosition relativePosition, Hexagon hexagon) {
+        attachChild(hexagon);
+        parts.put(relativePosition, hexagon);
+    }
+
+    public final void removePart(AxialPosition relativePosition) {
+        Hexagon hexagon = parts.get(relativePosition);
+        if (hexagon != null) {
+            detachChild(hexagon);
+            parts.remove(relativePosition);
+        }
     }
 
     @Override
     public void turn(Collection<AxialPosition> forbiddenPositions, RotateDirection direction) {
         if (direction == RotateDirection.LEFT) {
-            turn(forbiddenPositions, new CubeRotator() {
+            turn(forbiddenPositions, new Rotator() {
 
-                public CubeCoordinates turn(CubeCoordinates xyz) {
-                    return new CubeCoordinates(-xyz.getZ(), -xyz.getX(), -xyz.getY());
+                public AxialPosition turn(AxialPosition pos) {
+                    return new AxialPosition(-pos.getR(), pos.getQ() + pos.getR());
                 }
             });
         } else if (direction == RotateDirection.RIGHT) {
-            turn(forbiddenPositions, new CubeRotator() {
+            turn(forbiddenPositions, new Rotator() {
 
-                public CubeCoordinates turn(CubeCoordinates xyz) {
-                    return new CubeCoordinates(-xyz.getY(), -xyz.getZ(), -xyz.getX());
+                public AxialPosition turn(AxialPosition pos) {
+                    return new AxialPosition(pos.getQ() + pos.getR(), -pos.getQ());
                 }
             });
         } else {
@@ -70,47 +97,55 @@ public class Figure extends AxialEntity implements IFigure {
 
     @Override
     public boolean move(Collection<AxialPosition> forbiddenPositions, AxialDirection direction) {
-        AxialPosition newPosition = new AxialPosition(
-            center.getPosition().getQ() + direction.getDq(),
-            center.getPosition().getR() + direction.getDr()
+        AxialPosition newFigurePosition = new AxialPosition(
+            center.getQ() + direction.getDq(),
+            center.getR() + direction.getDr()
         );
-        if (forbiddenPositions.contains(newPosition)) {
+        if (forbiddenPositions.contains(newFigurePosition)) {
             // Figure center can't be moved
             return false;
         }
-        for (Hexagon partPos : parts) {
-            if (forbiddenPositions.contains(partPos.getPosition().relatedTo(newPosition))) {
+        for (AxialPosition partPos : parts.keySet()) {
+            if (forbiddenPositions.contains(partPos.plus(newFigurePosition))) {
                 // Figure can't be moved
                 return false;
             }
         }
-        onMoved(newPosition);
+        setPosition(newFigurePosition);
         return true;
     }
 
-    private void turn(Collection<AxialPosition> forbiddenPositions, CubeRotator turner) {
-        Map<Hexagon, AxialPosition> newPartPositions = new HashMap<Hexagon, AxialPosition>();
-        for (Hexagon partPos : parts) {
-            AxialPosition newPos = from(turner.turn(from(partPos.getPosition())));
-            if (forbiddenPositions.contains(newPos.relatedTo(center.getPosition()))) {
+    @Override
+    public Collection<AxialPosition> getPartsPositions() {
+        List<AxialPosition> result = new ArrayList<AxialPosition>();
+        final AxialPosition centerPos = getPosition();
+        result.add(centerPos);
+        for (AxialPosition partPos : parts.keySet()) {
+            int q = partPos.getQ();
+            int r = partPos.getR();
+            result.add(new AxialPosition(q + centerPos.getQ(), r + centerPos.getR()));
+        }
+        return result;
+    }
+
+    private void turn(Collection<AxialPosition> forbiddenPositions, Rotator rotator) {
+        Map<Hexagon, AxialPosition> newPartPositions
+            = new HashMap<Hexagon, AxialPosition>();
+        for (Map.Entry<AxialPosition, Hexagon> entry : parts.entrySet()) {
+            AxialPosition newPos = rotator.turn(entry.getKey());
+            if (forbiddenPositions.contains(newPos.plus(center))) {
                 // Figure can't be turned
                 return;
             }
-            newPartPositions.put(partPos, newPos);
+            newPartPositions.put(entry.getValue(), newPos);
         }
         // If all positions are allowed then turn the figure
+        parts.clear();
         for (Map.Entry<Hexagon, AxialPosition> entry : newPartPositions.entrySet()) {
             Hexagon hexagon = entry.getKey();
             AxialPosition newPosition = entry.getValue();
+            parts.put(newPosition, hexagon);
             hexagon.setPosition(newPosition);
         }
-    }
-
-    private static AxialPosition from(CubeCoordinates cubeCoords) {
-        return new AxialPosition(cubeCoords.getX(), cubeCoords.getZ());
-    }
-
-    private static CubeCoordinates from(AxialPosition axialCoords) {
-        return new CubeCoordinates(axialCoords.getQ(), -axialCoords.getQ() - axialCoords.getR(), axialCoords.getR());
     }
 }
