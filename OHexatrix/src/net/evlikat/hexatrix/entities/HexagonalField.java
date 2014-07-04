@@ -39,7 +39,7 @@ public class HexagonalField extends Entity implements IHexagonalField {
     );
 
     Map<AxialPosition, Hexagon> borders = new HashMap<AxialPosition, Hexagon>();
-    Map<AxialPosition, Hexagon> fields = new HashMap<AxialPosition, Hexagon>();
+    private final Fields fields = new Fields();
     // Properties
     private Figure floatFigure;
     private final AxialDirection gravity;
@@ -71,7 +71,8 @@ public class HexagonalField extends Entity implements IHexagonalField {
         this.attachChild(floatFigure);
         // test
         for (AxialPosition axialPosition : TEST_INITIAL_FIELDS) {
-            addField(axialPosition, new Hexagon(axialPosition, spriteContext.getTextures().getHexagon0(), spriteContext));
+            addField(axialPosition, new Hexagon(
+                axialPosition, spriteContext.getTextures().getHexagon0(), spriteContext));
         }
     }
 
@@ -84,7 +85,7 @@ public class HexagonalField extends Entity implements IHexagonalField {
     }
 
     public Collection<AxialPosition> getFields() {
-        return fields.keySet();
+        return fields.getPositions();
     }
 
     public IFigure getFloatFigure() {
@@ -93,7 +94,7 @@ public class HexagonalField extends Entity implements IHexagonalField {
 
     public boolean setFloatFigure(IFigure floatFigure) {
         for (AxialPosition axialPosition : floatFigure.getPartsPositions()) {
-            if (fields.containsKey(axialPosition)) {
+            if (fields.contains(axialPosition)) {
                 return false;
             }
         }
@@ -165,7 +166,7 @@ public class HexagonalField extends Entity implements IHexagonalField {
     public Collection<AxialPosition> getForbiddenFields() {
         ArrayList<AxialPosition> forbidden = new ArrayList<AxialPosition>();
         forbidden.addAll(borders.keySet());
-        forbidden.addAll(fields.keySet());
+        forbidden.addAll(fields.getPositions());
         return forbidden;
     }
 
@@ -269,7 +270,7 @@ public class HexagonalField extends Entity implements IHexagonalField {
         }
 
         List<AxialPosition> fallingPart = new ArrayList<AxialPosition>();
-        for (AxialPosition pos : fields.keySet()) {
+        for (AxialPosition pos : fields.getPositions()) {
             if (pos.getR() > demarkationPoints.get(pos.getQ())) {
                 fallingPart.add(pos);
             }
