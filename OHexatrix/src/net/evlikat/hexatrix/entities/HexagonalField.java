@@ -51,7 +51,7 @@ public class HexagonalField extends Entity implements IHexagonalField {
     private final Fields fields = new Fields();
     // Properties
     private Figure floatFigure;
-    private Figure nextFigure;
+    private final Figure nextFigure;
     private final AxialDirection gravity;
     private final int width;
     private final int depth;
@@ -86,14 +86,14 @@ public class HexagonalField extends Entity implements IHexagonalField {
         this.nextFigure = new Figure(figureGenerator.getNext(), spriteContext.getTextures().getFigure(), spriteContext);
         this.nextFigure.setPosition(nextFigurePosition);
         this.attachChild(nextFigure);
-        // test
-        for (AxialPosition axialPosition : TEST_INITIAL_FIELDS) {
-            addField(axialPosition, new ChangingHexagon(
-                axialPosition,
-                spriteContext.getTextures().getHexagon0(),
-                spriteContext.getTextures().getHexagon1(),
-                spriteContext));
-        }
+//        // test
+//        for (AxialPosition axialPosition : TEST_INITIAL_FIELDS) {
+//            addField(axialPosition, new ChangingHexagon(
+//                axialPosition,
+//                spriteContext.getTextures().getHexagon0(),
+//                spriteContext.getTextures().getHexagon1(),
+//                spriteContext));
+//        }
     }
 
     public boolean isActive() {
