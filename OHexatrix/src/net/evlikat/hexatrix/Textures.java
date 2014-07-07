@@ -21,6 +21,9 @@ public class Textures {
     private TextureRegion hexagon1;
     private TextureRegion border;
     private TextureRegion figure;
+    private TextureRegion startBtn;
+    private TextureRegion leadersBtn;
+    private TextureRegion quitBtn;
 
     public Textures(final TextureManager textureManager, final AssetManager assetManager) {
         loadTextures(textureManager, assetManager);
@@ -31,6 +34,9 @@ public class Textures {
         this.hexagon0 = loadTexture(textureManager, assetManager, "hexagon0");
         this.hexagon1 = loadTexture(textureManager, assetManager, "hexagon1");
         this.figure = loadTexture(textureManager, assetManager, "figure");
+        this.startBtn = loadTexture(textureManager, assetManager, "start-btn");
+        this.leadersBtn = loadTexture(textureManager, assetManager, "leaders-btn");
+        this.quitBtn = loadTexture(textureManager, assetManager, "quit-btn");
     }
 
     private TextureRegion loadTexture(final TextureManager textureManager, final AssetManager assetManager, final String id) {
@@ -62,5 +68,17 @@ public class Textures {
 
     public TextureRegion getFigure() {
         return figure;
+    }
+
+    public TextureRegion getStartBtn() {
+        return startBtn;
+    }
+
+    public TextureRegion getLeadersBtn() {
+        return leadersBtn;
+    }
+
+    public TextureRegion getQuitBtn() {
+        return quitBtn;
     }
 }

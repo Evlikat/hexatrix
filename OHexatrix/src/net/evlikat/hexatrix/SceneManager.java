@@ -62,7 +62,7 @@ public class SceneManager implements PlayCallback, MenuCallback {
 
     public final MainMenuView getMainMenuView() {
         if (menuView == null) {
-            menuView = new MainMenuView(engine, camera, font, this);
+            menuView = new MainMenuView(engine, camera, textures, font, this);
             menuView.populate();
         }
         return menuView;
@@ -74,6 +74,11 @@ public class SceneManager implements PlayCallback, MenuCallback {
             playView.populate();
         }
         return playView;
+    }
+
+    public void quit() {
+        activity.finish();
+        android.os.Process.killProcess(android.os.Process.myPid());
     }
 
     public void toMenuView(GameResults gameResults) {

@@ -8,4 +8,6 @@ package net.evlikat.hexatrix.views;
 public interface MenuCallback {
 
     void toPlayView();
+    
+    void quit();
 }
