@@ -3,6 +3,7 @@ package net.evlikat.hexatrix.entities;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import net.evlikat.hexatrix.axial.AxialDirection;
@@ -66,6 +67,20 @@ public class Figure extends AxialEntity implements IFigure {
         parts.put(relativePosition, hexagon);
     }
 
+    public final void resetParts(Collection<AxialPosition> newPartPositions) {
+        Collection<Hexagon> hexagons = new ArrayList<Hexagon>(parts.values());
+        if (hexagons.size() != newPartPositions.size()) {
+            throw new UnsupportedOperationException("Part reset is not implemented for different size figures");
+        }
+        parts.clear();
+        Iterator<Hexagon> hexIt = hexagons.iterator();
+        for (AxialPosition axialPosition : newPartPositions) {
+            final Hexagon hexagon = hexIt.next();
+            parts.put(axialPosition, hexagon);
+            hexagon.setPosition(axialPosition);
+        }
+    }
+    
     public final void removePart(AxialPosition relativePosition) {
         Hexagon hexagon = parts.get(relativePosition);
         if (hexagon != null) {
@@ -98,8 +113,8 @@ public class Figure extends AxialEntity implements IFigure {
     @Override
     public boolean move(Collection<AxialPosition> forbiddenPositions, AxialDirection direction) {
         AxialPosition newFigurePosition = new AxialPosition(
-            center.getQ() + direction.getDq(),
-            center.getR() + direction.getDr()
+            center.getQ() + direction.getQ(),
+            center.getR() + direction.getR()
         );
         if (forbiddenPositions.contains(newFigurePosition)) {
             // Figure center can't be moved

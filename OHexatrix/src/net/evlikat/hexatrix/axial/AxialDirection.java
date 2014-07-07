@@ -5,7 +5,7 @@ package net.evlikat.hexatrix.axial;
  * @author Roman Prokhorov
  * @version 1.0 (Jun 27, 2014)
  */
-public class AxialDirection {
+public class AxialDirection implements AxialVector {
 
     public static AxialDirection Right = new AxialDirection(1, 0);
     public static AxialDirection RightBack = new AxialDirection(1, -1);
@@ -22,11 +22,11 @@ public class AxialDirection {
         this.Dr = dr;
     }
 
-    public int getDq() {
+    public int getQ() {
         return Dq;
     }
 
-    public int getDr() {
+    public int getR() {
         return Dr;
     }
 }

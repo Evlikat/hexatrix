@@ -5,7 +5,7 @@ package net.evlikat.hexatrix.axial;
  * @author Roman Prokhorov
  * @version 1.0 (Jun 27, 2014)
  */
-public class AxialPosition {
+public class AxialPosition implements AxialVector {
 
     private final int q;
     private final int r;
@@ -28,8 +28,8 @@ public class AxialPosition {
         return r;
     }
 
-    public AxialPosition plus(AxialPosition otherPos) {
-        return new AxialPosition(q + otherPos.q, r + otherPos.r);
+    public AxialPosition plus(AxialVector otherPos) {
+        return new AxialPosition(q + otherPos.getQ(), r + otherPos.getR());
     }
 
     @Override

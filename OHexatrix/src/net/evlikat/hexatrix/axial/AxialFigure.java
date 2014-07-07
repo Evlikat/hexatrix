@@ -76,7 +76,7 @@ public class AxialFigure implements IFigure {
     }
 
     public boolean move(Collection<AxialPosition> forbiddenPositions, AxialDirection direction) {
-        AxialPosition newPosition = new AxialPosition(position.getQ() + direction.getDq(), position.getR() + direction.getDr());
+        AxialPosition newPosition = new AxialPosition(position.getQ() + direction.getQ(), position.getR() + direction.getR());
         if (forbiddenPositions.contains(newPosition)) {
             // Figure center can't be moved
             return false;

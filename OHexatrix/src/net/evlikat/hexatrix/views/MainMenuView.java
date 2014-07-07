@@ -12,18 +12,20 @@ import org.andengine.opengl.font.IFont;
  * @author Roman Prokhorov
  * @version 1.0 (Jul 03, 2014)
  */
-public class MenuView extends GameView {
+public class MainMenuView extends GameView {
 
     private final IFont font;
+    private final MenuCallback menuCallback;
 
-    public MenuView(Engine engine, Camera camera, IFont font) {
+    public MainMenuView(Engine engine, Camera camera, IFont font, MenuCallback callback) {
         super(engine, camera);
         this.font = font;
+        this.menuCallback = callback;
     }
 
     @Override
     public void populate() {
-        scene.setBackground(new Background(0xEE, 0xEE, 0xEE));
+        scene.setBackground(new Background(0, 0, 0));
         scene.attachChild(new Text(30, 30, font, "Main menu. Touch to start", engine.getVertexBufferObjectManager()));
     }
 
@@ -33,7 +35,7 @@ public class MenuView extends GameView {
 
     @Override
     protected void onTouch(TouchEvent pSceneTouchEvent) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        menuCallback.toPlayView();
     }
 
 }

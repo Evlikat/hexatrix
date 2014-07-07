@@ -3,6 +3,7 @@ package net.evlikat.hexatrix.entities;
 import net.evlikat.hexatrix.Textures;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
+import org.andengine.opengl.font.IFont;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 
 /**
@@ -17,13 +18,19 @@ public class SpriteContext {
     private final Textures textures;
     private final VertexBufferObjectManager vertexBufferObjectManager;
     private final Engine engine;
+    private final IFont font;
 
-    public SpriteContext(float size, Camera camera, Textures textures, Engine engine) {
+    public SpriteContext(float size, Camera camera, Textures textures, Engine engine, IFont font) {
         this.size = size;
         this.camera = camera;
         this.textures = textures;
         this.engine = engine;
         this.vertexBufferObjectManager = engine.getVertexBufferObjectManager();
+        this.font = font;
+    }
+
+    public IFont getFont() {
+        return font;
     }
 
     public Engine getEngine() {

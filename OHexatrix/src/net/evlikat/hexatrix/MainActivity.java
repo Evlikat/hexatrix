@@ -49,8 +49,6 @@ public class MainActivity extends BaseGameActivity {
     }
 
     public void onPopulateScene(Scene scene, OnPopulateSceneCallback opsc) throws Exception {
-        sceneManager.populateCurrentView();
-
         opsc.onPopulateSceneFinished();
     }
 

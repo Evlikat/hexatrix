@@ -1,5 +1,6 @@
 package net.evlikat.hexatrix.axial;
 
+import net.evlikat.hexatrix.entities.GameSession;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -50,7 +51,7 @@ public class Physics {
 
     public Physics(InitialFieldGenerator fieldGenerator) {
         this.fieldGenerator = fieldGenerator;
-        this.gameSession = new GameSession();
+        this.gameSession = new GameSession(currentLevel, currentLevel, null, null);
         field = AxialHexagonalField.generateJar(9, 21);
         field.addFields(this.fieldGenerator.generate());
         int originQ = field.getWidth() / 2;
@@ -139,7 +140,7 @@ public class Physics {
         field.clear();
         field.addFields(fieldGenerator.generate());
         active = true;
-        gameSession = new GameSession();
+        gameSession = new GameSession(currentLevel, currentLevel, null, null);
         currentLevel = 0;
     }
 
@@ -199,10 +200,10 @@ public class Physics {
     }
 
     public void update() {
-        gameSession.frameLeft();
-        if (gameSession.getFramesLeft() == LEVELS.get(currentLevel).framesPerTick) {
-            tick();
-            gameSession.resetFrames();
-        }
+//        gameSession.frameLeft();
+//        if (gameSession.getFramesLeft() == LEVELS.get(currentLevel).framesPerTick) {
+//            tick();
+//            gameSession.resetFrames();
+//        }
     }
 }

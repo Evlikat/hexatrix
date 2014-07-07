@@ -89,7 +89,7 @@ public class AxialHexagonalField {
     }
 
     private static AxialPosition newNeighbour(AxialPosition initPosition, AxialDirection direction) {
-        return new AxialPosition(initPosition.getQ() + direction.getDq(), initPosition.getR() + direction.getDr());
+        return new AxialPosition(initPosition.getQ() + direction.getQ(), initPosition.getR() + direction.getR());
     }
 
     public boolean tick() {
