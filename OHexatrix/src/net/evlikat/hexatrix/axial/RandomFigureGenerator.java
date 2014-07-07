@@ -78,7 +78,7 @@ public class RandomFigureGenerator implements FigureGenerator {
         STAR);
 
     private final Random rnd = new Random();
-    private AxialFigure next = FIGURES.get(rnd.nextInt(FIGURES.size()));
+    private AxialFigure next = STICK;// FIGURES.get(rnd.nextInt(FIGURES.size()));
 
     public AxialFigure generate() {
         AxialFigure current = next;

@@ -34,27 +34,4 @@ public class Hexagon extends AxialEntity {
         this.position = position;
         onMoved(position);
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 97 * hash + (this.position != null ? this.position.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Hexagon other = (Hexagon) obj;
-        if (this.position != other.position && (this.position == null || !this.position.equals(other.position))) {
-            return false;
-        }
-        return true;
-
-    }
 }

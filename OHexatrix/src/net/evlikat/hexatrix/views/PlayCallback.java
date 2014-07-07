@@ -7,5 +7,5 @@ package net.evlikat.hexatrix.views;
  */
 public interface PlayCallback {
 
-    void toMenuView();
+    void toMenuView(GameResults gameResults);
 }

@@ -58,13 +58,9 @@ public class Fields {
     public void remove(AxialPosition position) {
         lock.lock();
         try {
+            Hexagon hex = posToHex.get(position);
             posToHex.remove(position);
-            for (Map.Entry<Hexagon, AxialPosition> entry : hexToPos.entrySet()) {
-                if (entry.getValue().equals(position)) {
-                    hexToPos.remove(entry.getKey());
-                    return;
-                }
-            }
+            hexToPos.remove(hex);
         } finally {
             lock.unlock();
         }

@@ -34,17 +34,17 @@ public class HexagonalField extends Entity implements IHexagonalField {
         new AxialPosition(5, -2),
         new AxialPosition(6, -3),
         new AxialPosition(7, -3),
-        new AxialPosition(8, -4),
+        new AxialPosition(8, -4)
         //
-        new AxialPosition(0, 1),
-        new AxialPosition(1, 1),
-        new AxialPosition(2, 0),
-        new AxialPosition(3, 0),
-        //new AxialPosition(4, -1),
-        new AxialPosition(5, -1),
-        new AxialPosition(6, -2),
-        new AxialPosition(7, -2),
-        new AxialPosition(8, -3)
+//        new AxialPosition(0, 1),
+//        new AxialPosition(1, 1),
+//        new AxialPosition(2, 0),
+//        new AxialPosition(3, 0),
+//        //new AxialPosition(4, -1),
+//        new AxialPosition(5, -1),
+//        new AxialPosition(6, -2),
+//        new AxialPosition(7, -2),
+//        new AxialPosition(8, -3)
     );
 
     private final Fields borders = new Fields();
@@ -87,13 +87,13 @@ public class HexagonalField extends Entity implements IHexagonalField {
         this.nextFigure.setPosition(nextFigurePosition);
         this.attachChild(nextFigure);
         // test
-//        for (AxialPosition axialPosition : TEST_INITIAL_FIELDS) {
-//            addField(axialPosition, new ChangingHexagon(
-//                axialPosition,
-//                spriteContext.getTextures().getHexagon0(),
-//                spriteContext.getTextures().getHexagon1(),
-//                spriteContext));
-//        }
+        for (AxialPosition axialPosition : TEST_INITIAL_FIELDS) {
+            addField(axialPosition, new ChangingHexagon(
+                axialPosition,
+                spriteContext.getTextures().getHexagon0(),
+                spriteContext.getTextures().getHexagon1(),
+                spriteContext));
+        }
     }
 
     public boolean isActive() {
@@ -123,7 +123,6 @@ public class HexagonalField extends Entity implements IHexagonalField {
             }
         }
         this.floatFigure = new Figure(floatFigure, spriteContext.getTextures().getFigure(), spriteContext);
-        this.attachChild(this.floatFigure);
         return true;
     }
 
@@ -261,7 +260,6 @@ public class HexagonalField extends Entity implements IHexagonalField {
         if (!figureSet) {
             // game over
             active = false;
-            detachSafely(floatFigure);
             return;
         }
         this.nextFigure.resetParts(figureGenerator.getNext().getParts());
@@ -271,6 +269,9 @@ public class HexagonalField extends Entity implements IHexagonalField {
         AxialFigure newFigure = figureGenerator.generate();
         newFigure.setPosition(new AxialPosition(originPosition));
         boolean figureSet = setFloatFigure(newFigure);
+        if (figureSet) {
+            this.attachChild(this.floatFigure);
+        }
         return figureSet;
     }
 

@@ -2,6 +2,7 @@ package net.evlikat.hexatrix;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
+import net.evlikat.hexatrix.views.GameResults;
 import net.evlikat.hexatrix.views.GameView;
 import net.evlikat.hexatrix.views.MenuCallback;
 import net.evlikat.hexatrix.views.MainMenuView;
@@ -75,8 +76,10 @@ public class SceneManager implements PlayCallback, MenuCallback {
         return playView;
     }
 
-    public void toMenuView() {
-        setCurrentView(getMainMenuView());
+    public void toMenuView(GameResults gameResults) {
+        final MainMenuView mainMenuView = getMainMenuView();
+        mainMenuView.registerResult(gameResults);
+        setCurrentView(mainMenuView);
     }
 
     public void toPlayView() {

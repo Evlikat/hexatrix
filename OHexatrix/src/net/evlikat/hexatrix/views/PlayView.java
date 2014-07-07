@@ -68,8 +68,8 @@ public class PlayView extends GameView {
         field.update();
         if (!field.isActive()) {
             field.restart();
+            playCallback.toMenuView(new GameResults(gameSession.getScores()));
             gameSession.resetResults();
-            playCallback.toMenuView();
         }
     }
 }

@@ -15,7 +15,7 @@ public class GameSession extends Text {
     private int scores = 0;
 
     public GameSession(float pX, float pY, IFont pFont, VertexBufferObjectManager pVertexBufferObjectManager) {
-        super(pX, pY, pFont, "SCORES:", pVertexBufferObjectManager);
+        super(pX, pY, pFont, "SCORES:", 50, pVertexBufferObjectManager);
         setColor(Color.WHITE);
     }
 
