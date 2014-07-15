@@ -17,7 +17,7 @@ public class Levels {
     private static final LinkedHashMap<Integer, Integer> LEVELS = new LinkedHashMap<Integer, Integer>() {
         {
             put(0, 52);
-            put(1, 50);
+            put(30, 50);
             put(60, 48);
             put(100, 46);
             put(150, 44);
@@ -33,7 +33,7 @@ public class Levels {
             put(1750, 24);
             put(2000, 22);
             put(2500, 20);
-            put(Integer.MAX_VALUE, 20);
+            put(9999999, 20);
         }
     };
 

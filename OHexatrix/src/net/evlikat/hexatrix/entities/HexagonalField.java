@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import net.evlikat.hexatrix.Textures;
 import net.evlikat.hexatrix.axial.AxialDirection;
 import net.evlikat.hexatrix.axial.AxialFigure;
 import net.evlikat.hexatrix.axial.AxialPosition;
@@ -14,10 +15,12 @@ import net.evlikat.hexatrix.axial.MoveDirection;
 import net.evlikat.hexatrix.axial.RandomFigureGenerator;
 import net.evlikat.hexatrix.axial.RotateDirection;
 import net.evlikat.hexatrix.views.Levels;
-import static net.evlikat.hexatrix.entities.AxialEntity.SQ3;
 import org.andengine.engine.Engine;
 import org.andengine.entity.Entity;
 import org.andengine.entity.IEntity;
+
+import static net.evlikat.hexatrix.entities.AxialEntity.SQ3;
+import org.andengine.opengl.texture.region.TextureRegion;
 
 /**
  *
@@ -36,16 +39,16 @@ public class HexagonalField extends Entity implements IHexagonalField {
         new AxialPosition(6, -3),
         new AxialPosition(7, -3),
         new AxialPosition(8, -4)
-        //
-//        new AxialPosition(0, 1),
-//        new AxialPosition(1, 1),
-//        new AxialPosition(2, 0),
-//        new AxialPosition(3, 0),
-//        //new AxialPosition(4, -1),
-//        new AxialPosition(5, -1),
-//        new AxialPosition(6, -2),
-//        new AxialPosition(7, -2),
-//        new AxialPosition(8, -3)
+    //
+    //        new AxialPosition(0, 1),
+    //        new AxialPosition(1, 1),
+    //        new AxialPosition(2, 0),
+    //        new AxialPosition(3, 0),
+    //        //new AxialPosition(4, -1),
+    //        new AxialPosition(5, -1),
+    //        new AxialPosition(6, -2),
+    //        new AxialPosition(7, -2),
+    //        new AxialPosition(8, -3)
     );
 
     private final Fields borders = new Fields();
@@ -89,13 +92,13 @@ public class HexagonalField extends Entity implements IHexagonalField {
         this.nextFigure.setPosition(nextFigurePosition);
         this.attachChild(nextFigure);
         // test
-        for (AxialPosition axialPosition : TEST_INITIAL_FIELDS) {
-            addField(axialPosition, new ChangingHexagon(
-                axialPosition,
-                spriteContext.getTextures().getHexagon0(),
-                spriteContext.getTextures().getHexagon1(),
-                spriteContext));
-        }
+//        for (AxialPosition axialPosition : TEST_INITIAL_FIELDS) {
+//            addField(axialPosition, new ChangingHexagon(
+//                axialPosition,
+//                spriteContext.getTextures().getHexagon0(),
+//                spriteContext.getTextures().getHexagon1(),
+//                spriteContext));
+//        }
     }
 
     public boolean isActive() {
@@ -130,10 +133,11 @@ public class HexagonalField extends Entity implements IHexagonalField {
 
     public static HexagonalField generateJar(int width, int depth, SpriteContext spriteContext, GameEventCallback gameEventCallback) {
         HexagonalField jar = new HexagonalField(width, depth, spriteContext, gameEventCallback);
+        final Textures textures = spriteContext.getTextures();
         // Set borders: right hexa-corner
         Hexagon pos = new Hexagon(
             neighbour(new AxialPosition(0, 0), AxialDirection.Left),
-            spriteContext.getTextures().getBorder(),
+            textures.getBorderLeft(),
             spriteContext
         );
         AxialDirection[] directions = {AxialDirection.Right, AxialDirection.RightBack};
@@ -143,19 +147,26 @@ public class HexagonalField extends Entity implements IHexagonalField {
             // stack cells for borders
             if (i == -1 || i == width) {
                 Hexagon stackPos = pos;
+                TextureRegion border;
+                if (i == -1) {
+                    border = textures.getBorderLeft();
+                } else {
+                    border = textures.getBorderRight();
+                }
                 for (int j = 1; j < depth; j++) {
                     stackPos = new Hexagon(
                         neighbour(stackPos.getPosition(), AxialDirection.Forward),
-                        spriteContext.getTextures().getBorder(),
+                        border,
                         spriteContext
                     );
                     jar.addBorder(stackPos);
                 }
             }
+            final TextureRegion borderBottom = (i < width - 1) ? textures.getBorderBottom() : textures.getBorderRight();
             // next stack
             pos = new Hexagon(
                 neighbour(pos.getPosition(), directions[(i + 2) % directions.length]),
-                spriteContext.getTextures().getBorder(),
+                borderBottom,
                 spriteContext
             );
         }

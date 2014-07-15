@@ -19,7 +19,9 @@ public class Textures {
 
     private TextureRegion hexagon0;
     private TextureRegion hexagon1;
-    private TextureRegion border;
+    private TextureRegion borderBottom;
+    private TextureRegion borderLeft;
+    private TextureRegion borderRight;
     private TextureRegion figure;
     private TextureRegion startBtn;
     private TextureRegion leadersBtn;
@@ -30,7 +32,9 @@ public class Textures {
     }
 
     private void loadTextures(final TextureManager textureManager, final AssetManager assetManager) {
-        this.border = loadTexture(textureManager, assetManager, "border");
+        this.borderBottom = loadTexture(textureManager, assetManager, "border");
+        this.borderLeft = loadTexture(textureManager, assetManager, "border-left");
+        this.borderRight = loadTexture(textureManager, assetManager, "border-right");
         this.hexagon0 = loadTexture(textureManager, assetManager, "hexagon0");
         this.hexagon1 = loadTexture(textureManager, assetManager, "hexagon1");
         this.figure = loadTexture(textureManager, assetManager, "figure");
@@ -62,8 +66,16 @@ public class Textures {
         return hexagon1;
     }
 
-    public TextureRegion getBorder() {
-        return border;
+    public TextureRegion getBorderLeft() {
+        return borderLeft;
+    }
+
+    public TextureRegion getBorderRight() {
+        return borderRight;
+    }
+
+    public TextureRegion getBorderBottom() {
+        return borderBottom;
     }
 
     public TextureRegion getFigure() {
