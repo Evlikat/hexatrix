@@ -13,6 +13,7 @@ import net.evlikat.hexatrix.axial.FigureGenerator;
 import net.evlikat.hexatrix.axial.MoveDirection;
 import net.evlikat.hexatrix.axial.RandomFigureGenerator;
 import net.evlikat.hexatrix.axial.RotateDirection;
+import net.evlikat.hexatrix.views.Levels;
 import static net.evlikat.hexatrix.entities.AxialEntity.SQ3;
 import org.andengine.engine.Engine;
 import org.andengine.entity.Entity;
@@ -61,6 +62,7 @@ public class HexagonalField extends Entity implements IHexagonalField {
     //
     private final SpriteContext spriteContext;
     private boolean active = true;
+    private Levels levels = new Levels();
     private final GameEventCallback gameEventCallback;
 
     private HexagonalField(int width, int depth, SpriteContext spriteContext, GameEventCallback gameEventCallback) {
@@ -86,14 +88,14 @@ public class HexagonalField extends Entity implements IHexagonalField {
         this.nextFigure = new Figure(figureGenerator.getNext(), spriteContext.getTextures().getFigure(), spriteContext);
         this.nextFigure.setPosition(nextFigurePosition);
         this.attachChild(nextFigure);
-//        // test
-//        for (AxialPosition axialPosition : TEST_INITIAL_FIELDS) {
-//            addField(axialPosition, new ChangingHexagon(
-//                axialPosition,
-//                spriteContext.getTextures().getHexagon0(),
-//                spriteContext.getTextures().getHexagon1(),
-//                spriteContext));
-//        }
+        // test
+        for (AxialPosition axialPosition : TEST_INITIAL_FIELDS) {
+            addField(axialPosition, new ChangingHexagon(
+                axialPosition,
+                spriteContext.getTextures().getHexagon0(),
+                spriteContext.getTextures().getHexagon1(),
+                spriteContext));
+        }
     }
 
     public boolean isActive() {
@@ -211,7 +213,10 @@ public class HexagonalField extends Entity implements IHexagonalField {
             detachChild(hexagon);
         }
         fields.clear();
+        gameEventCallback.reset();
+        figureGenerator.reset();
         createNewFloatFigure();
+        nextFigure.resetParts(figureGenerator.getNext().getParts());
         active = true;
     }
 
@@ -330,7 +335,7 @@ public class HexagonalField extends Entity implements IHexagonalField {
 
     public void update() {
         framesLeft++;
-        if (framesLeft == 50) {
+        if (framesLeft >= gameEventCallback.framesPerTick()) {
             tick();
             framesLeft = 0;
         }

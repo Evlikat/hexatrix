@@ -19,6 +19,38 @@ import org.andengine.opengl.font.IFont;
  */
 public class PlayView extends GameView {
 
+    private static final class GameEventCallbackImpl implements GameEventCallback {
+
+        private final Levels levels;
+        private final GameSession gameSession;
+
+        public GameEventCallbackImpl(Levels levels, GameSession gameSession) {
+            this.levels = levels;
+            this.gameSession = gameSession;
+        }
+
+        public void onLinesRemoved(int linesRemoved) {
+            int totalScores = gameSession.addScores(linesRemoved);
+            levels.setLevelByScores(totalScores);
+        }
+
+        public void reset() {
+            levels.reset();
+        }
+
+        public long framesPerTick() {
+            return levels.framesPerTick();
+        }
+
+        public int getLevel() {
+            return levels.getCurrentLevel();
+        }
+
+        public int getScoresToNext() {
+            return levels.getScoresToNext();
+        }
+    }
+
     private static final float SQ3 = (float) Math.sqrt(3);
 
     private static final int DEPTH = 21;
@@ -30,6 +62,7 @@ public class PlayView extends GameView {
     private final TouchListener touchListener;
     private final PlayCallback playCallback;
     private final GameSession gameSession;
+    private final Levels levels = new Levels();
 
     public PlayView(Context context, Engine engine, Camera camera, Textures textures, IFont font, PlayCallback playCallback) {
         super(engine, camera);
@@ -37,17 +70,10 @@ public class PlayView extends GameView {
         this.size = camera.getHeight() / ((DEPTH + 1) * (SQ3)); // pixels per hexagon
         this.playCallback = playCallback;
         float leftShift = size + (WIDTH + 2) * size * 3 / 2;
-        this.gameSession = new GameSession(leftShift, 10, font, engine.getVertexBufferObjectManager());
+        this.gameSession = new GameSession(levels, leftShift, 10, font, engine.getVertexBufferObjectManager());
+        final GameEventCallbackImpl gameEventCallback = new GameEventCallbackImpl(levels, gameSession);
         this.field = HexagonalField.generateJar(
-            WIDTH, DEPTH,
-            new SpriteContext(size, camera, textures, engine, font),
-            new GameEventCallback() {
-
-                public void onLinesRemoved(int linesRemoved) {
-                    gameSession.addScores(linesRemoved);
-                }
-            }
-        );
+            WIDTH, DEPTH, new SpriteContext(size, camera, textures, engine, font), gameEventCallback);
         this.touchListener = new TouchListener(field);
     }
 
@@ -70,6 +96,7 @@ public class PlayView extends GameView {
             field.restart();
             playCallback.toMenuView(new GameResults(gameSession.getScores()));
             gameSession.resetResults();
+            levels.reset();
         }
     }
 }

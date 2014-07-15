@@ -25,4 +25,6 @@ public class TrivialFigureGenerator implements FigureGenerator {
         return AXIAL_FIGURE;
     }
 
+    public void reset() {
+    }
 }

@@ -9,4 +9,8 @@ public interface GameEventCallback {
 
     public void onLinesRemoved(int linesRemoved);
 
+    public void reset();
+
+    public long framesPerTick();
+
 }

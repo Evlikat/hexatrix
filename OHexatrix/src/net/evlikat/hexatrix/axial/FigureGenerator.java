@@ -10,4 +10,6 @@ public interface FigureGenerator {
     AxialFigure generate();
 
     AxialFigure getNext();
+
+    void reset();
 }

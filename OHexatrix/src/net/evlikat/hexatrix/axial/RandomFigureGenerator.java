@@ -89,4 +89,8 @@ public class RandomFigureGenerator implements FigureGenerator {
     public AxialFigure getNext() {
         return next;
     }
+
+    public void reset() {
+        next = FIGURES.get(rnd.nextInt(FIGURES.size()));
+    }
 }
