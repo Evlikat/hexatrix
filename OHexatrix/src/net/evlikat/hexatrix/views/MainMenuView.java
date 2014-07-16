@@ -4,7 +4,9 @@ import net.evlikat.hexatrix.Textures;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
 import org.andengine.entity.scene.background.Background;
+import org.andengine.entity.scene.background.SpriteBackground;
 import org.andengine.entity.sprite.ButtonSprite;
+import org.andengine.entity.sprite.Sprite;
 import org.andengine.entity.text.Text;
 import org.andengine.entity.text.exception.OutOfCharactersException;
 import org.andengine.input.touch.TouchEvent;
@@ -20,6 +22,7 @@ public class MainMenuView extends GameView {
     private int lastScore = -1;
     private int topScore = -1;
     private final Text text;
+    private final Background background;
     private final ButtonSprite startButton;
     private final ButtonSprite leadersButton;
     private final ButtonSprite quitButton;
@@ -27,6 +30,7 @@ public class MainMenuView extends GameView {
     public MainMenuView(Engine engine, Camera camera, Textures textures, IFont font, final MenuCallback callback) {
         super(engine, camera);
         this.text = new Text(30, 30, font, "", 255, engine.getVertexBufferObjectManager());
+        this.background = new SpriteBackground(new Sprite(0, 0, textures.getBackground(), engine.getVertexBufferObjectManager()));
         //
         float buttonHeight = camera.getHeight() / 5;
         float buttonLeft = (camera.getWidth() - textures.getStartBtn().getWidth()) / 2;
@@ -55,7 +59,7 @@ public class MainMenuView extends GameView {
 
     @Override
     public void populate() {
-        scene.setBackground(new Background(0, 0, 0));
+        scene.setBackground(background);
         scene.attachChild(text);
         scene.registerTouchArea(startButton);
         scene.registerTouchArea(leadersButton);

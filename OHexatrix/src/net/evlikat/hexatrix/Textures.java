@@ -26,6 +26,8 @@ public class Textures {
     private TextureRegion startBtn;
     private TextureRegion leadersBtn;
     private TextureRegion quitBtn;
+    //
+    private TextureRegion background;
 
     public Textures(final TextureManager textureManager, final AssetManager assetManager) {
         loadTextures(textureManager, assetManager);
@@ -41,6 +43,8 @@ public class Textures {
         this.startBtn = loadTexture(textureManager, assetManager, "start-btn");
         this.leadersBtn = loadTexture(textureManager, assetManager, "leaders-btn");
         this.quitBtn = loadTexture(textureManager, assetManager, "quit-btn");
+        //
+        this.background = loadTexture(textureManager, assetManager, "background");
     }
 
     private TextureRegion loadTexture(final TextureManager textureManager, final AssetManager assetManager, final String id) {
@@ -92,5 +96,9 @@ public class Textures {
 
     public TextureRegion getQuitBtn() {
         return quitBtn;
+    }
+
+    public TextureRegion getBackground() {
+        return background;
     }
 }

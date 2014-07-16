@@ -9,6 +9,9 @@ import net.evlikat.hexatrix.entities.SpriteContext;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
 import org.andengine.entity.scene.background.Background;
+import org.andengine.entity.scene.background.ParallaxBackground;
+import org.andengine.entity.scene.background.SpriteBackground;
+import org.andengine.entity.sprite.Sprite;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.font.IFont;
 
@@ -57,6 +60,7 @@ public class PlayView extends GameView {
     private static final int WIDTH = 9;
 
     private final HexagonalField field;
+    private final Background background;
     //private final Textures textures;
     private final float size;
     private final TouchListener touchListener;
@@ -75,6 +79,7 @@ public class PlayView extends GameView {
         this.field = HexagonalField.generateJar(
             WIDTH, DEPTH, new SpriteContext(size, camera, textures, engine, font), gameEventCallback);
         this.touchListener = new TouchListener(field);
+        this.background = new SpriteBackground(new Sprite(0, 0, textures.getBackground(), engine.getVertexBufferObjectManager()));
     }
 
     @Override
@@ -84,7 +89,7 @@ public class PlayView extends GameView {
 
     @Override
     public void populate() {
-        scene.setBackground(new Background(0, 0, 0));
+        scene.setBackground(background);
         scene.attachChild(field);
         scene.attachChild(gameSession);
     }
