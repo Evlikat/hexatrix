@@ -6,6 +6,7 @@ import net.evlikat.hexatrix.entities.GameEventCallback;
 import net.evlikat.hexatrix.entities.GameSession;
 import net.evlikat.hexatrix.entities.HexagonalField;
 import net.evlikat.hexatrix.entities.SpriteContext;
+import net.evlikat.hexatrix.scores.IScoreStorage;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
 import org.andengine.entity.scene.background.Background;
@@ -65,10 +66,12 @@ public class PlayView extends GameView {
     private final float size;
     private final TouchListener touchListener;
     private final PlayCallback playCallback;
+    private final IScoreStorage scoreStorage;
     private final GameSession gameSession;
     private final Levels levels = new Levels();
 
-    public PlayView(Context context, Engine engine, Camera camera, Textures textures, IFont font, PlayCallback playCallback) {
+    public PlayView(Context context, Engine engine, Camera camera, Textures textures, IFont font,
+        PlayCallback playCallback, IScoreStorage scoreStorage) {
         super(engine, camera);
         //this.textures = textures;
         this.size = camera.getHeight() / ((DEPTH + 1) * (SQ3)); // pixels per hexagon
@@ -80,6 +83,7 @@ public class PlayView extends GameView {
             WIDTH, DEPTH, new SpriteContext(size, camera, textures, engine, font), gameEventCallback);
         this.touchListener = new TouchListener(field);
         this.background = new SpriteBackground(new Sprite(0, 0, textures.getBackground(), engine.getVertexBufferObjectManager()));
+        this.scoreStorage = scoreStorage;
     }
 
     @Override
@@ -99,7 +103,9 @@ public class PlayView extends GameView {
         field.update();
         if (!field.isActive()) {
             field.restart();
-            playCallback.toMenuView(new GameResults(gameSession.getScores()));
+            final GameResults gameResults = new GameResults(gameSession.getScores());
+            playCallback.toMenuView(gameResults);
+            scoreStorage.save(gameResults);
             gameSession.resetResults();
             levels.reset();
         }

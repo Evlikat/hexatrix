@@ -13,6 +13,7 @@ import org.andengine.input.touch.TouchEvent;
  */
 public class TouchListener implements ITouchListener {
 
+    private static final int CLICK_RADIUS = 30;
     private static final String TAG = TouchListener.class.getSimpleName();
     private final IHexagonalField field;
     private float downX = -1;
@@ -46,22 +47,28 @@ public class TouchListener implements ITouchListener {
         try {
             float diffY = y2 - y1;
             float diffX = x2 - x1;
-            if (Math.abs(diffX) > Math.abs(diffY)) {
-                if (diffX > 0) {
-                    field.move(MoveDirection.RIGHT);
-                } else {
-                    field.move(MoveDirection.LEFT);
-                }
-            } else {
-                if (diffY < 0) {
+            // if fling is out of single clikc circle
+            if (diffX * diffX + diffY * diffY > CLICK_RADIUS * CLICK_RADIUS) {
+                if (Math.abs(diffX) > Math.abs(diffY)) {
                     if (diffX > 0) {
-                        field.turn(RotateDirection.RIGHT);
+                        field.move(MoveDirection.RIGHT);
                     } else {
-                        field.turn(RotateDirection.LEFT);
+                        field.move(MoveDirection.LEFT);
                     }
                 } else {
-                    field.drop();
+                    if (diffY < 0) {
+                        if (diffX > 0) {
+                            field.turn(RotateDirection.RIGHT);
+                        } else {
+                            field.turn(RotateDirection.LEFT);
+                        }
+                    } else {
+                        field.drop();
+                    }
                 }
+            } else {
+                // handle like single click
+                field.turn(RotateDirection.RIGHT);
             }
         } catch (Exception ex) {
             Log.e(TAG, ex.getMessage(), ex);

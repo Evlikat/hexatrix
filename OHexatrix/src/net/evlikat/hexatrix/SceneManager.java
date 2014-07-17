@@ -2,6 +2,7 @@ package net.evlikat.hexatrix;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
+import net.evlikat.hexatrix.scores.IScoreStorage;
 import net.evlikat.hexatrix.views.GameResults;
 import net.evlikat.hexatrix.views.GameView;
 import net.evlikat.hexatrix.views.MenuCallback;
@@ -27,11 +28,12 @@ public class SceneManager implements PlayCallback, MenuCallback {
     private final Camera camera;
     private final Textures textures;
     private final IFont font;
+    private final IScoreStorage scoreStorage;
     // Views
     private MainMenuView menuView;
     private PlayView playView;
 
-    public SceneManager(MainActivity activity, Engine engine, Camera camera, Textures textures) {
+    public SceneManager(MainActivity activity, Engine engine, Camera camera, Textures textures, IScoreStorage scoreStorage) {
         this.activity = activity;
         this.engine = engine;
         this.camera = camera;
@@ -45,6 +47,7 @@ public class SceneManager implements PlayCallback, MenuCallback {
         );
         this.font.load();
         this.currentView = getMainMenuView();
+        this.scoreStorage = scoreStorage;
     }
 
     public void updateCurrentView() {
@@ -70,7 +73,7 @@ public class SceneManager implements PlayCallback, MenuCallback {
 
     public final PlayView getPlayView() {
         if (playView == null) {
-            playView = new PlayView(activity, engine, camera, textures, font, this);
+            playView = new PlayView(activity, engine, camera, textures, font, this, scoreStorage);
             playView.populate();
         }
         return playView;

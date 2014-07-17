@@ -1,5 +1,6 @@
 package net.evlikat.hexatrix;
 
+import net.evlikat.hexatrix.scores.Leaderboard;
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.handler.timer.ITimerCallback;
 import org.andengine.engine.handler.timer.TimerHandler;
@@ -30,7 +31,8 @@ public class MainActivity extends BaseGameActivity {
 
     public void onCreateResources(OnCreateResourcesCallback ocrc) throws Exception {
         textures = new Textures(getTextureManager(), getAssets());
-        sceneManager = new SceneManager(this, mEngine, camera, textures);
+        sceneManager = new SceneManager(this, mEngine, camera, textures, new Leaderboard(
+            "/data/data/" + MainActivity.class.getPackage().getName() + "/leaderboard.lb", 10));
 
         ocrc.onCreateResourcesFinished();
     }
