@@ -9,5 +9,7 @@ public interface MenuCallback {
 
     void toPlayView();
     
+    void toLeadersView();
+    
     void quit();
 }

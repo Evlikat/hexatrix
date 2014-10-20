@@ -54,6 +54,7 @@ public class MainMenuView extends GameView {
             engine.getVertexBufferObjectManager(), new ButtonSprite.OnClickListener() {
 
                 public void onClick(ButtonSprite pButtonSprite, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+                    callback.toLeadersView();
                 }
             });
         this.quitButton = new ButtonSprite(buttonLeft, buttonHeight * i++, textures.getQuitBtn(),
@@ -111,8 +112,8 @@ public class MainMenuView extends GameView {
     private void displayResults() throws OutOfCharactersException {
         StringBuilder builder = new StringBuilder();
         if (lastScore > -1 && topScore > -1) {
-            builder.append("Your scores: ").append(lastScore).append("\n");
-            builder.append("Top scores: ").append(topScore);
+            builder.append("Last scores: ").append(lastScore).append("\n");
+            builder.append("Top scores:  ").append(topScore);
         }
         text.setText(builder.toString());
     }

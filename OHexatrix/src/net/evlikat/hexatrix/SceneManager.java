@@ -5,6 +5,8 @@ import android.graphics.Typeface;
 import net.evlikat.hexatrix.scores.IScoreStorage;
 import net.evlikat.hexatrix.views.GameResults;
 import net.evlikat.hexatrix.views.GameView;
+import net.evlikat.hexatrix.views.LeadersCallback;
+import net.evlikat.hexatrix.views.LeadersView;
 import net.evlikat.hexatrix.views.MenuCallback;
 import net.evlikat.hexatrix.views.MainMenuView;
 import net.evlikat.hexatrix.views.PlayCallback;
@@ -19,7 +21,7 @@ import org.andengine.opengl.font.IFont;
  * @author Roman Prokhorov
  * @version 1.0 (Jul 03, 2014)
  */
-public class SceneManager implements PlayCallback, MenuCallback {
+public class SceneManager implements PlayCallback, MenuCallback, LeadersCallback {
 
     private GameView currentView;
 
@@ -32,6 +34,7 @@ public class SceneManager implements PlayCallback, MenuCallback {
     // Views
     private MainMenuView menuView;
     private PlayView playView;
+    private LeadersView leadersView;
 
     public SceneManager(MainActivity activity, Engine engine, Camera camera, Textures textures, IScoreStorage scoreStorage) {
         this.activity = activity;
@@ -42,7 +45,7 @@ public class SceneManager implements PlayCallback, MenuCallback {
             engine.getFontManager(),
             engine.getTextureManager(),
             256, 256,
-            Typeface.create(Typeface.DEFAULT, Typeface.BOLD),
+            Typeface.create(Typeface.MONOSPACE, Typeface.BOLD),
             32, Color.WHITE
         );
         this.font.load();
@@ -79,11 +82,20 @@ public class SceneManager implements PlayCallback, MenuCallback {
         return playView;
     }
 
+    public final LeadersView getLeadersView() {
+        if (leadersView == null) {
+            leadersView = new LeadersView(engine, camera, font, this, scoreStorage);
+            leadersView.populate();
+        }
+        return leadersView;
+    }
+
     public void quit() {
         activity.finish();
         android.os.Process.killProcess(android.os.Process.myPid());
     }
 
+    // --- Callbacks ---
     public void toMenuView(GameResults gameResults) {
         final MainMenuView mainMenuView = getMainMenuView();
         mainMenuView.registerResult(gameResults);
@@ -92,5 +104,13 @@ public class SceneManager implements PlayCallback, MenuCallback {
 
     public void toPlayView() {
         setCurrentView(getPlayView());
+    }
+
+    public void toLeadersView() {
+        setCurrentView(getLeadersView());
+    }
+
+    public void toMenuView() {
+        setCurrentView(getMainMenuView());
     }
 }
