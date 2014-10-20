@@ -1,6 +1,10 @@
 package net.evlikat.hexatrix.views;
 
+import java.util.Date;
+import java.util.List;
 import net.evlikat.hexatrix.Textures;
+import net.evlikat.hexatrix.scores.IScoreStorage;
+import net.evlikat.hexatrix.scores.Scores;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
 import org.andengine.entity.scene.background.Background;
@@ -27,13 +31,17 @@ public class MainMenuView extends GameView {
     private final ButtonSprite leadersButton;
     private final ButtonSprite quitButton;
 
-    public MainMenuView(Engine engine, Camera camera, Textures textures, IFont font, final MenuCallback callback) {
+    public MainMenuView(Engine engine, Camera camera, Textures textures, IFont font, final MenuCallback callback, final IScoreStorage scoreStorage) {
         super(engine, camera);
         this.text = new Text(30, 30, font, "", 255, engine.getVertexBufferObjectManager());
         this.background = new SpriteBackground(new Sprite(0, 0, textures.getBackground(), engine.getVertexBufferObjectManager()));
         //
         float buttonHeight = camera.getHeight() / 5;
         float buttonLeft = (camera.getWidth() - textures.getStartBtn().getWidth()) / 2;
+        // load scores
+        this.lastScore = lastScore(scoreStorage.getTopScores());
+        this.topScore = topScore(scoreStorage.getTopScores());
+        //
         int i = 1;
         this.startButton = new ButtonSprite(buttonLeft, buttonHeight * i++, textures.getStartBtn(),
             engine.getVertexBufferObjectManager(), new ButtonSprite.OnClickListener() {
@@ -55,6 +63,26 @@ public class MainMenuView extends GameView {
                     callback.quit();
                 }
             });
+    }
+
+    private static int lastScore(List<Scores> scores) {
+        int lastScore = -1;
+        Date latestDate = new Date(0);
+        for (Scores sc : scores) {
+            Date date = sc.getDate();
+            if (date.after(latestDate)) {
+                latestDate = date;
+                lastScore = sc.getAmount();
+            }
+        }
+        return lastScore;
+    }
+
+    private static int topScore(List<Scores> scores) {
+        if (scores.isEmpty()) {
+            return -1;
+        }
+        return scores.get(0).getAmount();
     }
 
     @Override

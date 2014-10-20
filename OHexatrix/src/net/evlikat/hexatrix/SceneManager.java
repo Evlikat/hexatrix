@@ -46,8 +46,8 @@ public class SceneManager implements PlayCallback, MenuCallback {
             32, Color.WHITE
         );
         this.font.load();
-        this.currentView = getMainMenuView();
         this.scoreStorage = scoreStorage;
+        this.currentView = getMainMenuView();
     }
 
     public void updateCurrentView() {
@@ -65,7 +65,7 @@ public class SceneManager implements PlayCallback, MenuCallback {
 
     public final MainMenuView getMainMenuView() {
         if (menuView == null) {
-            menuView = new MainMenuView(engine, camera, textures, font, this);
+            menuView = new MainMenuView(engine, camera, textures, font, this, scoreStorage);
             menuView.populate();
         }
         return menuView;
