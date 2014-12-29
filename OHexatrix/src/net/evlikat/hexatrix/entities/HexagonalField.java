@@ -54,10 +54,12 @@ public class HexagonalField extends Entity implements IHexagonalField {
     );
 
     private final Fields borders = new Fields();
+    private final Fields backWall = new Fields();
     private final Fields fields = new Fields();
+    private final Collection<Hexagon> highlightedHexagons = new ArrayList<Hexagon>();
     // Properties
     private Figure floatFigure;
-    private final Figure nextFigure;
+    private Figure nextFigure;
     private final AxialDirection gravity;
     private final int width;
     private final int depth;
@@ -81,6 +83,18 @@ public class HexagonalField extends Entity implements IHexagonalField {
         this.originPosition = new AxialPosition(originQ, originR);
         this.nextFigurePosition = new AxialPosition(width + 2, depth / 2 - width / 4);
         this.figureGenerator = new RandomFigureGenerator();
+
+        // test
+//        for (AxialPosition axialPosition : TEST_INITIAL_FIELDS) {
+//            addField(axialPosition, new ChangingHexagon(
+//                axialPosition,
+//                spriteContext.getTextures().getHexagon0(),
+//                spriteContext.getTextures().getHexagon1(),
+//                spriteContext));
+//        }
+    }
+
+    private void createFirstFloatFigure() {
         AxialFigure generated = figureGenerator.generate();
         generated.setPosition(originPosition);
         this.floatFigure = new Figure(generated,
@@ -92,14 +106,6 @@ public class HexagonalField extends Entity implements IHexagonalField {
         this.nextFigure = new Figure(figureGenerator.getNext(), spriteContext.getTextures().getFigure(), spriteContext);
         this.nextFigure.setPosition(nextFigurePosition);
         this.attachChild(nextFigure);
-        // test
-//        for (AxialPosition axialPosition : TEST_INITIAL_FIELDS) {
-//            addField(axialPosition, new ChangingHexagon(
-//                axialPosition,
-//                spriteContext.getTextures().getHexagon0(),
-//                spriteContext.getTextures().getHexagon1(),
-//                spriteContext));
-//        }
     }
 
     public boolean isActive() {
@@ -143,6 +149,7 @@ public class HexagonalField extends Entity implements IHexagonalField {
             spriteContext
         );
         AxialDirection[] directions = {AxialDirection.Right, AxialDirection.RightBack};
+        // borders
         for (int i = -1; i < width + 1; i++) {
             // root cell
             jar.addBorder(pos);
@@ -176,10 +183,19 @@ public class HexagonalField extends Entity implements IHexagonalField {
                 spriteContext
             );
         }
+        // back wall
+        for (int i = 0; i < width; i++) {
+            for (int h = 0; h < depth - 1; h++) {
+                final Hexagon brick = new Hexagon(new AxialPosition(i, h - i / 2), textures.getBrick(), spriteContext);
+                jar.addBackWallBrick(brick);
+            }
+        }
+        // setting start position
         jar.setPosition(
             spriteContext.getSize() * 3 / 2,
             SQ3 * spriteContext.getSize() * depth - SQ3 * spriteContext.getSize() / 2
         );
+        jar.createFirstFloatFigure();
         jar.onFloatFigureNewPosition();
         return jar;
     }
@@ -187,6 +203,11 @@ public class HexagonalField extends Entity implements IHexagonalField {
     private void addBorder(Hexagon border) {
         this.borders.put(border.getPosition(), border);
         this.attachChild(border);
+    }
+
+    private void addBackWallBrick(Hexagon brick) {
+        this.backWall.put(brick.getPosition(), brick);
+        this.attachChild(brick);
     }
 
     private void addField(AxialPosition position, ChangingHexagon field) {
@@ -388,8 +409,6 @@ public class HexagonalField extends Entity implements IHexagonalField {
     private void onFloatFigureNewPosition() {
         highlightShadowHexagons();
     }
-
-    private final Collection<Hexagon> highlightedHexagons = new ArrayList<Hexagon>();
 
     private void highlightShadowHexagons() {
         // return regular color for hexagons highlighted earlier

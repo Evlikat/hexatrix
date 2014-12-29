@@ -10,7 +10,6 @@ import net.evlikat.hexatrix.scores.IScoreStorage;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
 import org.andengine.entity.scene.background.Background;
-import org.andengine.entity.scene.background.ParallaxBackground;
 import org.andengine.entity.scene.background.SpriteBackground;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.input.touch.TouchEvent;
@@ -57,8 +56,8 @@ public class PlayView extends GameView {
 
     private static final float SQ3 = (float) Math.sqrt(3);
 
-    private static final int DEPTH = 21;
-    private static final int WIDTH = 9;
+    private static final int DEPTH = 25;
+    private static final int WIDTH = 11;
 
     private final HexagonalField field;
     private final Background background;

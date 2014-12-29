@@ -20,6 +20,7 @@ public class Textures {
     private TextureRegion hexagon0;
     private TextureRegion hexagon1;
     private TextureRegion borderBottom;
+    private TextureRegion brick;
     private TextureRegion borderLeft;
     private TextureRegion borderRight;
     private TextureRegion figure;
@@ -39,6 +40,7 @@ public class Textures {
         this.borderRight = loadTexture(textureManager, assetManager, "border-right");
         this.hexagon0 = loadTexture(textureManager, assetManager, "hexagon0");
         this.hexagon1 = loadTexture(textureManager, assetManager, "hexagon1");
+        this.brick = loadTexture(textureManager, assetManager, "brick");
         this.figure = loadTexture(textureManager, assetManager, "figure");
         this.startBtn = loadTexture(textureManager, assetManager, "start-btn");
         this.leadersBtn = loadTexture(textureManager, assetManager, "leaders-btn");
@@ -60,6 +62,10 @@ public class Textures {
         } catch (IOException ex) {
             throw new RuntimeException("Can not load texture for: " + id);
         }
+    }
+
+    public TextureRegion getBrick() {
+        return brick;
     }
 
     public TextureRegion getHexagon0() {
