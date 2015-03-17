@@ -1,14 +1,15 @@
 package net.evlikat.hexatrix;
 
 import android.content.res.AssetManager;
-import java.io.IOException;
-import java.io.InputStream;
 import org.andengine.opengl.texture.ITexture;
 import org.andengine.opengl.texture.TextureManager;
 import org.andengine.opengl.texture.bitmap.BitmapTexture;
 import org.andengine.opengl.texture.region.TextureRegion;
 import org.andengine.opengl.texture.region.TextureRegionFactory;
 import org.andengine.util.adt.io.in.IInputStreamOpener;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  *
@@ -24,6 +25,7 @@ public class Textures {
     private TextureRegion borderLeft;
     private TextureRegion borderRight;
     private TextureRegion figure;
+    private TextureRegion shadow;
     private TextureRegion startBtn;
     private TextureRegion leadersBtn;
     private TextureRegion quitBtn;
@@ -45,6 +47,7 @@ public class Textures {
         this.startBtn = loadTexture(textureManager, assetManager, "start-btn");
         this.leadersBtn = loadTexture(textureManager, assetManager, "leaders-btn");
         this.quitBtn = loadTexture(textureManager, assetManager, "quit-btn");
+        this.shadow = loadTexture(textureManager, assetManager, "shadow");
         //
         this.background = loadTexture(textureManager, assetManager, "background");
     }
@@ -106,5 +109,9 @@ public class Textures {
 
     public TextureRegion getBackground() {
         return background;
+    }
+
+    public TextureRegion getShadow() {
+        return shadow;
     }
 }

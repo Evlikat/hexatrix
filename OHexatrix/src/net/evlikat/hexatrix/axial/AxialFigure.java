@@ -1,12 +1,13 @@
 package net.evlikat.hexatrix.axial;
 
+import net.evlikat.hexatrix.entities.IFigure;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import net.evlikat.hexatrix.entities.IFigure;
 
 /**
- *
+ * Logical hexagonal figure
  * @author Roman Prokhorov
  * @version 1.0 (Jun 27, 2014)
  */
@@ -55,16 +56,17 @@ public class AxialFigure implements IFigure {
         this.position = position;
     }
 
-    public void turn(Collection<AxialPosition> forbiddenPositions, RotateDirection direction) {
+    @Override
+    public boolean turn(Collection<AxialPosition> forbiddenPositions, RotateDirection direction) {
         if (direction == RotateDirection.LEFT) {
-            turn(forbiddenPositions, new CubeRotator() {
+            return turn(forbiddenPositions, new CubeRotator() {
 
                 public CubeCoordinates turn(CubeCoordinates xyz) {
                     return new CubeCoordinates(-xyz.getZ(), -xyz.getX(), -xyz.getY());
                 }
             });
         } else if (direction == RotateDirection.RIGHT) {
-            turn(forbiddenPositions, new CubeRotator() {
+            return turn(forbiddenPositions, new CubeRotator() {
 
                 public CubeCoordinates turn(CubeCoordinates xyz) {
                     return new CubeCoordinates(-xyz.getY(), -xyz.getZ(), -xyz.getX());
@@ -91,18 +93,19 @@ public class AxialFigure implements IFigure {
         return true;
     }
 
-    private void turn(Collection<AxialPosition> forbiddenPositions, CubeRotator turner) {
+    private boolean turn(Collection<AxialPosition> forbiddenPositions, CubeRotator turner) {
         Collection<AxialPosition> newPartPositions = new ArrayList<AxialPosition>();
         for (AxialPosition partPos : parts) {
             AxialPosition newPos = From(turner.turn(From(partPos)));
             if (forbiddenPositions.contains(newPos.plus(position))) {
                 // Figure can't be turned
-                return;
+                return false;
             }
             newPartPositions.add(newPos);
         }
         // If all positions are allowed then turn the figure
         parts = newPartPositions;
+        return true;
     }
 
     private static Collection<AxialPosition> ToRelatives(AxialPosition position, Collection<AxialPosition> absoluteParts) {

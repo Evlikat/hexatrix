@@ -1,9 +1,10 @@
 package net.evlikat.hexatrix.entities;
 
-import java.util.Collection;
 import net.evlikat.hexatrix.axial.AxialDirection;
 import net.evlikat.hexatrix.axial.AxialPosition;
 import net.evlikat.hexatrix.axial.RotateDirection;
+
+import java.util.Collection;
 
 /**
  *
@@ -16,7 +17,7 @@ public interface IFigure {
 
     boolean move(Collection<AxialPosition> forbiddenPositions, AxialDirection direction);
 
-    void turn(Collection<AxialPosition> forbiddenPositions, RotateDirection direction);
+    boolean turn(Collection<AxialPosition> forbiddenPositions, RotateDirection direction);
 
     Collection<AxialPosition> getPartsPositions();
 

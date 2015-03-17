@@ -1,18 +1,14 @@
 package net.evlikat.hexatrix.entities;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 import net.evlikat.hexatrix.axial.AxialDirection;
 import net.evlikat.hexatrix.axial.AxialPosition;
 import net.evlikat.hexatrix.axial.RotateDirection;
 import org.andengine.opengl.texture.region.ITextureRegion;
 
+import java.util.*;
+
 /**
- *
+ * Physical hexagonal figure applied to AndEngine
  * @author Roman Prokhorov
  * @version 1.0 (Jul 03, 2014)
  */
@@ -53,10 +49,6 @@ public class Figure extends AxialEntity implements IFigure {
         return parts.keySet();
     }
 
-    public Collection<Hexagon> getHexagons() {
-        return parts.values();
-    }
-
     public void setPosition(AxialPosition newPosition) {
         this.center = newPosition;
         onMoved(newPosition);
@@ -80,26 +72,18 @@ public class Figure extends AxialEntity implements IFigure {
             hexagon.setPosition(axialPosition);
         }
     }
-    
-    public final void removePart(AxialPosition relativePosition) {
-        Hexagon hexagon = parts.get(relativePosition);
-        if (hexagon != null) {
-            detachChild(hexagon);
-            parts.remove(relativePosition);
-        }
-    }
 
     @Override
-    public void turn(Collection<AxialPosition> forbiddenPositions, RotateDirection direction) {
+    public boolean turn(Collection<AxialPosition> forbiddenPositions, RotateDirection direction) {
         if (direction == RotateDirection.LEFT) {
-            turn(forbiddenPositions, new Rotator() {
+            return turn(forbiddenPositions, new Rotator() {
 
                 public AxialPosition turn(AxialPosition pos) {
                     return new AxialPosition(-pos.getR(), pos.getQ() + pos.getR());
                 }
             });
         } else if (direction == RotateDirection.RIGHT) {
-            turn(forbiddenPositions, new Rotator() {
+            return turn(forbiddenPositions, new Rotator() {
 
                 public AxialPosition turn(AxialPosition pos) {
                     return new AxialPosition(pos.getQ() + pos.getR(), -pos.getQ());
@@ -143,14 +127,14 @@ public class Figure extends AxialEntity implements IFigure {
         return result;
     }
 
-    private void turn(Collection<AxialPosition> forbiddenPositions, Rotator rotator) {
+    private boolean turn(Collection<AxialPosition> forbiddenPositions, Rotator rotator) {
         Map<Hexagon, AxialPosition> newPartPositions
             = new HashMap<Hexagon, AxialPosition>();
         for (Map.Entry<AxialPosition, Hexagon> entry : parts.entrySet()) {
             AxialPosition newPos = rotator.turn(entry.getKey());
             if (forbiddenPositions.contains(newPos.plus(center))) {
                 // Figure can't be turned
-                return;
+                return false;
             }
             newPartPositions.put(entry.getValue(), newPos);
         }
@@ -162,5 +146,6 @@ public class Figure extends AxialEntity implements IFigure {
             parts.put(newPosition, hexagon);
             hexagon.setPosition(newPosition);
         }
+        return true;
     }
 }

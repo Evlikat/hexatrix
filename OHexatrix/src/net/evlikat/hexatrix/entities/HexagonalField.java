@@ -1,64 +1,50 @@
 package net.evlikat.hexatrix.entities;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import net.evlikat.hexatrix.Textures;
-import net.evlikat.hexatrix.axial.AxialDirection;
-import net.evlikat.hexatrix.axial.AxialFigure;
-import net.evlikat.hexatrix.axial.AxialPosition;
-import net.evlikat.hexatrix.axial.FigureGenerator;
-import net.evlikat.hexatrix.axial.MoveDirection;
-import net.evlikat.hexatrix.axial.RandomFigureGenerator;
-import net.evlikat.hexatrix.axial.RotateDirection;
+import net.evlikat.hexatrix.axial.*;
 import org.andengine.engine.Engine;
 import org.andengine.entity.Entity;
 import org.andengine.entity.IEntity;
+import org.andengine.opengl.texture.region.TextureRegion;
+
+import java.util.*;
 
 import static net.evlikat.hexatrix.entities.AxialEntity.SQ3;
-import org.andengine.opengl.texture.region.TextureRegion;
-import org.andengine.util.color.Color;
 
 /**
- *
  * @author Roman Prokhorov
  * @version 1.0 (Jul 03, 2014)
  */
 public class HexagonalField extends Entity implements IHexagonalField {
 
     private static final Collection<AxialPosition> TEST_INITIAL_FIELDS = Arrays.asList(
-        new AxialPosition(0, 0),
-        new AxialPosition(1, 0),
-        new AxialPosition(2, -1),
-        new AxialPosition(3, -1),
-        //new AxialPosition(4, -2),
-        new AxialPosition(5, -2),
-        new AxialPosition(6, -3),
-        new AxialPosition(7, -3),
-        new AxialPosition(8, -4)
-    //
-    //        new AxialPosition(0, 1),
-    //        new AxialPosition(1, 1),
-    //        new AxialPosition(2, 0),
-    //        new AxialPosition(3, 0),
-    //        //new AxialPosition(4, -1),
-    //        new AxialPosition(5, -1),
-    //        new AxialPosition(6, -2),
-    //        new AxialPosition(7, -2),
-    //        new AxialPosition(8, -3)
+            new AxialPosition(0, 0),
+            new AxialPosition(1, 0),
+            new AxialPosition(2, -1),
+            new AxialPosition(3, -1),
+            //new AxialPosition(4, -2),
+            new AxialPosition(5, -2),
+            new AxialPosition(6, -3),
+            new AxialPosition(7, -3),
+            new AxialPosition(8, -4)
+            //
+            //        new AxialPosition(0, 1),
+            //        new AxialPosition(1, 1),
+            //        new AxialPosition(2, 0),
+            //        new AxialPosition(3, 0),
+            //        //new AxialPosition(4, -1),
+            //        new AxialPosition(5, -1),
+            //        new AxialPosition(6, -2),
+            //        new AxialPosition(7, -2),
+            //        new AxialPosition(8, -3)
     );
 
     private final Fields borders = new Fields();
     private final Fields backWall = new Fields();
     private final Fields fields = new Fields();
-    private final Collection<Hexagon> highlightedHexagons = new ArrayList<Hexagon>();
     // Properties
     private Figure floatFigure;
+    private Figure shadowFigure;
     private Figure nextFigure;
     private final AxialDirection gravity;
     private final int width;
@@ -98,8 +84,8 @@ public class HexagonalField extends Entity implements IHexagonalField {
         AxialFigure generated = figureGenerator.generate();
         generated.setPosition(originPosition);
         this.floatFigure = new Figure(generated,
-            spriteContext.getTextures().getFigure(),
-            spriteContext
+                spriteContext.getTextures().getFigure(),
+                spriteContext
         );
         this.attachChild(floatFigure);
         //
@@ -124,10 +110,6 @@ public class HexagonalField extends Entity implements IHexagonalField {
         return fields.getPositions();
     }
 
-    public IFigure getFloatFigure() {
-        return floatFigure;
-    }
-
     public boolean setFloatFigure(IFigure floatFigure) {
         for (AxialPosition axialPosition : floatFigure.getPartsPositions()) {
             if (fields.contains(axialPosition)) {
@@ -144,9 +126,9 @@ public class HexagonalField extends Entity implements IHexagonalField {
         final Textures textures = spriteContext.getTextures();
         // Set borders: right hexa-corner
         Hexagon pos = new Hexagon(
-            new AxialPosition(0, 0).plus(AxialDirection.Left),
-            textures.getBorderLeft(),
-            spriteContext
+                new AxialPosition(0, 0).plus(AxialDirection.Left),
+                textures.getBorderLeft(),
+                spriteContext
         );
         AxialDirection[] directions = {AxialDirection.Right, AxialDirection.RightBack};
         // borders
@@ -164,9 +146,9 @@ public class HexagonalField extends Entity implements IHexagonalField {
                 }
                 for (int j = 1; j < depth; j++) {
                     stackPos = new Hexagon(
-                        stackPos.getPosition().plus(AxialDirection.Forward),
-                        border,
-                        spriteContext
+                            stackPos.getPosition().plus(AxialDirection.Forward),
+                            border,
+                            spriteContext
                     );
                     jar.addBorder(stackPos);
                 }
@@ -178,9 +160,9 @@ public class HexagonalField extends Entity implements IHexagonalField {
             final TextureRegion borderBottom = (i < width - 1) ? textures.getBorderBottom() : textures.getBorderRight();
             // next stack
             pos = new Hexagon(
-                pos.getPosition().plus(directions[(i + 2) % directions.length]),
-                borderBottom,
-                spriteContext
+                    pos.getPosition().plus(directions[(i + 2) % directions.length]),
+                    borderBottom,
+                    spriteContext
             );
         }
         // back wall
@@ -192,8 +174,8 @@ public class HexagonalField extends Entity implements IHexagonalField {
         }
         // setting start position
         jar.setPosition(
-            spriteContext.getSize() * 3 / 2,
-            SQ3 * spriteContext.getSize() * depth - SQ3 * spriteContext.getSize() / 2
+                spriteContext.getSize() * 3 / 2,
+                SQ3 * spriteContext.getSize() * depth - SQ3 * spriteContext.getSize() / 2
         );
         jar.createFirstFloatFigure();
         jar.onFloatFigureNewPosition();
@@ -233,12 +215,11 @@ public class HexagonalField extends Entity implements IHexagonalField {
     @Override
     public boolean tick() {
         if (active && floatFigure != null) {
-            boolean moved = floatFigure.move(getForbiddenFields(), gravity);
-            onFloatFigureNewPosition();
-            if (!moved) {
-                onFigureDropped();
-            } else {
+            if (floatFigure.move(getForbiddenFields(), gravity)) {
+                onFloatFigureNewPosition();
                 return true;
+            } else {
+                onFigureDropped();
             }
         }
         return false;
@@ -259,8 +240,9 @@ public class HexagonalField extends Entity implements IHexagonalField {
     @Override
     public boolean turn(RotateDirection direction) {
         if (floatFigure != null) {
-            floatFigure.turn(getForbiddenFields(), direction);
-            onFloatFigureNewPosition();
+            if (floatFigure.turn(getForbiddenFields(), direction)) {
+                onFloatFigureNewPosition();
+            }
             return true;
         }
         return false;
@@ -273,11 +255,11 @@ public class HexagonalField extends Entity implements IHexagonalField {
         // Harden float figure
         for (AxialPosition axialPosition : floatFigure.getPartsPositions()) {
             addField(new AxialPosition(axialPosition),
-                new ChangingHexagon(
-                    axialPosition,
-                    spriteContext.getTextures().getHexagon0(),
-                    spriteContext.getTextures().getHexagon1(),
-                    spriteContext)
+                    new ChangingHexagon(
+                            axialPosition,
+                            spriteContext.getTextures().getHexagon0(),
+                            spriteContext.getTextures().getHexagon1(),
+                            spriteContext)
             );
         }
         detachSafely(floatFigure);
@@ -402,7 +384,13 @@ public class HexagonalField extends Entity implements IHexagonalField {
         if (!active) {
             return;
         }
-        while (tick()) {
+        boolean moved = false;
+        while (this.floatFigure.move(getForbiddenFields(), gravity)) {
+            moved = true;
+        }
+        // Avoid multi-drops abused
+        if (moved) {
+            framesLeft = 0;
         }
     }
 
@@ -411,21 +399,14 @@ public class HexagonalField extends Entity implements IHexagonalField {
     }
 
     private void highlightShadowHexagons() {
-        // return regular color for hexagons highlighted earlier
-        for (Hexagon hexagon : highlightedHexagons) {
-            hexagon.setColor(Color.WHITE);
+        if (this.shadowFigure != null) {
+            this.detachSafely(this.shadowFigure);
         }
-        highlightedHexagons.clear();
-        // create new list of such hexagons
-        Set<Integer> coveredColumnNumbers = new HashSet<Integer>();
-        for (AxialPosition axialPosition : floatFigure.getPartsPositions()) {
-            coveredColumnNumbers.add(axialPosition.getQ());
+        this.shadowFigure = new Figure(floatFigure,
+                spriteContext.getTextures().getShadow(),
+                spriteContext);
+        while (this.shadowFigure.move(getForbiddenFields(), gravity)) {
         }
-        for (Hexagon hexagon : fields.with(borders).getTopFields()) {
-            if (coveredColumnNumbers.contains(hexagon.getPosition().getQ())) {
-                hexagon.setColor(new Color(.5f, .5f, .5f));
-                highlightedHexagons.add(hexagon);
-            }
-        }
+        this.attachChild(this.shadowFigure);
     }
 }

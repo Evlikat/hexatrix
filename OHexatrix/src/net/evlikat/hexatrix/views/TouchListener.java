@@ -47,7 +47,7 @@ public class TouchListener implements ITouchListener {
         try {
             float diffY = y2 - y1;
             float diffX = x2 - x1;
-            // if fling is out of single clikc circle
+            // if fling is out of single click circle
             if (diffX * diffX + diffY * diffY > CLICK_RADIUS * CLICK_RADIUS) {
                 if (Math.abs(diffX) > Math.abs(diffY)) {
                     if (diffX > 0) {
