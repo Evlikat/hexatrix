@@ -13,9 +13,7 @@ import net.evlikat.hexatrix.axial.RotateDirection;
  * @author Roman Prokhorov
  * @version 1.0 (Jul 04, 2014)
  */
-public interface IHexagonalField {
-
-    boolean tick();
+public interface IHexagonalField extends IDiscreteTime {
 
     boolean turn(RotateDirection direction);
 

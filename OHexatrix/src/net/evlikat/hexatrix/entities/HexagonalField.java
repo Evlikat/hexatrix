@@ -53,6 +53,7 @@ public class HexagonalField extends Entity implements IHexagonalField {
     private final AxialPosition nextFigurePosition;
     private final FigureGenerator figureGenerator;
     //
+    private GameState currentState;
     private final SpriteContext spriteContext;
     private boolean active = true;
     private final GameEventCallback gameEventCallback;
@@ -69,6 +70,7 @@ public class HexagonalField extends Entity implements IHexagonalField {
         this.originPosition = new AxialPosition(originQ, originR);
         this.nextFigurePosition = new AxialPosition(width + 2, depth / 2 - width / 4);
         this.figureGenerator = new RandomFigureGenerator();
+        this.currentState = new FallingBlocksState(this, this.gameEventCallback);
 
         // test
 //        for (AxialPosition axialPosition : TEST_INITIAL_FIELDS) {
@@ -212,6 +214,10 @@ public class HexagonalField extends Entity implements IHexagonalField {
         return forbidden;
     }
 
+    public void update() {
+        currentState = currentState.next();
+    }
+
     @Override
     public boolean tick() {
         if (active && floatFigure != null) {
@@ -350,16 +356,6 @@ public class HexagonalField extends Entity implements IHexagonalField {
         }
     }
 
-    private long framesLeft = 0;
-
-    public void update() {
-        framesLeft++;
-        if (framesLeft >= gameEventCallback.framesPerTick()) {
-            tick();
-            framesLeft = 0;
-        }
-    }
-
     public boolean move(MoveDirection direction) {
         if (!active) {
             return false;
@@ -390,7 +386,7 @@ public class HexagonalField extends Entity implements IHexagonalField {
         }
         // Avoid multi-drops abused
         if (moved) {
-            framesLeft = 0;
+            currentState.cancel();
         }
     }
 
