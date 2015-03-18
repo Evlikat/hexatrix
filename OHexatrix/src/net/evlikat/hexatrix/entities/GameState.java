@@ -25,8 +25,13 @@ class FallingBlocksState extends GameState {
     public GameState next() {
         framesPassed++;
         if (framesPassed >= gameEventCallback.framesPerTick()) {
-            discreteTime.tick();
+            boolean tick = discreteTime.tick();
             framesPassed = 0;
+            //if (tick) {
+                return this;
+            //} else {
+            //    return new RemovingLinesState();
+            //}
         }
         return this;
     }

@@ -1,13 +1,11 @@
 package net.evlikat.hexatrix.entities;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 import net.evlikat.hexatrix.axial.AxialDirection;
 import net.evlikat.hexatrix.axial.AxialPosition;
+
+import java.util.*;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  *
@@ -108,10 +106,10 @@ public class Fields {
         }
     }
 
-    public void moveBatch(List<AxialPosition> fallingParts, AxialDirection direction) {
+    public List<AxialPosition> moveBatch(List<AxialPosition> fallingParts, AxialDirection direction) {
         lock.lock();
         try {
-            Map<AxialPosition, Hexagon> newHexagonPositions = new HashMap<AxialPosition, Hexagon>();
+            Map<AxialPosition, Hexagon> newHexagonPositions = new LinkedHashMap<>();
             for (AxialPosition fallingPart : fallingParts) {
                 Hexagon hex = posToHex.get(fallingPart);
                 final AxialPosition newPosition = fallingPart.plus(direction);
@@ -124,6 +122,7 @@ public class Fields {
             }
             // add new positions at once
             posToHex.putAll(newHexagonPositions);
+            return new ArrayList<>(newHexagonPositions.keySet());
         } finally {
             lock.unlock();
         }

@@ -10,7 +10,7 @@ import java.util.Random;
  */
 public class RandomFigureGenerator implements FigureGenerator {
 
-    private static final AxialFigure STICK = new AxialFigure(
+    public static final AxialFigure STICK = new AxialFigure(
             Arrays.asList(
                     new AxialPosition(0, 1),
                     new AxialPosition(0, -1),
