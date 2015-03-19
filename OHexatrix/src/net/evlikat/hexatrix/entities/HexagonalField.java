@@ -295,6 +295,7 @@ public class HexagonalField extends Entity implements IHexagonalField {
             );
         }
         detachSafely(floatFigure);
+        onFloatFigureNewPosition();
     }
 
     public void onFigureDropped(int linesRemoved) {
@@ -316,6 +317,7 @@ public class HexagonalField extends Entity implements IHexagonalField {
         boolean figureSet = setFloatFigure(newFigure);
         if (figureSet) {
             this.attachChild(this.floatFigure);
+            onFloatFigureNewPosition();
         }
         return figureSet;
     }
@@ -403,6 +405,10 @@ public class HexagonalField extends Entity implements IHexagonalField {
     private void highlightShadowHexagons() {
         if (this.shadowFigure != null) {
             this.detachSafely(this.shadowFigure);
+        }
+        if (this.floatFigure.getParent() == null) {
+            this.shadowFigure = null;
+            return;
         }
         this.shadowFigure = new Figure(floatFigure,
                 spriteContext.getTextures().getShadow(),

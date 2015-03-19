@@ -34,7 +34,7 @@ public class GameSession extends Text {
         int level = levels.getCurrentLevel();
         int scoresToNext = levels.getScoresToNext();
         this.setText(String.format(
-            "SCORES:\n"
+            "SCORES\n"
             + "%d\n"
             + "LEVEL\n"
             + "%d\n"

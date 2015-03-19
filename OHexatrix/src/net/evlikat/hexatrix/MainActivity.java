@@ -13,8 +13,8 @@ import org.andengine.ui.activity.BaseGameActivity;
 
 public class MainActivity extends BaseGameActivity {
 
-    private static final int CAMERA_WIDTH = 720;
-    private static final int CAMERA_HEIGHT = 1280;
+    private static final int CAMERA_WIDTH = 1080;
+    private static final int CAMERA_HEIGHT = 1920;
     private Camera camera;
     private Textures textures;
     private SceneManager sceneManager;
@@ -52,9 +52,5 @@ public class MainActivity extends BaseGameActivity {
 
     public void onPopulateScene(Scene scene, OnPopulateSceneCallback opsc) throws Exception {
         opsc.onPopulateSceneFinished();
-    }
-
-    public Textures getTextures() {
-        return textures;
     }
 }
