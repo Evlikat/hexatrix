@@ -66,7 +66,7 @@ public class RandomFigureGenerator implements FigureGenerator {
     );
     private static final AxialFigure RAINBOW = new AxialFigure(
             Arrays.asList(
-                    new AxialPosition(0, 1),
+                    new AxialPosition(1, 0),
                     new AxialPosition(-1, 1),
                     new AxialPosition(1, 1))
     );
