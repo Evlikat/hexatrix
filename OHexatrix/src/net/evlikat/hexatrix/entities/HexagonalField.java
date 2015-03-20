@@ -59,8 +59,9 @@ public class HexagonalField extends Entity implements IHexagonalField {
     //
     private GameState currentState;
     private final SpriteContext spriteContext;
-    private boolean active = true;
     private final GameEventCallback gameEventCallback;
+    //
+    private List<GameFinishedListener> gameFinishedListeners = new ArrayList<>();
 
     private HexagonalField(int width, int depth, SpriteContext spriteContext, GameEventCallback gameEventCallback) {
         this.width = width;
@@ -77,22 +78,41 @@ public class HexagonalField extends Entity implements IHexagonalField {
         this.currentState = new FallingBlocksState(this, this.gameEventCallback);
     }
 
-    private void createFirstFloatFigure() {
-        AxialFigure generated = figureGenerator.generate();
-        generated.setPosition(originPosition);
-        this.floatFigure = new Figure(generated,
-                spriteContext.getTextures().getFigure(),
-                spriteContext
-        );
-        this.attachChild(floatFigure);
-        //
-        this.nextFigure = new Figure(figureGenerator.getNext(), spriteContext.getTextures().getFigure(), spriteContext);
-        this.nextFigure.setPosition(nextFigurePosition);
-        this.attachChild(nextFigure);
+    private boolean createNewFloatFigure() {
+        AxialFigure newFigure = figureGenerator.generate();
+        newFigure.setPosition(new AxialPosition(originPosition));
+
+        if (this.floatFigure == null) {
+            this.floatFigure = new Figure(newFigure,
+                    spriteContext.getTextures().getFigure(),
+                    spriteContext
+            );
+            this.attachChild(this.floatFigure);
+            onFloatFigureNewPosition();
+
+            this.nextFigure = new Figure(figureGenerator.getNext(), spriteContext.getTextures().getFigure(), spriteContext);
+            this.nextFigure.setPosition(nextFigurePosition);
+            this.attachChild(nextFigure);
+
+            return true;
+        } else {
+            boolean figureSet = setFloatFigure(newFigure);
+            if (figureSet) {
+                this.attachChild(this.floatFigure);
+                onFloatFigureNewPosition();
+            }
+            return figureSet;
+        }
     }
 
-    public boolean isActive() {
-        return active;
+    public void addGameFinishedListener(GameFinishedListener listener) {
+        gameFinishedListeners.add(listener);
+    }
+
+    void onGameFinished() {
+        for (GameFinishedListener listener : gameFinishedListeners) {
+            listener.onGameFinished();
+        }
     }
 
     public int getWidth() {
@@ -182,8 +202,6 @@ public class HexagonalField extends Entity implements IHexagonalField {
                 spriteContext.getSize() * 3 / 2,
                 SQ3 * spriteContext.getSize() * depth - SQ3 * spriteContext.getSize() / 2
         );
-        jar.createFirstFloatFigure();
-        jar.onFloatFigureNewPosition();
         return jar;
     }
 
@@ -266,7 +284,7 @@ public class HexagonalField extends Entity implements IHexagonalField {
         figureGenerator.reset();
         createNewFloatFigure();
         nextFigure.resetParts(figureGenerator.getNext().getParts());
-        active = true;
+        currentState = new FallingBlocksState(this, gameEventCallback);
     }
 
     @Override
@@ -298,28 +316,22 @@ public class HexagonalField extends Entity implements IHexagonalField {
         onFloatFigureNewPosition();
     }
 
-    public void onFigureDropped(int linesRemoved) {
+    /**
+     *
+     * @param linesRemoved
+     * @return true if new float figure was set properly, false if there was no room to set new figure.
+     */
+    public boolean onFigureDropped(int linesRemoved) {
         if (linesRemoved > 0) {
             gameEventCallback.onLinesRemoved(linesRemoved);
         }
         boolean figureSet = createNewFloatFigure();
         if (!figureSet) {
             // game over
-            active = false;
-            return;
+            return false;
         }
         this.nextFigure.resetParts(figureGenerator.getNext().getParts());
-    }
-
-    private boolean createNewFloatFigure() {
-        AxialFigure newFigure = figureGenerator.generate();
-        newFigure.setPosition(new AxialPosition(originPosition));
-        boolean figureSet = setFloatFigure(newFigure);
-        if (figureSet) {
-            this.attachChild(this.floatFigure);
-            onFloatFigureNewPosition();
-        }
-        return figureSet;
+        return true;
     }
 
     private boolean lineCompleted(int x) {
@@ -332,9 +344,6 @@ public class HexagonalField extends Entity implements IHexagonalField {
     }
 
     public void dropAll(int steps, Map<Integer, Integer> demarkationPoints) {
-        if (!active) {
-            return;
-        }
         if (fields.isEmpty()) {
             return;
         }
@@ -365,9 +374,6 @@ public class HexagonalField extends Entity implements IHexagonalField {
     }
 
     public boolean move(MoveDirection direction) {
-        if (!active) {
-            return false;
-        }
         if (floatFigure != null) {
             AxialDirection axialDirection;
             if (direction == MoveDirection.LEFT) {
@@ -385,9 +391,6 @@ public class HexagonalField extends Entity implements IHexagonalField {
     }
 
     public void drop() {
-        if (!active) {
-            return;
-        }
         boolean moved = false;
         while (this.floatFigure.move(getForbiddenFields(), gravity)) {
             moved = true;

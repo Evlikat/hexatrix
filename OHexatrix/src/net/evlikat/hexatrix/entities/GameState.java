@@ -42,7 +42,7 @@ class FallingBlocksState extends GameState {
     }
 
     private GameState tick() {
-        if (!hexagonalField.isActive() || hexagonalField.getFloatFigure() == null) {
+        if (hexagonalField.getFloatFigure() == null) {
             return this;
         }
         if (hexagonalField.fall()) {
@@ -50,8 +50,7 @@ class FallingBlocksState extends GameState {
         }
         List<Integer> lineNumbersToRemove = hexagonalField.calcLinesToRemove();
         if (lineNumbersToRemove.isEmpty()) {
-            hexagonalField.onFigureDropped(0);
-            return this;
+            return hexagonalField.onFigureDropped(0) ? this : new GameFinishedState(hexagonalField, gameEventCallback);
         }
         List<List<Hexagon>> hexagonLines = new ArrayList<>(lineNumbersToRemove.size());
         for (Integer lineNumber : lineNumbersToRemove) {
@@ -114,10 +113,50 @@ class RemovingLinesState extends GameState {
                 if (lastDemarkationPoints != null) {
                     hexagonalField.dropAll(1, lastDemarkationPoints);
                 }
-                hexagonalField.onFigureDropped(this.linesRemoved);
-                return new FallingBlocksState(hexagonalField, gameEventCallback);
+                return hexagonalField.onFigureDropped(this.linesRemoved) ?
+                        new FallingBlocksState(hexagonalField, gameEventCallback) :
+                        new GameFinishedState(hexagonalField, gameEventCallback);
             }
         }
+        return this;
+    }
+
+    @Override
+    public void cancel() {
+    }
+}
+
+class GameFinishedState extends GameState {
+
+    private int framesPassed = 0;
+
+    public GameFinishedState(HexagonalField hexagonalField, GameEventCallback gameEventCallback) {
+        super(hexagonalField, gameEventCallback);
+    }
+
+    @Override
+    public GameState next() {
+        framesPassed++;
+        if (framesPassed >= 50) {
+            hexagonalField.onGameFinished();
+            return new NullState(hexagonalField, gameEventCallback);
+        }
+        return this;
+    }
+
+    @Override
+    public void cancel() {
+    }
+}
+
+class NullState extends GameState {
+
+    public NullState(HexagonalField hexagonalField, GameEventCallback gameEventCallback) {
+        super(hexagonalField, gameEventCallback);
+    }
+
+    @Override
+    public GameState next() {
         return this;
     }
 

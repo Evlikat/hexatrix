@@ -67,7 +67,7 @@ public class SceneManager implements PlayCallback, MenuCallback, LeadersCallback
 
     public final PlayView getPlayView() {
         if (playView == null) {
-            playView = new PlayView(activity, engine, camera, textures, font, this, scoreStorage);
+            playView = new PlayView(engine, camera, textures, font, this, scoreStorage);
             playView.populate();
         }
         return playView;
@@ -94,7 +94,9 @@ public class SceneManager implements PlayCallback, MenuCallback, LeadersCallback
     }
 
     public void toPlayView() {
-        setCurrentView(getPlayView());
+        PlayView playView = getPlayView();
+        playView.startNewGame();
+        setCurrentView(playView);
     }
 
     public void toLeadersView() {
