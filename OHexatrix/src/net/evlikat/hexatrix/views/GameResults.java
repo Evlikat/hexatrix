@@ -7,13 +7,13 @@ package net.evlikat.hexatrix.views;
  */
 public class GameResults {
 
-    private final int scores;
+    private final int score;
 
-    public GameResults(int scores) {
-        this.scores = scores;
+    public GameResults(int score) {
+        this.score = score;
     }
 
-    public int getScores() {
-        return scores;
+    public int getScore() {
+        return score;
     }
 }

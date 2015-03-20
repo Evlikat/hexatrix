@@ -28,8 +28,8 @@ public class PlayView extends GameView {
         }
 
         public void onLinesRemoved(int linesRemoved) {
-            int totalScores = gameSession.addScores(linesRemoved);
-            levels.setLevelByScores(totalScores);
+            int totalScore = gameSession.addScore(linesRemoved);
+            levels.setLevelByScore(totalScore);
         }
 
         public void reset() {
@@ -70,7 +70,7 @@ public class PlayView extends GameView {
         this.field.addGameFinishedListener(new GameFinishedListener() {
             @Override
             public void onGameFinished() {
-                final GameResults gameResults = new GameResults(gameSession.getScores());
+                final GameResults gameResults = new GameResults(gameSession.getScore());
                 playCallback.toMenuView(gameResults);
                 scoreStorage.save(gameResults);
             }

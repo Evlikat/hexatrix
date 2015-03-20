@@ -1,13 +1,14 @@
 package net.evlikat.hexatrix.views;
 
-import java.text.SimpleDateFormat;
 import net.evlikat.hexatrix.scores.IScoreStorage;
-import net.evlikat.hexatrix.scores.Scores;
+import net.evlikat.hexatrix.scores.Score;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
 import org.andengine.entity.text.Text;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.font.IFont;
+
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -41,12 +42,12 @@ public class LeadersView extends GameView {
 
     @Override
     public void update() {
-        StringBuilder result = new StringBuilder("##   SCORES         DATE\n");
+        StringBuilder result = new StringBuilder("##   SCORE          DATE\n");
         int i = 1;
-        for (Scores scores : scoreStorage.getTopScores()) {
+        for (Score score : scoreStorage.getTopScores()) {
             result.append(
                 String.format(
-                    "%02d    %04d    %s", i++, scores.getAmount(), DATE_FORMAT.format(scores.getDate())
+                    "%02d    %04d    %s", i++, score.getAmount(), DATE_FORMAT.format(score.getDate())
                 )
             ).append("\n");
         }

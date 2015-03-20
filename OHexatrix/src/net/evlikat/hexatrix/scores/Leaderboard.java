@@ -1,20 +1,11 @@
 package net.evlikat.hexatrix.scores;
 
 import android.util.Log;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
 import net.evlikat.hexatrix.utils.IOUtils;
 import net.evlikat.hexatrix.views.GameResults;
+
+import java.io.*;
+import java.util.*;
 
 /**
  *
@@ -25,7 +16,7 @@ public class Leaderboard implements IScoreStorage {
 
     private static final String TAG = Leaderboard.class.getSimpleName();
 
-    private List<Scores> topScores = new ArrayList<Scores>();
+    private List<Score> topScores = new ArrayList<>();
     private final int topSize;
     private final String filename;
 
@@ -36,22 +27,22 @@ public class Leaderboard implements IScoreStorage {
     }
 
     public void save(GameResults gameResults) {
-        if (!topScores.isEmpty() && topScores.get(topScores.size() - 1).getAmount() > gameResults.getScores()) {
+        if (!topScores.isEmpty() && topScores.get(topScores.size() - 1).getAmount() > gameResults.getScore()) {
             // there is no need to save not top result
             return;
         }
-        topScores.add(new Scores(new Date(), gameResults.getScores()));
-        Collections.sort(topScores, new Comparator<Scores>() {
+        topScores.add(new Score(new Date(), gameResults.getScore()));
+        Collections.sort(topScores, new Comparator<Score>() {
 
-            public int compare(Scores t1, Scores t2) {
+            public int compare(Score t1, Score t2) {
                 return (int) Math.signum(t2.getAmount() - t1.getAmount());
             }
         });
-        topScores = new ArrayList<Scores>(topScores.subList(0, Math.min(topScores.size(), topSize)));
+        topScores = new ArrayList<>(topScores.subList(0, Math.min(topScores.size(), topSize)));
         saveToFile(this.filename);
     }
 
-    public List<Scores> getTopScores() {
+    public List<Score> getTopScores() {
         return topScores;
     }
 
@@ -73,20 +64,18 @@ public class Leaderboard implements IScoreStorage {
         }
     }
 
-    private List<Scores> load(String filename) {
+    private List<Score> load(String filename) {
         ObjectInputStream in = null;
         try {
             in = new ObjectInputStream(new FileInputStream(new File(filename)));
-            return (List<Scores>) in.readObject();
-        } catch (ClassNotFoundException ex) {
-            Log.e(TAG, "File not found: " + filename, ex);
-        } catch (FileNotFoundException ex) {
+            return (List<Score>) in.readObject();
+        } catch (ClassNotFoundException | FileNotFoundException ex) {
             Log.e(TAG, "File not found: " + filename, ex);
         } catch (IOException ex) {
             Log.e(TAG, "Can not save the leaderboard to file " + filename, ex);
         } finally {
             IOUtils.closeQuietly(in);
         }
-        return new ArrayList<Scores>();
+        return new ArrayList<Score>();
     }
 }

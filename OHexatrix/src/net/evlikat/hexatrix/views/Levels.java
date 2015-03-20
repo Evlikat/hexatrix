@@ -58,8 +58,8 @@ public class Levels {
         return currentLevel.getValue();
     }
 
-    public void setLevelByScores(int totalScores) {
-        if (totalScores >= nextLevel.getKey()) {
+    public void setLevelByScore(int totalScore) {
+        if (totalScore >= nextLevel.getKey()) {
             this.currentLevel = this.nextLevel;
             this.currentLevelNum++;
             this.nextLevel = iterator.hasNext() ? iterator.next() : this.nextLevel;
@@ -70,7 +70,7 @@ public class Levels {
         return currentLevelNum;
     }
 
-    public int getScoresToNext() {
+    public int getScoreToNext() {
         return nextLevel.getKey();
     }
 }

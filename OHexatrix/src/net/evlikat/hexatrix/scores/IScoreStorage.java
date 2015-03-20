@@ -12,5 +12,5 @@ public interface IScoreStorage {
 
     void save(GameResults newResult);
 
-    List<Scores> getTopScores();
+    List<Score> getTopScores();
 }
