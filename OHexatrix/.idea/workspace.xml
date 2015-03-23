@@ -18,18 +18,69 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b6541c0e-6d79-4850-a95f-37ca38798a27" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/GamePausedListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/gfx/leaders-btn.png" afterPath="$PROJECT_DIR$/assets/gfx/leaders-btn.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/gfx/quit-btn.png" afterPath="$PROJECT_DIR$/assets/gfx/quit-btn.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/gfx/start-btn.png" afterPath="$PROJECT_DIR$/assets/gfx/start-btn.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/HexagonalField.java" afterPath="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/HexagonalField.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/evlikat/hexatrix/scores/Leaderboard.java" afterPath="$PROJECT_DIR$/src/net/evlikat/hexatrix/scores/Leaderboard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/evlikat/hexatrix/views/LeadersView.java" afterPath="$PROJECT_DIR$/src/net/evlikat/hexatrix/views/LeadersView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/evlikat/hexatrix/MainActivity.java" afterPath="$PROJECT_DIR$/src/net/evlikat/hexatrix/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/evlikat/hexatrix/views/MainMenuView.java" afterPath="$PROJECT_DIR$/src/net/evlikat/hexatrix/views/MainMenuView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/PauseState.java" afterPath="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/PauseState.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/evlikat/hexatrix/views/PlayView.java" afterPath="$PROJECT_DIR$/src/net/evlikat/hexatrix/views/PlayView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/evlikat/hexatrix/SceneManager.java" afterPath="$PROJECT_DIR$/src/net/evlikat/hexatrix/SceneManager.java" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\build.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\manifest.mf" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\nbproject\build-impl.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\nbproject\genfiles.properties" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\nbproject\private\private.properties" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\nbproject\private\private.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\nbproject\project.properties" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\nbproject\project.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\src\net\evlikat\hexatrix\ConsoleGraphics.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\src\net\evlikat\hexatrix\ConsoleHexatrix.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\src\net\evlikat\hexatrix\Physics.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\src\net\evlikat\hexatrix\axial\AxialDirection.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\src\net\evlikat\hexatrix\axial\AxialFigure.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\src\net\evlikat\hexatrix\axial\AxialHexCell.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\src\net\evlikat\hexatrix\axial\AxialHexagonalField.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\src\net\evlikat\hexatrix\axial\AxialPosition.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\src\net\evlikat\hexatrix\axial\CubeCoordinates.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\src\net\evlikat\hexatrix\axial\IFigureGenerator.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\src\net\evlikat\hexatrix\axial\MoveDirection.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\src\net\evlikat\hexatrix\axial\RandomFigureGenerator.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\src\net\evlikat\hexatrix\axial\RotateDirection.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\AndroidManifest.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\ant.properties" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\build.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\libs\classes.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\local.properties" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\proguard-project.txt" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\project.properties" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\res\drawable-hdpi\ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\res\drawable-ldpi\ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\res\drawable-mdpi\border.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\res\drawable-mdpi\figure.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\res\drawable-mdpi\hexagon0.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\res\drawable-mdpi\hexagon1.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\res\drawable-mdpi\ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\res\drawable-xhdpi\ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\res\layout\main.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\res\values\strings.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\GameLoop.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\GameSession.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\MainActivity.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\Physics.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\Scene.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\axial\AxialDirection.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\axial\AxialFigure.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\axial\AxialHexCell.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\axial\AxialHexagonalField.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\axial\AxialPosition.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\axial\CubeCoordinates.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\axial\FigureGenerator.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\axial\InitialFieldGenerator.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\axial\MoveDirection.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\axial\RandomFigureGenerator.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\axial\RotateDirection.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\axial\TrivialFieldGenerator.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\axial\TrivialFigureGenerator.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\scenes\GameScene.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\scenes\GlRenderer.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\scenes\MainMenuScene.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\scenes\MainView.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\scenes\SceneManager.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\scenes\callbacks\GameMenuCallback.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\scenes\callbacks\MainMenuCallback.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="OHexatrix.iws" />
@@ -899,7 +950,7 @@
       <workItem from="1427084762936" duration="117000" />
       <workItem from="1427084895356" duration="48000" />
       <workItem from="1427084959680" duration="5108000" />
-      <workItem from="1427090122806" duration="6373000" />
+      <workItem from="1427090122806" duration="7005000" />
     </task>
     <task id="LOCAL-00001" summary="[master] added Git support to project">
       <created>1426827236513</created>
@@ -931,11 +982,17 @@
       <option name="project" value="LOCAL" />
       <updated>1427092137064</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="[master] re-worked menu">
+      <created>1427100927421</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1427100927421</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69201000" />
+    <option name="totallyTimeSpent" value="69833000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -958,7 +1015,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1785" height="1092" extended-state="0" />
+    <frame x="-8" y="-8" width="1785" height="1092" extended-state="1" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1016,7 +1073,8 @@
     <MESSAGE value="[master] renamed scores to score where it is required" />
     <MESSAGE value="[master] refactored" />
     <MESSAGE value="[master] added Back button handling" />
-    <option name="LAST_COMMIT_MESSAGE" value="[master] added Back button handling" />
+    <MESSAGE value="[master] re-worked menu" />
+    <option name="LAST_COMMIT_MESSAGE" value="[master] re-worked menu" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
