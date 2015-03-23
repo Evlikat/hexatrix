@@ -1,5 +1,6 @@
 package net.evlikat.hexatrix;
 
+import android.view.KeyEvent;
 import net.evlikat.hexatrix.scores.Leaderboard;
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.handler.timer.ITimerCallback;
@@ -48,6 +49,16 @@ public class MainActivity extends BaseGameActivity {
             }
         }));
         ocsc.onCreateSceneFinished(scene);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            sceneManager.toMenuView();
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
     }
 
     public void onPopulateScene(Scene scene, OnPopulateSceneCallback opsc) throws Exception {

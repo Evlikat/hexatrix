@@ -70,6 +70,7 @@ public class HexagonalField extends Entity implements IHexagonalField {
 
             return true;
         } else {
+            this.detachSafely(this.floatFigure);
             boolean figureSet = setFloatFigure(newFigure);
             if (figureSet) {
                 this.attachChild(this.floatFigure);
