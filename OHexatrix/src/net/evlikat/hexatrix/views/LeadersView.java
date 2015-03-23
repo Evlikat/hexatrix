@@ -28,7 +28,7 @@ public class LeadersView extends GameView {
         super(engine, camera);
         this.leadersCallback = leadersCallback;
         this.scoreStorage = scoreStorage;
-        this.table = new Text(30, 30, font, "", 400, engine.getVertexBufferObjectManager());
+        this.table = new Text(30, 30, font, "", 800, engine.getVertexBufferObjectManager());
     }
 
     @Override

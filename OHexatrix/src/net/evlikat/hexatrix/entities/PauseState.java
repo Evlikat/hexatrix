@@ -19,6 +19,7 @@ class PauseState extends GameState {
     public static PauseState create(GameState prevState, HexagonalField hexagonalField, GameEventCallback gameEventCallback) {
         if (prevState instanceof PauseState) {
             // to avoid nested pause states
+            hexagonalField.onGameFinished();
             return (PauseState) prevState;
         }
         return new PauseState(prevState, hexagonalField, gameEventCallback);
@@ -27,11 +28,12 @@ class PauseState extends GameState {
     @Override
     public GameState next() {
         if (nextState != null) {
-            hexagonalField.setVisibilityForPause(false);
+            hexagonalField.onGameResumed();
             return nextState;
+        } else {
+            hexagonalField.onGamePaused();
+            return this;
         }
-        hexagonalField.setVisibilityForPause(true);
-        return this;
     }
 
     @Override

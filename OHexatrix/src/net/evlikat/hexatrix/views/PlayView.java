@@ -7,10 +7,10 @@ import net.evlikat.hexatrix.scores.IScoreStorage;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
 import org.andengine.entity.scene.background.Background;
-import org.andengine.entity.scene.background.SpriteBackground;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.font.IFont;
+import org.andengine.opengl.texture.region.TextureRegion;
 
 /**
  * @author Roman Prokhorov
@@ -53,12 +53,12 @@ public class PlayView extends GameView {
     private final float size;
     private final TouchListener touchListener;
     private final GameSession gameSession;
+    private final Sprite pauseSprite;
     private final Levels levels = new Levels();
 
     public PlayView(Engine engine, Camera camera, Textures textures, IFont font,
                     final PlayCallback playCallback, final IScoreStorage scoreStorage) {
         super(engine, camera);
-        //this.textures = textures;
         this.size = camera.getHeight() / ((DEPTH + 1) * (SQ3)); // pixels per hexagon
         float leftShift = size + (WIDTH + 2) * size * 3 / 2;
         this.gameSession = new GameSession(levels, leftShift, 10, font, engine.getVertexBufferObjectManager());
@@ -67,8 +67,16 @@ public class PlayView extends GameView {
                 WIDTH, DEPTH, new SpriteContext(size, camera, textures, engine),
                 gameEventCallback,
                 new EmptyFieldGenerator());
+        TextureRegion pauseTexture = textures.getPause();
+        this.pauseSprite = new Sprite(
+                (camera.getWidth() - pauseTexture.getWidth()) / 2,
+                (camera.getHeight() - pauseTexture.getHeight()) / 2,
+                pauseTexture,
+                engine.getVertexBufferObjectManager());
+        this.pauseSprite.setVisible(false);
         this.touchListener = new TouchListener(field);
-        this.background = new SpriteBackground(new Sprite(0, 0, textures.getBackground(), engine.getVertexBufferObjectManager()));
+        this.background = new Background(0.1f, 0.1f, 0.1f);
+        //new SpriteBackground(new Sprite(0, 0, textures.getBackground(), engine.getVertexBufferObjectManager()));
         //
         this.field.addGameFinishedListener(new GameFinishedListener() {
             @Override
@@ -76,6 +84,18 @@ public class PlayView extends GameView {
                 final GameResults gameResults = new GameResults(gameSession.getScore());
                 playCallback.toMenuView(gameResults);
                 scoreStorage.save(gameResults);
+                pauseSprite.setVisible(false);
+            }
+        });
+        this.field.addPausedFinishedListener(new GamePausedListener() {
+            @Override
+            public void onGamePaused() {
+                pauseSprite.setVisible(true);
+            }
+
+            @Override
+            public void onGameResumed() {
+                pauseSprite.setVisible(false);
             }
         });
     }
@@ -96,6 +116,7 @@ public class PlayView extends GameView {
         scene.setBackground(background);
         scene.attachChild(field);
         scene.attachChild(gameSession);
+        scene.attachChild(pauseSprite);
     }
 
     @Override

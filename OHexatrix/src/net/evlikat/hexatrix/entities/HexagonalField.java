@@ -5,11 +5,13 @@ import net.evlikat.hexatrix.axial.*;
 import org.andengine.engine.Engine;
 import org.andengine.entity.Entity;
 import org.andengine.entity.IEntity;
-import org.andengine.entity.sprite.Sprite;
 import org.andengine.opengl.texture.region.TextureRegion;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 import static net.evlikat.hexatrix.entities.AxialEntity.SQ3;
 
@@ -36,9 +38,9 @@ public class HexagonalField extends Entity implements IHexagonalField, Serializa
     private GameState currentState;
     private final SpriteContext spriteContext;
     private final GameEventCallback gameEventCallback;
-    private final Sprite pauseSprite;
     //
     private List<GameFinishedListener> gameFinishedListeners = new ArrayList<>();
+    private List<GamePausedListener> gamePausedListeners = new ArrayList<>();
 
     private HexagonalField(int width, int depth, SpriteContext spriteContext, GameEventCallback gameEventCallback) {
         this.width = width;
@@ -53,12 +55,6 @@ public class HexagonalField extends Entity implements IHexagonalField, Serializa
         this.nextFigurePosition = new AxialPosition(width + 2, depth / 2 - width / 4);
         this.figureGenerator = new RandomFigureGenerator();
         this.currentState = new FallingBlocksState(this, this.gameEventCallback);
-        this.pauseSprite = new Sprite(0, -spriteContext.getCamera().getHeight() / 2,
-                spriteContext.getTextures().getPause(),
-                spriteContext.getVertexBufferObjectManager());
-        this.pauseSprite.setZIndex(2); // bring to front
-        this.setVisibilityForPause(false);
-        this.attachChild(this.pauseSprite);
     }
 
     private boolean createNewFloatFigure() {
@@ -92,10 +88,25 @@ public class HexagonalField extends Entity implements IHexagonalField, Serializa
     public void addGameFinishedListener(GameFinishedListener listener) {
         gameFinishedListeners.add(listener);
     }
+    public void addPausedFinishedListener(GamePausedListener listener) {
+        gamePausedListeners.add(listener);
+    }
 
     void onGameFinished() {
         for (GameFinishedListener listener : gameFinishedListeners) {
             listener.onGameFinished();
+        }
+    }
+
+    void onGamePaused() {
+        for (GamePausedListener gamePausedListener : gamePausedListeners) {
+            gamePausedListener.onGamePaused();
+        }
+    }
+
+    void onGameResumed() {
+        for (GamePausedListener gamePausedListener : gamePausedListeners) {
+            gamePausedListener.onGameResumed();
         }
     }
 
@@ -190,7 +201,6 @@ public class HexagonalField extends Entity implements IHexagonalField, Serializa
                 spriteContext.getSize() * 3 / 2,
                 SQ3 * spriteContext.getSize() * depth - SQ3 * spriteContext.getSize() / 2
         );
-        jar.sortChildren();
         return jar;
     }
 
@@ -315,10 +325,6 @@ public class HexagonalField extends Entity implements IHexagonalField, Serializa
             return moved;
         }
         return false;
-    }
-
-    void setVisibilityForPause(boolean visible) {
-        pauseSprite.setVisible(visible);
     }
 
     public void harden() {

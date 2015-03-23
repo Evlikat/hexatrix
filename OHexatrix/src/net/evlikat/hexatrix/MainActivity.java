@@ -33,7 +33,7 @@ public class MainActivity extends BaseGameActivity {
     public void onCreateResources(OnCreateResourcesCallback ocrc) throws Exception {
         textures = new Textures(getTextureManager(), getAssets());
         sceneManager = new SceneManager(this, mEngine, camera, textures, new Leaderboard(
-            "/data/data/" + MainActivity.class.getPackage().getName() + "/leaderboard.lb", 10));
+            "/data/data/" + MainActivity.class.getPackage().getName() + "/leaderboard.lb", 20));
 
         ocrc.onCreateResourcesFinished();
     }

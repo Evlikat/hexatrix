@@ -1,14 +1,13 @@
 package net.evlikat.hexatrix.views;
 
+
 import net.evlikat.hexatrix.Textures;
 import net.evlikat.hexatrix.scores.IScoreStorage;
 import net.evlikat.hexatrix.scores.Score;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
 import org.andengine.entity.scene.background.Background;
-import org.andengine.entity.scene.background.SpriteBackground;
 import org.andengine.entity.sprite.ButtonSprite;
-import org.andengine.entity.sprite.Sprite;
 import org.andengine.entity.text.Text;
 import org.andengine.entity.text.exception.OutOfCharactersException;
 import org.andengine.input.touch.TouchEvent;
@@ -36,7 +35,8 @@ public class MainMenuView extends GameView {
         super(engine, camera);
         this.callback = callback;
         this.text = new Text(30, 30, font, "", 255, engine.getVertexBufferObjectManager());
-        this.background = new SpriteBackground(new Sprite(0, 0, textures.getBackground(), engine.getVertexBufferObjectManager()));
+        this.background = new Background(0.1f, 0.1f, 0.1f);
+                //new SpriteBackground(new Sprite(0, 0, textures.getBackground(), engine.getVertexBufferObjectManager()));
         //
         float buttonHeight = camera.getHeight() / 5;
         float buttonLeft = (camera.getWidth() - textures.getStartBtn().getWidth()) / 2;
