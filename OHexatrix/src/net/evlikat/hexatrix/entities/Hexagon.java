@@ -1,15 +1,16 @@
 package net.evlikat.hexatrix.entities;
 
 import net.evlikat.hexatrix.axial.AxialPosition;
-import static net.evlikat.hexatrix.entities.AxialEntity.getX;
 import org.andengine.opengl.texture.region.ITextureRegion;
+
+import java.io.Serializable;
 
 /**
  *
  * @author Roman Prokhorov
  * @version 1.0 (Jul 07, 2014)
  */
-public class Hexagon extends AxialEntity {
+public class Hexagon extends AxialEntity implements Serializable {
 
     private AxialPosition position;
 

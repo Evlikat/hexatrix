@@ -18,6 +18,8 @@ public interface IHexagonalField {
     boolean turn(RotateDirection direction);
 
     boolean move(MoveDirection direction);
-    
+
+    void pause();
+
     void drop();
 }

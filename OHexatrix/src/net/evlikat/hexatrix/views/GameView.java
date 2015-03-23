@@ -38,4 +38,6 @@ public abstract class GameView {
     public abstract void populate();
 
     public abstract void update();
+
+    public abstract void onBackPressed();
 }

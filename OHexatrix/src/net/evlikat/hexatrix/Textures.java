@@ -26,6 +26,7 @@ public class Textures {
     private TextureRegion borderRight;
     private TextureRegion figure;
     private TextureRegion shadow;
+    private TextureRegion pause;
     private TextureRegion startBtn;
     private TextureRegion leadersBtn;
     private TextureRegion quitBtn;
@@ -44,6 +45,7 @@ public class Textures {
         this.hexagon1 = loadTexture(textureManager, assetManager, "hexagon1");
         this.brick = loadTexture(textureManager, assetManager, "brick");
         this.figure = loadTexture(textureManager, assetManager, "figure");
+        this.pause = loadTexture(textureManager, assetManager, "pause");
         this.startBtn = loadTexture(textureManager, assetManager, "start-btn");
         this.leadersBtn = loadTexture(textureManager, assetManager, "leaders-btn");
         this.quitBtn = loadTexture(textureManager, assetManager, "quit-btn");
@@ -93,6 +95,10 @@ public class Textures {
 
     public TextureRegion getFigure() {
         return figure;
+    }
+
+    public TextureRegion getPause() {
+        return pause;
     }
 
     public TextureRegion getStartBtn() {

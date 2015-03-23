@@ -1,5 +1,6 @@
 package net.evlikat.hexatrix.entities;
 
+import org.andengine.engine.camera.Camera;
 import net.evlikat.hexatrix.Textures;
 import org.andengine.engine.Engine;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
@@ -13,14 +14,20 @@ public class SpriteContext {
 
     private final float size;
     private final Textures textures;
+    private final Camera camera;
     private final VertexBufferObjectManager vertexBufferObjectManager;
     private final Engine engine;
 
-    public SpriteContext(float size, Textures textures, Engine engine) {
+    public SpriteContext(float size, Camera camera, Textures textures, Engine engine) {
         this.size = size;
+        this.camera = camera;
         this.textures = textures;
         this.engine = engine;
         this.vertexBufferObjectManager = engine.getVertexBufferObjectManager();
+    }
+
+    public Camera getCamera() {
+        return camera;
     }
 
     public Engine getEngine() {

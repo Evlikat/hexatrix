@@ -5,8 +5,10 @@ import net.evlikat.hexatrix.axial.*;
 import org.andengine.engine.Engine;
 import org.andengine.entity.Entity;
 import org.andengine.entity.IEntity;
+import org.andengine.entity.sprite.Sprite;
 import org.andengine.opengl.texture.region.TextureRegion;
 
+import java.io.Serializable;
 import java.util.*;
 
 import static net.evlikat.hexatrix.entities.AxialEntity.SQ3;
@@ -15,7 +17,7 @@ import static net.evlikat.hexatrix.entities.AxialEntity.SQ3;
  * @author Roman Prokhorov
  * @version 1.0 (Jul 03, 2014)
  */
-public class HexagonalField extends Entity implements IHexagonalField {
+public class HexagonalField extends Entity implements IHexagonalField, Serializable {
 
     private final Fields borders = new Fields();
     private final Fields backWall = new Fields();
@@ -34,6 +36,7 @@ public class HexagonalField extends Entity implements IHexagonalField {
     private GameState currentState;
     private final SpriteContext spriteContext;
     private final GameEventCallback gameEventCallback;
+    private final Sprite pauseSprite;
     //
     private List<GameFinishedListener> gameFinishedListeners = new ArrayList<>();
 
@@ -50,6 +53,12 @@ public class HexagonalField extends Entity implements IHexagonalField {
         this.nextFigurePosition = new AxialPosition(width + 2, depth / 2 - width / 4);
         this.figureGenerator = new RandomFigureGenerator();
         this.currentState = new FallingBlocksState(this, this.gameEventCallback);
+        this.pauseSprite = new Sprite(0, -spriteContext.getCamera().getHeight() / 2,
+                spriteContext.getTextures().getPause(),
+                spriteContext.getVertexBufferObjectManager());
+        this.pauseSprite.setZIndex(2); // bring to front
+        this.setVisibilityForPause(false);
+        this.attachChild(this.pauseSprite);
     }
 
     private boolean createNewFloatFigure() {
@@ -181,6 +190,7 @@ public class HexagonalField extends Entity implements IHexagonalField {
                 spriteContext.getSize() * 3 / 2,
                 SQ3 * spriteContext.getSize() * depth - SQ3 * spriteContext.getSize() / 2
         );
+        jar.sortChildren();
         return jar;
     }
 
@@ -274,7 +284,21 @@ public class HexagonalField extends Entity implements IHexagonalField {
     }
 
     @Override
+    public void pause() {
+        currentState = PauseState.create(currentState, this, gameEventCallback);
+    }
+
+    @Override
     public boolean turn(RotateDirection direction) {
+        return currentState.turn(direction);
+    }
+
+    @Override
+    public boolean move(MoveDirection direction) {
+        return currentState.move(direction);
+    }
+
+    boolean turnFigure(RotateDirection direction) {
         if (floatFigure != null) {
             if (floatFigure.turn(getForbiddenFields(), direction)) {
                 onFloatFigureNewPosition();
@@ -282,6 +306,19 @@ public class HexagonalField extends Entity implements IHexagonalField {
             return true;
         }
         return false;
+    }
+
+    boolean moveFigure(AxialDirection axialDirection) {
+        if (floatFigure != null) {
+            boolean moved = floatFigure.move(getForbiddenFields(), axialDirection);
+            onFloatFigureNewPosition();
+            return moved;
+        }
+        return false;
+    }
+
+    void setVisibilityForPause(boolean visible) {
+        pauseSprite.setVisible(visible);
     }
 
     public void harden() {
@@ -359,22 +396,6 @@ public class HexagonalField extends Entity implements IHexagonalField {
         }
     }
 
-    public boolean move(MoveDirection direction) {
-        if (floatFigure != null) {
-            AxialDirection axialDirection;
-            if (direction == MoveDirection.LEFT) {
-                axialDirection = AxialDirection.Left;
-            } else if (direction == MoveDirection.RIGHT) {
-                axialDirection = AxialDirection.RightBack;
-            } else {
-                throw new UnsupportedOperationException("Not recognized move direction");
-            }
-            boolean moved = floatFigure.move(getForbiddenFields(), axialDirection);
-            onFloatFigureNewPosition();
-            return moved;
-        }
-        return false;
-    }
 
     public void drop() {
         boolean moved = false;

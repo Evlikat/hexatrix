@@ -58,4 +58,9 @@ public class LeadersView extends GameView {
         resultsTable = result.toString();
         table.setText(resultsTable);
     }
+
+    @Override
+    public void onBackPressed() {
+        leadersCallback.toMenuView();
+    }
 }

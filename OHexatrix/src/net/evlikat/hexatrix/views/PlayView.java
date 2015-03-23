@@ -64,7 +64,7 @@ public class PlayView extends GameView {
         this.gameSession = new GameSession(levels, leftShift, 10, font, engine.getVertexBufferObjectManager());
         final GameEventCallbackImpl gameEventCallback = new GameEventCallbackImpl(levels, gameSession);
         this.field = HexagonalField.generateJar(
-                WIDTH, DEPTH, new SpriteContext(size, textures, engine),
+                WIDTH, DEPTH, new SpriteContext(size, camera, textures, engine),
                 gameEventCallback,
                 new EmptyFieldGenerator());
         this.touchListener = new TouchListener(field);
@@ -101,5 +101,10 @@ public class PlayView extends GameView {
     @Override
     public void update() {
         field.update();
+    }
+
+    @Override
+    public void onBackPressed() {
+        field.pause();
     }
 }

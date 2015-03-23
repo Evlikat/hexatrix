@@ -54,7 +54,7 @@ public class MainActivity extends BaseGameActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            sceneManager.toMenuView();
+            sceneManager.onBackPressed();
             return true;
         }
 

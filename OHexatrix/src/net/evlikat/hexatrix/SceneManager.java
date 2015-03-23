@@ -108,4 +108,8 @@ public class SceneManager implements PlayCallback, MenuCallback, LeadersCallback
     public void toMenuView() {
         setCurrentView(getMainMenuView());
     }
+
+    public void onBackPressed() {
+        getCurrentView().onBackPressed();
+    }
 }
