@@ -22,6 +22,7 @@ public class LeadersView extends GameView {
     private final LeadersCallback leadersCallback;
     private final IScoreStorage scoreStorage;
     private final Text table;
+    private String resultsTable;
 
     public LeadersView(Engine engine, Camera camera, IFont font, LeadersCallback leadersCallback, IScoreStorage scoreStorage) {
         super(engine, camera);
@@ -42,16 +43,19 @@ public class LeadersView extends GameView {
 
     @Override
     public void update() {
+    }
+
+    public void updateResults() {
         StringBuilder result = new StringBuilder("##   SCORE          DATE\n");
         int i = 1;
         for (Score score : scoreStorage.getTopScores()) {
             result.append(
-                String.format(
-                    "%02d    %04d    %s", i++, score.getAmount(), DATE_FORMAT.format(score.getDate())
-                )
+                    String.format(
+                            "%02d    %04d    %s", i++, score.getAmount(), DATE_FORMAT.format(score.getDate())
+                    )
             ).append("\n");
         }
-        table.setText(result.toString());
+        resultsTable = result.toString();
+        table.setText(resultsTable);
     }
-
 }

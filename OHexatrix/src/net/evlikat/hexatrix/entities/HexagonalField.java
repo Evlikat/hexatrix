@@ -17,32 +17,6 @@ import static net.evlikat.hexatrix.entities.AxialEntity.SQ3;
  */
 public class HexagonalField extends Entity implements IHexagonalField {
 
-    private static final Collection<AxialPosition> TEST_INITIAL_FIELDS = Arrays.asList(
-            new AxialPosition(0, 0),
-            new AxialPosition(1, 0),
-            new AxialPosition(2, -1),
-            new AxialPosition(3, -1),
-            //new AxialPosition(4, -2),
-            new AxialPosition(5, -2),
-            new AxialPosition(6, -3),
-            new AxialPosition(7, -3),
-            new AxialPosition(8, -4),
-            new AxialPosition(9, -4),
-            new AxialPosition(10, -5),
-
-            new AxialPosition(0, 2),
-            new AxialPosition(1, 2),
-            new AxialPosition(2, 1),
-            new AxialPosition(3, 1),
-            //new AxialPosition(4, -1),
-            new AxialPosition(5, 0),
-            new AxialPosition(6, -1),
-            new AxialPosition(7, -1),
-            new AxialPosition(8, -2),
-            new AxialPosition(9, -2),
-            new AxialPosition(10, -3)
-    );
-
     private final Fields borders = new Fields();
     private final Fields backWall = new Fields();
     private final Fields fields = new Fields();
@@ -138,7 +112,11 @@ public class HexagonalField extends Entity implements IHexagonalField {
         return true;
     }
 
-    public static HexagonalField generateJar(int width, int depth, SpriteContext spriteContext, GameEventCallback gameEventCallback) {
+    public static HexagonalField generateJar(int width, int depth,
+                                             SpriteContext spriteContext,
+                                             GameEventCallback gameEventCallback,
+                                             InitialFieldGenerator initialFieldGenerator
+    ) {
         HexagonalField jar = new HexagonalField(width, depth, spriteContext, gameEventCallback);
         final Textures textures = spriteContext.getTextures();
         // Set borders: right hexa-corner
@@ -189,14 +167,14 @@ public class HexagonalField extends Entity implements IHexagonalField {
                 jar.addBackWallBrick(brick);
             }
         }
-        //test
-//        for (AxialPosition axialPosition : TEST_INITIAL_FIELDS) {
-//            jar.addField(axialPosition, new ChangingHexagon(
-//                    axialPosition,
-//                    spriteContext.getTextures().getHexagon0(),
-//                    spriteContext.getTextures().getHexagon1(),
-//                    spriteContext));
-//        }
+        // setting initial fields
+        for (AxialPosition axialPosition : initialFieldGenerator.generate()) {
+            jar.addField(axialPosition, new ChangingHexagon(
+                    axialPosition,
+                    spriteContext.getTextures().getHexagon0(),
+                    spriteContext.getTextures().getHexagon1(),
+                    spriteContext));
+        }
         // setting start position
         jar.setPosition(
                 spriteContext.getSize() * 3 / 2,
@@ -234,9 +212,8 @@ public class HexagonalField extends Entity implements IHexagonalField {
 
     List<Hexagon> getHexagons(Integer lineNumber) {
         final List<Hexagon> result = new ArrayList<>();
-        for (int q = 0; q < getWidth(); q++) {
-            int axQ = q;
-            int axR = lineNumber - q / 2;
+        for (int axQ = 0; axQ < getWidth(); axQ++) {
+            int axR = lineNumber - axQ / 2;
             Hexagon hexagon = fields.get(new AxialPosition(axQ, axR));
             if (hexagon != null) {
                 result.add(hexagon);
@@ -265,7 +242,7 @@ public class HexagonalField extends Entity implements IHexagonalField {
     }
 
     public Collection<AxialPosition> getForbiddenFields() {
-        ArrayList<AxialPosition> forbidden = new ArrayList<AxialPosition>();
+        ArrayList<AxialPosition> forbidden = new ArrayList<>();
         forbidden.addAll(borders.getPositions());
         forbidden.addAll(fields.getPositions());
         return forbidden;
@@ -275,13 +252,21 @@ public class HexagonalField extends Entity implements IHexagonalField {
         currentState = currentState.next();
     }
 
-    public void restart() {
+    public void restart(InitialFieldGenerator initialFieldGenerator) {
         for (Hexagon hexagon : fields.getHexagons()) {
             detachChild(hexagon);
         }
         fields.clear();
         gameEventCallback.reset();
         figureGenerator.reset();
+        // re-init with new fields
+        for (AxialPosition position : initialFieldGenerator.generate()) {
+            addField(position, new ChangingHexagon(
+                    position,
+                    spriteContext.getTextures().getHexagon0(),
+                    spriteContext.getTextures().getHexagon1(),
+                    spriteContext));
+        }
         createNewFloatFigure();
         nextFigure.resetParts(figureGenerator.getNext().getParts());
         currentState = new FallingBlocksState(this, gameEventCallback);

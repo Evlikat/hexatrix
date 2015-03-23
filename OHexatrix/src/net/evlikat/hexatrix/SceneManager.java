@@ -100,7 +100,9 @@ public class SceneManager implements PlayCallback, MenuCallback, LeadersCallback
     }
 
     public void toLeadersView() {
-        setCurrentView(getLeadersView());
+        LeadersView leadersView = getLeadersView();
+        leadersView.updateResults();
+        setCurrentView(leadersView);
     }
 
     public void toMenuView() {

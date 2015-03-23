@@ -52,7 +52,7 @@ public class MainMenuView extends GameView {
                 }
             });
         this.leadersButton = new ButtonSprite(buttonLeft, buttonHeight * i++, textures.getLeadersBtn(),
-            engine.getVertexBufferObjectManager(), new ButtonSprite.OnClickListener() {
+            engine.getVertexBufferObjectManager(),   new ButtonSprite.OnClickListener() {
 
                 public void onClick(ButtonSprite pButtonSprite, float pTouchAreaLocalX, float pTouchAreaLocalY) {
                     callback.toLeadersView();

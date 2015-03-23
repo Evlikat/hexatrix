@@ -19,8 +19,8 @@ public class Fields {
     private final Lock lock = new ReentrantLock(true);
 
     public Fields() {
-        this.hexToPos = new HashMap<Hexagon, AxialPosition>();
-        this.posToHex = new HashMap<AxialPosition, Hexagon>();
+        this.hexToPos = new HashMap<>();
+        this.posToHex = new HashMap<>();
     }
 
     public void put(AxialPosition position, Hexagon hexagon) {
@@ -62,23 +62,6 @@ public class Fields {
             result.put(entry.getValue(), entry.getKey());
         }
         return result;
-    }
-    
-    public Collection<Hexagon> getTopFields() {
-        // column to top hexagon
-        Map<Integer, Hexagon> topHexagons = new HashMap<Integer, Hexagon>();
-        // column to top hexagon height
-        Map<Integer, Integer> topHexagonHeights = new HashMap<Integer, Integer>();
-        for (Map.Entry<AxialPosition, Hexagon> entry : posToHex.entrySet()) {
-            int q = entry.getKey().getQ();
-            int r = entry.getKey().getR();
-            Integer topHexR = topHexagonHeights.get(q);
-            if (topHexR == null || topHexR < r) {
-                topHexagons.put(q, entry.getValue());
-                topHexagonHeights.put(q, r);
-            }
-        }
-        return topHexagons.values();
     }
 
     public void remove(AxialPosition position) {

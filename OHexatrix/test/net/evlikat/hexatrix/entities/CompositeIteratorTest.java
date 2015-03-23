@@ -1,11 +1,10 @@
 package net.evlikat.hexatrix.entities;
 
-import net.evlikat.hexatrix.testutils.Counter;
 import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static junit.framework.Assert.assertEquals;
 
@@ -13,7 +12,7 @@ public class CompositeIteratorTest {
 
     @Test
     public void shouldIterateProperly() {
-        CompositeIterator<Integer> instance = new CompositeIterator<Integer>(Arrays.<List<Integer>>asList(
+        CompositeIterator<Integer> instance = new CompositeIterator<>(Arrays.asList(
                 Arrays.asList(1, 2, 3),
                 Arrays.asList(5, 6, 7)
         ).iterator());
@@ -26,20 +25,20 @@ public class CompositeIteratorTest {
 
     @Test
     public void shouldThrowEvent() {
-        final Counter counter = new Counter();
-        CompositeIterator<Integer> instance = new CompositeIterator<Integer>(Arrays.<List<Integer>>asList(
+        final AtomicInteger counter = new AtomicInteger();
+        CompositeIterator<Integer> instance = new CompositeIterator<Integer>(Arrays.asList(
                 Arrays.asList(1, 2, 3),
                 Arrays.asList(5, 6, 7)
         ).iterator()) {
             @Override
             public void afterLine() {
-                counter.inc();
+                counter.incrementAndGet();
             }
         };
         while (instance.hasNext()) {
             instance.next();
         }
-        assertEquals(1, counter.getCount());
+        assertEquals(1, counter.get());
     }
 
 }

@@ -58,9 +58,9 @@ public class TouchListener implements ITouchListener {
                 } else {
                     if (diffY < 0) {
                         if (diffX > 0) {
-                            field.turn(RotateDirection.RIGHT);
+                            field.turn(RotateDirection.CLOCKWISE);
                         } else {
-                            field.turn(RotateDirection.LEFT);
+                            field.turn(RotateDirection.COUNTERCLOCKWISE);
                         }
                     } else {
                         field.drop();
@@ -68,7 +68,7 @@ public class TouchListener implements ITouchListener {
                 }
             } else {
                 // handle like single click
-                field.turn(RotateDirection.RIGHT);
+                field.turn(RotateDirection.CLOCKWISE);
             }
         } catch (Exception ex) {
             Log.e(TAG, ex.getMessage(), ex);
@@ -76,4 +76,4 @@ public class TouchListener implements ITouchListener {
         return result;
     }
 
-};
+}

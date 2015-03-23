@@ -1,6 +1,7 @@
 package net.evlikat.hexatrix.views;
 
 import net.evlikat.hexatrix.Textures;
+import net.evlikat.hexatrix.axial.EmptyFieldGenerator;
 import net.evlikat.hexatrix.entities.*;
 import net.evlikat.hexatrix.scores.IScoreStorage;
 import org.andengine.engine.Engine;
@@ -63,7 +64,9 @@ public class PlayView extends GameView {
         this.gameSession = new GameSession(levels, leftShift, 10, font, engine.getVertexBufferObjectManager());
         final GameEventCallbackImpl gameEventCallback = new GameEventCallbackImpl(levels, gameSession);
         this.field = HexagonalField.generateJar(
-                WIDTH, DEPTH, new SpriteContext(size, camera, textures, engine, font), gameEventCallback);
+                WIDTH, DEPTH, new SpriteContext(size, textures, engine),
+                gameEventCallback,
+                new EmptyFieldGenerator());
         this.touchListener = new TouchListener(field);
         this.background = new SpriteBackground(new Sprite(0, 0, textures.getBackground(), engine.getVertexBufferObjectManager()));
         //
@@ -78,7 +81,7 @@ public class PlayView extends GameView {
     }
 
     public void startNewGame() {
-        field.restart();
+        field.restart(new EmptyFieldGenerator());
         gameSession.resetResults();
         levels.reset();
     }

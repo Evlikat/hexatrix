@@ -76,6 +76,6 @@ public class Leaderboard implements IScoreStorage {
         } finally {
             IOUtils.closeQuietly(in);
         }
-        return new ArrayList<Score>();
+        return new ArrayList<>();
     }
 }
