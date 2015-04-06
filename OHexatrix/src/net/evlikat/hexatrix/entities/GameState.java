@@ -23,6 +23,8 @@ abstract class GameState {
 
     public abstract boolean turn(RotateDirection rotateDirection);
 
-    public abstract boolean move(MoveDirection direction);
+    public abstract boolean move(MoveDirection direction, int steps);
+
+    public abstract boolean moving(MoveDirection direction, int steps);
 }
 

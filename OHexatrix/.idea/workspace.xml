@@ -18,69 +18,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b6541c0e-6d79-4850-a95f-37ca38798a27" name="Default" comment="">
-      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\build.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\manifest.mf" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\nbproject\build-impl.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\nbproject\genfiles.properties" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\nbproject\private\private.properties" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\nbproject\private\private.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\nbproject\project.properties" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\nbproject\project.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\src\net\evlikat\hexatrix\ConsoleGraphics.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\src\net\evlikat\hexatrix\ConsoleHexatrix.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\src\net\evlikat\hexatrix\Physics.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\src\net\evlikat\hexatrix\axial\AxialDirection.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\src\net\evlikat\hexatrix\axial\AxialFigure.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\src\net\evlikat\hexatrix\axial\AxialHexCell.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\src\net\evlikat\hexatrix\axial\AxialHexagonalField.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\src\net\evlikat\hexatrix\axial\AxialPosition.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\src\net\evlikat\hexatrix\axial\CubeCoordinates.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\src\net\evlikat\hexatrix\axial\IFigureGenerator.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\src\net\evlikat\hexatrix\axial\MoveDirection.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\src\net\evlikat\hexatrix\axial\RandomFigureGenerator.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\ConsoleHexatrix\src\net\evlikat\hexatrix\axial\RotateDirection.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\AndroidManifest.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\ant.properties" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\build.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\libs\classes.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\local.properties" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\proguard-project.txt" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\project.properties" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\res\drawable-hdpi\ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\res\drawable-ldpi\ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\res\drawable-mdpi\border.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\res\drawable-mdpi\figure.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\res\drawable-mdpi\hexagon0.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\res\drawable-mdpi\hexagon1.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\res\drawable-mdpi\ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\res\drawable-xhdpi\ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\res\layout\main.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\res\values\strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\GameLoop.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\GameSession.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\MainActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\Physics.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\Scene.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\axial\AxialDirection.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\axial\AxialFigure.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\axial\AxialHexCell.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\axial\AxialHexagonalField.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\axial\AxialPosition.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\axial\CubeCoordinates.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\axial\FigureGenerator.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\axial\InitialFieldGenerator.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\axial\MoveDirection.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\axial\RandomFigureGenerator.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\axial\RotateDirection.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\axial\TrivialFieldGenerator.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\axial\TrivialFigureGenerator.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\scenes\GameScene.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\scenes\GlRenderer.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\scenes\MainMenuScene.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\scenes\MainView.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\scenes\SceneManager.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\scenes\callbacks\GameMenuCallback.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\my\hexatrix\JHexatrix\src\net\evlikat\hexatrix\scenes\callbacks\MainMenuCallback.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/FallingBlocksState.java" afterPath="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/FallingBlocksState.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/GameFinishedState.java" afterPath="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/GameFinishedState.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/GameState.java" afterPath="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/GameState.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/HexagonalField.java" afterPath="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/HexagonalField.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/IHexagonalField.java" afterPath="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/IHexagonalField.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/evlikat/hexatrix/views/ITouchListener.java" afterPath="$PROJECT_DIR$/src/net/evlikat/hexatrix/views/ITouchListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/PauseState.java" afterPath="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/PauseState.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/evlikat/hexatrix/views/PlayView.java" afterPath="$PROJECT_DIR$/src/net/evlikat/hexatrix/views/PlayView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/RemovingLinesState.java" afterPath="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/RemovingLinesState.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/evlikat/hexatrix/views/TouchListener.java" afterPath="$PROJECT_DIR$/src/net/evlikat/hexatrix/views/TouchListener.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="OHexatrix.iws" />
@@ -114,17 +61,41 @@
       <file leaf-file-name="HexagonalField.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/HexagonalField.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-23.62069" vertical-offset="182" max-vertical-offset="7242">
-              <caret line="51" column="32" selection-start-line="51" selection-start-column="32" selection-end-line="51" selection-end-column="32" />
+            <state vertical-scroll-proportion="-6.5172415" vertical-offset="6628" max-vertical-offset="8041">
+              <caret line="419" column="20" selection-start-line="419" selection-start-column="20" selection-end-line="419" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3264#3265#0" expanded="true" />
-                <element signature="e#3315#3316#0" expanded="true" />
-                <element signature="e#3388#3389#0" expanded="true" />
-                <element signature="e#3437#3438#0" expanded="true" />
-                <element signature="e#10364#10365#0" expanded="true" />
-                <element signature="e#10451#10452#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameState.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/GameState.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
+              <caret line="25" column="28" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FallingBlocksState.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/FallingBlocksState.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="326" max-vertical-offset="1241">
+              <caret line="70" column="31" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MoveDirection.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/axial/MoveDirection.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
+              <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -132,18 +103,18 @@
       <file leaf-file-name="ITouchListener.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/views/ITouchListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
-              <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
+              <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameSession.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/GameSession.java">
+      <file leaf-file-name="TouchListener.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/views/TouchListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="867">
-              <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.30868763" vertical-offset="972" max-vertical-offset="1887">
+              <caret line="71" column="78" selection-start-line="71" selection-start-column="78" selection-end-line="71" selection-end-column="78" />
               <folding />
             </state>
           </provider>
@@ -152,55 +123,28 @@
       <file leaf-file-name="PlayView.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/views/PlayView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="568" max-vertical-offset="1938">
-              <caret line="77" column="56" selection-start-line="77" selection-start-column="56" selection-end-line="77" selection-end-column="56" />
-              <folding>
-                <element signature="e#3716#3717#0" expanded="true" />
-                <element signature="e#3776#3777#0" expanded="true" />
-                <element signature="e#3841#3842#0" expanded="true" />
-                <element signature="e#3902#3903#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="1870">
+              <caret line="76" column="59" selection-start-line="76" selection-start-column="59" selection-end-line="76" selection-end-column="59" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainMenuView.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="IHexagonalField.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/IHexagonalField.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
+              <caret line="21" column="53" selection-start-line="21" selection-start-column="53" selection-end-line="21" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainMenuView.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/views/MainMenuView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.3726708" vertical-offset="187" max-vertical-offset="2142">
-              <caret line="37" column="44" selection-start-line="37" selection-start-column="44" selection-end-line="37" selection-end-column="44" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameResults.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/views/GameResults.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
-              <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LeadersView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/views/LeadersView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="986">
-              <caret line="21" column="50" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PauseState.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/PauseState.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1054">
-              <caret line="35" column="9" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="595" max-vertical-offset="2142">
+              <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -240,19 +184,13 @@
         <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/axial/RotateDirection.java" />
         <option value="$PROJECT_DIR$/test/net/evlikat/hexatrix/entities/CompositeIteratorTest.java" />
         <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/axial/AxialFigure.java" />
-        <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/views/TouchListener.java" />
         <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/Fields.java" />
         <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/Figure.java" />
         <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/axial/AxialDirection.java" />
         <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/Hexagon.java" />
         <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/axial/AxialVector.java" />
         <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/views/GameView.java" />
-        <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/RemovingLinesState.java" />
-        <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/FallingBlocksState.java" />
-        <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/GameState.java" />
         <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/Pause.java" />
-        <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/IHexagonalField.java" />
-        <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/GameFinishedState.java" />
         <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/Textures.java" />
         <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/SpriteContext.java" />
         <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/SceneManager.java" />
@@ -260,10 +198,17 @@
         <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/scores/Leaderboard.java" />
         <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/GamePausedListener.java" />
-        <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/HexagonalField.java" />
-        <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/PauseState.java" />
-        <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/views/PlayView.java" />
         <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/views/MainMenuView.java" />
+        <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/views/ITouchListener.java" />
+        <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/IHexagonalField.java" />
+        <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/GameState.java" />
+        <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/GameFinishedState.java" />
+        <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/PauseState.java" />
+        <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/RemovingLinesState.java" />
+        <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/FallingBlocksState.java" />
+        <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/views/PlayView.java" />
+        <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/HexagonalField.java" />
+        <option value="$PROJECT_DIR$/src/net/evlikat/hexatrix/views/TouchListener.java" />
       </list>
     </option>
   </component>
@@ -274,7 +219,7 @@
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1785" />
-    <option name="height" value="1092" />
+    <option name="height" value="1096" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -369,7 +314,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -549,6 +493,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -578,7 +523,6 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="192.168.56.101:5555" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -951,6 +895,9 @@
       <workItem from="1427084895356" duration="48000" />
       <workItem from="1427084959680" duration="5108000" />
       <workItem from="1427090122806" duration="7005000" />
+      <workItem from="1427171240120" duration="600000" />
+      <workItem from="1427185370914" duration="39000" />
+      <workItem from="1428308235080" duration="3424000" />
     </task>
     <task id="LOCAL-00001" summary="[master] added Git support to project">
       <created>1426827236513</created>
@@ -992,7 +939,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69833000" />
+    <option name="totallyTimeSpent" value="73896000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1015,8 +962,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1785" height="1092" extended-state="1" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1785" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1036,13 +983,13 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.65384614" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298647" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33760685" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33723405" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.62927353" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18898551" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39787233" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18898551" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Memory Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298647" sideWeight="0.5" order="14" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45192307" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45106384" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1186,7 +1133,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.298573" vertical-offset="0" max-vertical-offset="911">
           <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1194,7 +1140,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
           <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1216,7 +1161,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.1679473" vertical-offset="0" max-vertical-offset="911">
           <caret line="11" column="47" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1224,7 +1168,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18660812" vertical-offset="0" max-vertical-offset="2431">
           <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1232,7 +1175,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18660812" vertical-offset="0" max-vertical-offset="1734">
           <caret line="15" column="27" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1240,7 +1182,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
           <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1248,71 +1189,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1037">
           <caret line="7" column="43" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/axial/MoveDirection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13062568" vertical-offset="0" max-vertical-offset="911">
-          <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/RemovingLinesState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9626784" vertical-offset="381" max-vertical-offset="1394">
-          <caret line="80" column="5" selection-start-line="80" selection-start-column="5" selection-end-line="80" selection-end-column="5" />
-          <folding>
-            <element signature="e#2741#2742#0" expanded="false" />
-            <element signature="e#2769#2770#0" expanded="false" />
-            <element signature="e#2835#2836#0" expanded="false" />
-            <element signature="e#2863#2864#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/FallingBlocksState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6827662" vertical-offset="279" max-vertical-offset="1190">
-          <caret line="62" column="38" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/GameState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4665203" vertical-offset="0" max-vertical-offset="911">
-          <caret line="25" column="28" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/views/TouchListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33260155" vertical-offset="105" max-vertical-offset="1343">
-          <caret line="30" column="16" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/IHexagonalField.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3358946" vertical-offset="0" max-vertical-offset="911">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/GameFinishedState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18660812" vertical-offset="0" max-vertical-offset="911">
-          <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1320,7 +1196,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.13062568" vertical-offset="0" max-vertical-offset="911">
           <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1328,10 +1203,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.701427" vertical-offset="432" max-vertical-offset="1411">
           <caret line="99" column="37" selection-start-line="99" selection-start-column="37" selection-end-line="99" selection-end-column="37" />
-          <folding>
-            <element signature="method#loadTexture#0;class#Textures#0" expanded="false" />
-            <element signature="e#3569#3570#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1339,10 +1210,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.34249714" vertical-offset="2778" max-vertical-offset="16524">
           <caret line="261" column="17" selection-start-line="261" selection-start-column="17" selection-end-line="261" selection-end-column="17" />
-          <folding>
-            <element signature="e#7807#7808#0" expanded="true" />
-            <element signature="e#7842#7843#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1350,7 +1217,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.038946163" vertical-offset="0" max-vertical-offset="7854">
           <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1358,7 +1224,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.11512415" vertical-offset="0" max-vertical-offset="886">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1366,10 +1231,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6936937" vertical-offset="455" max-vertical-offset="1360">
           <caret line="70" column="49" selection-start-line="70" selection-start-column="49" selection-end-line="70" selection-end-column="49" />
-          <folding>
-            <element signature="e#1031#1209#0" expanded="true" />
-            <element signature="e#1208#1209#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1377,7 +1238,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.1679473" vertical-offset="0" max-vertical-offset="911">
           <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1385,10 +1245,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="782">
           <caret line="2" column="41" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="41" />
-          <folding>
-            <element signature="e#846#847#0" expanded="true" />
-            <element signature="e#875#876#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1396,15 +1252,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.13062568" vertical-offset="0" max-vertical-offset="911">
           <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/views/ITouchListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
-          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1412,7 +1259,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.597146" vertical-offset="0" max-vertical-offset="911">
           <caret line="41" column="25" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1420,7 +1266,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.20197585" vertical-offset="105" max-vertical-offset="1768">
           <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1428,7 +1273,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6158068" vertical-offset="0" max-vertical-offset="1020">
           <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1436,17 +1280,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.1679473" vertical-offset="0" max-vertical-offset="911">
           <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/PauseState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1054">
-          <caret line="35" column="9" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1466,62 +1299,128 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/HexagonalField.java">
+    <entry file="jar://$PROJECT_DIR$/libs/classes.jar!/org/andengine/entity/scene/background/Background.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-23.62069" vertical-offset="182" max-vertical-offset="7242">
-          <caret line="51" column="32" selection-start-line="51" selection-start-column="32" selection-end-line="51" selection-end-column="32" />
+        <state vertical-scroll-proportion="-0.15124154" vertical-offset="593" max-vertical-offset="1479">
+          <caret line="32" column="11" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/GameFinishedState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.66704035" vertical-offset="0" max-vertical-offset="892">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding>
+            <element signature="e#1021#1022#0" expanded="true" />
+            <element signature="e#1049#1050#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/PauseState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.65695065" vertical-offset="179" max-vertical-offset="1139">
+          <caret line="45" column="30" selection-start-line="45" selection-start-column="30" selection-end-line="45" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3264#3265#0" expanded="true" />
-            <element signature="e#3315#3316#0" expanded="true" />
-            <element signature="e#3388#3389#0" expanded="true" />
-            <element signature="e#3437#3438#0" expanded="true" />
-            <element signature="e#10364#10365#0" expanded="true" />
-            <element signature="e#10451#10452#0" expanded="true" />
+            <element signature="e#1657#1658#0" expanded="true" />
+            <element signature="e#1685#1686#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/GameSession.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="867">
+        <state vertical-scroll-proportion="0.26010928" vertical-offset="0" max-vertical-offset="915">
           <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/libs/classes.jar!/org/andengine/entity/scene/background/Background.class">
+    <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/RemovingLinesState.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.15124154" vertical-offset="593" max-vertical-offset="1479">
-          <caret line="32" column="11" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="11" />
+        <state vertical-scroll-proportion="1.4120219" vertical-offset="0" max-vertical-offset="1411">
+          <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1086#1087#0" expanded="true" />
-            <element signature="e#1125#1126#0" expanded="true" />
+            <element signature="e#2846#2847#0" expanded="true" />
+            <element signature="e#2874#2875#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/IHexagonalField.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
+          <caret line="21" column="53" selection-start-line="21" selection-start-column="53" selection-end-line="21" selection-end-column="53" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/views/PlayView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="568" max-vertical-offset="1938">
-          <caret line="77" column="56" selection-start-line="77" selection-start-column="56" selection-end-line="77" selection-end-column="56" />
-          <folding>
-            <element signature="e#3716#3717#0" expanded="true" />
-            <element signature="e#3776#3777#0" expanded="true" />
-            <element signature="e#3841#3842#0" expanded="true" />
-            <element signature="e#3902#3903#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="1870">
+          <caret line="76" column="59" selection-start-line="76" selection-start-column="59" selection-end-line="76" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/axial/MoveDirection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
+          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/views/MainMenuView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3726708" vertical-offset="187" max-vertical-offset="2142">
-          <caret line="37" column="44" selection-start-line="37" selection-start-column="44" selection-end-line="37" selection-end-column="44" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1231" max-vertical-offset="2142">
+          <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/GameState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
+          <caret line="25" column="28" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/FallingBlocksState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="326" max-vertical-offset="1241">
+          <caret line="70" column="31" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/entities/HexagonalField.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.5172415" vertical-offset="6628" max-vertical-offset="8041">
+          <caret line="419" column="20" selection-start-line="419" selection-start-column="20" selection-end-line="419" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/views/ITouchListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
+          <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/evlikat/hexatrix/views/TouchListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30868763" vertical-offset="972" max-vertical-offset="1887">
+          <caret line="71" column="78" selection-start-line="71" selection-start-column="78" selection-end-line="71" selection-end-column="78" />
+          <folding />
         </state>
       </provider>
     </entry>

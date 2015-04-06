@@ -26,8 +26,13 @@ public class HexagonalField extends Entity implements IHexagonalField, Serializa
     private final Fields fields = new Fields();
     // Properties
     private Figure floatFigure;
-    private Figure shadowFigure;
+    private Figure droppedShadowFigure;
+    private Figure movedShadowFigure;
     private Figure nextFigure;
+    //
+    private MoveDirection moveDirection;
+    private int moveShift = 0;
+    //
     private final AxialDirection gravity;
     private final int width;
     private final int depth;
@@ -88,6 +93,7 @@ public class HexagonalField extends Entity implements IHexagonalField, Serializa
     public void addGameFinishedListener(GameFinishedListener listener) {
         gameFinishedListeners.add(listener);
     }
+
     public void addPausedFinishedListener(GamePausedListener listener) {
         gamePausedListeners.add(listener);
     }
@@ -304,8 +310,19 @@ public class HexagonalField extends Entity implements IHexagonalField, Serializa
     }
 
     @Override
-    public boolean move(MoveDirection direction) {
-        return currentState.move(direction);
+    public boolean move(MoveDirection direction, int steps) {
+        moveShift = 0;
+        boolean moved = currentState.move(direction, steps);
+        return moved;
+    }
+
+    @Override
+    public boolean moving(MoveDirection direction, int steps) {
+        moveDirection = direction;
+        moveShift = steps;
+        boolean moving = currentState.moving(direction, steps);
+        onFloatFigureNewPosition();
+        return moving;
     }
 
     boolean turnFigure(RotateDirection direction) {
@@ -318,11 +335,18 @@ public class HexagonalField extends Entity implements IHexagonalField, Serializa
         return false;
     }
 
-    boolean moveFigure(AxialDirection axialDirection) {
+    boolean moveFigure(AxialDirection axialDirection, int steps) {
         if (floatFigure != null) {
-            boolean moved = floatFigure.move(getForbiddenFields(), axialDirection);
+            boolean movedAtAll = false;
+            for (int i = 0; i < steps; i++) {
+                boolean moved = floatFigure.move(getForbiddenFields(), axialDirection);
+                if (!moved) {
+                    break;
+                }
+                movedAtAll = true;
+            }
             onFloatFigureNewPosition();
-            return moved;
+            return movedAtAll;
         }
         return false;
     }
@@ -346,7 +370,6 @@ public class HexagonalField extends Entity implements IHexagonalField, Serializa
     }
 
     /**
-     *
      * @param linesRemoved
      * @return true if new float figure was set properly, false if there was no room to set new figure.
      */
@@ -402,7 +425,7 @@ public class HexagonalField extends Entity implements IHexagonalField, Serializa
         }
     }
 
-
+    @Override
     public void drop() {
         boolean moved = false;
         while (this.floatFigure.move(getForbiddenFields(), gravity)) {
@@ -410,27 +433,53 @@ public class HexagonalField extends Entity implements IHexagonalField, Serializa
         }
         // Avoid multi-drops abused
         if (moved) {
+            onFloatFigureNewPosition();
             currentState.cancel();
         }
     }
 
     private void onFloatFigureNewPosition() {
-        highlightShadowHexagons();
+        highlightMovedShadowHexagons();
+        highlightShadowHexagons(this.movedShadowFigure == null ? this.floatFigure : this.movedShadowFigure);
     }
 
-    private void highlightShadowHexagons() {
-        if (this.shadowFigure != null) {
-            this.detachSafely(this.shadowFigure);
+    private void highlightShadowHexagons(Figure source) {
+        if (this.droppedShadowFigure != null) {
+            this.detachSafely(this.droppedShadowFigure);
         }
-        if (this.floatFigure.getParent() == null) {
-            this.shadowFigure = null;
+        if (source.getParent() == null) {
+            this.droppedShadowFigure = null;
             return;
         }
-        this.shadowFigure = new Figure(floatFigure,
+        this.droppedShadowFigure = new Figure(source,
                 spriteContext.getTextures().getShadow(),
                 spriteContext);
-        while (this.shadowFigure.move(getForbiddenFields(), gravity)) {
+        while (this.droppedShadowFigure.move(getForbiddenFields(), gravity)) {
         }
-        this.attachChild(this.shadowFigure);
+        this.attachChild(this.droppedShadowFigure);
+    }
+
+    private void highlightMovedShadowHexagons() {
+        if (this.movedShadowFigure != null) {
+            this.detachSafely(this.movedShadowFigure);
+        }
+        if (this.floatFigure.getParent() == null) {
+            this.movedShadowFigure = null;
+            return;
+        }
+        this.movedShadowFigure = new Figure(floatFigure,
+                spriteContext.getTextures().getShadow(),
+                spriteContext);
+
+        for (int i = 0; i < moveShift; i++) {
+            boolean moved = this.movedShadowFigure.move(getForbiddenFields(),
+                    moveDirection == MoveDirection.LEFT
+                            ? AxialDirection.Left
+                            : AxialDirection.RightBack);
+            if (!moved) {
+                break;
+            }
+        }
+        this.attachChild(this.movedShadowFigure);
     }
 }

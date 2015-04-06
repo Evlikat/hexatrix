@@ -34,7 +34,12 @@ class GameFinishedState extends GameState {
     }
 
     @Override
-    public boolean move(MoveDirection direction) {
+    public boolean move(MoveDirection direction, int steps) {
+        return false;
+    }
+
+    @Override
+    public boolean moving(MoveDirection direction, int steps) {
         return false;
     }
 }

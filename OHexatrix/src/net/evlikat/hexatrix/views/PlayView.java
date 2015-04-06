@@ -74,7 +74,7 @@ public class PlayView extends GameView {
                 pauseTexture,
                 engine.getVertexBufferObjectManager());
         this.pauseSprite.setVisible(false);
-        this.touchListener = new TouchListener(field);
+        this.touchListener = new TouchListener(field, (int)(camera.getWidth() / (WIDTH + 2)));
         this.background = new Background(0.1f, 0.1f, 0.1f);
         //new SpriteBackground(new Sprite(0, 0, textures.getBackground(), engine.getVertexBufferObjectManager()));
         //

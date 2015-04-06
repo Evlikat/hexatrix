@@ -9,4 +9,5 @@ public interface ITouchListener {
 
     boolean onFling(float x1, float y1, float x2, float y2);
 
+    boolean onMove(float x1, float y1, float x2, float y2);
 }

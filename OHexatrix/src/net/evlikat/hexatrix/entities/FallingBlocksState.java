@@ -59,7 +59,7 @@ class FallingBlocksState extends GameState {
     }
 
     @Override
-    public boolean move(MoveDirection direction) {
+    public boolean move(MoveDirection direction, int steps) {
         AxialDirection axialDirection;
         if (direction == MoveDirection.LEFT) {
             axialDirection = AxialDirection.Left;
@@ -68,6 +68,11 @@ class FallingBlocksState extends GameState {
         } else {
             throw new UnsupportedOperationException("Not recognized move direction");
         }
-        return hexagonalField.moveFigure(axialDirection);
+        return hexagonalField.moveFigure(axialDirection, steps);
+    }
+
+    @Override
+    public boolean moving(MoveDirection direction, int steps) {
+        return false;
     }
 }

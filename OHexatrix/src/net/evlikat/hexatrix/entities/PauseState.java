@@ -48,9 +48,14 @@ class PauseState extends GameState {
     }
 
     @Override
-    public boolean move(MoveDirection direction) {
+    public boolean move(MoveDirection direction, int steps) {
         // next update restores pre-pause state
         nextState = prevState;
+        return false;
+    }
+
+    @Override
+    public boolean moving(MoveDirection direction, int steps) {
         return false;
     }
 }
