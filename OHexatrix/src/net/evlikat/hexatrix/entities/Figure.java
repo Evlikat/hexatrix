@@ -9,6 +9,7 @@ import java.util.*;
 
 /**
  * Physical hexagonal figure applied to AndEngine
+ *
  * @author Roman Prokhorov
  * @version 1.0 (Jul 03, 2014)
  */
@@ -18,21 +19,22 @@ public class Figure extends AxialEntity implements IFigure {
 
         AxialPosition turn(AxialPosition qr);
     }
+
     private final Map<AxialPosition, Hexagon> parts;
     private AxialPosition center;
 
     public Figure(
-        IFigure prototype,
-        ITextureRegion pTextureRegion,
-        SpriteContext spriteContext
+            IFigure prototype,
+            ITextureRegion pTextureRegion,
+            SpriteContext spriteContext
     ) {
         super(
-            getX(spriteContext.getSize(), prototype.getPosition()),
-            getY(spriteContext.getSize(), prototype.getPosition()),
-            spriteContext.getSize() * 2, spriteContext.getSize() * SQ3,
-            pTextureRegion, spriteContext);
+                getX(spriteContext.getSize(), prototype.getPosition()),
+                getY(spriteContext.getSize(), prototype.getPosition()),
+                spriteContext.getSize() * 2, spriteContext.getSize() * SQ3,
+                pTextureRegion, spriteContext);
         this.center = prototype.getPosition();
-        this.parts = new HashMap<AxialPosition, Hexagon>(prototype.getParts().size());
+        this.parts = new HashMap<>(prototype.getParts().size());
         for (AxialPosition position : prototype.getParts()) {
             final Hexagon hexagon = new Hexagon(position, pTextureRegion, spriteContext);
             addPart(position, hexagon);
@@ -60,7 +62,7 @@ public class Figure extends AxialEntity implements IFigure {
     }
 
     public final void resetParts(Collection<AxialPosition> newPartPositions) {
-        Collection<Hexagon> hexagons = new ArrayList<Hexagon>(parts.values());
+        Collection<Hexagon> hexagons = new ArrayList<>(parts.values());
         if (hexagons.size() != newPartPositions.size()) {
             throw new UnsupportedOperationException("Part reset is not implemented for different size figures");
         }
@@ -75,14 +77,14 @@ public class Figure extends AxialEntity implements IFigure {
 
     @Override
     public boolean turn(Collection<AxialPosition> forbiddenPositions, RotateDirection direction) {
-        if (direction == RotateDirection.LEFT) {
+        if (direction == RotateDirection.COUNTERCLOCKWISE) {
             return turn(forbiddenPositions, new Rotator() {
 
                 public AxialPosition turn(AxialPosition pos) {
                     return new AxialPosition(-pos.getR(), pos.getQ() + pos.getR());
                 }
             });
-        } else if (direction == RotateDirection.RIGHT) {
+        } else if (direction == RotateDirection.CLOCKWISE) {
             return turn(forbiddenPositions, new Rotator() {
 
                 public AxialPosition turn(AxialPosition pos) {
@@ -97,8 +99,8 @@ public class Figure extends AxialEntity implements IFigure {
     @Override
     public boolean move(Collection<AxialPosition> forbiddenPositions, AxialDirection direction) {
         AxialPosition newFigurePosition = new AxialPosition(
-            center.getQ() + direction.getQ(),
-            center.getR() + direction.getR()
+                center.getQ() + direction.getQ(),
+                center.getR() + direction.getR()
         );
         if (forbiddenPositions.contains(newFigurePosition)) {
             // Figure center can't be moved
@@ -116,7 +118,7 @@ public class Figure extends AxialEntity implements IFigure {
 
     @Override
     public Collection<AxialPosition> getPartsPositions() {
-        List<AxialPosition> result = new ArrayList<AxialPosition>();
+        List<AxialPosition> result = new ArrayList<>();
         final AxialPosition centerPos = getPosition();
         result.add(centerPos);
         for (AxialPosition partPos : parts.keySet()) {
@@ -128,8 +130,7 @@ public class Figure extends AxialEntity implements IFigure {
     }
 
     private boolean turn(Collection<AxialPosition> forbiddenPositions, Rotator rotator) {
-        Map<Hexagon, AxialPosition> newPartPositions
-            = new HashMap<Hexagon, AxialPosition>();
+        Map<Hexagon, AxialPosition> newPartPositions = new HashMap<>();
         for (Map.Entry<AxialPosition, Hexagon> entry : parts.entrySet()) {
             AxialPosition newPos = rotator.turn(entry.getKey());
             if (forbiddenPositions.contains(newPos.plus(center))) {

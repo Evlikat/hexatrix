@@ -72,10 +72,10 @@ public class Leaderboard implements IScoreStorage {
         } catch (ClassNotFoundException | FileNotFoundException ex) {
             Log.e(TAG, "File not found: " + filename, ex);
         } catch (IOException ex) {
-            Log.e(TAG, "Can not save the leaderboard to file " + filename, ex);
+            Log.e(TAG, "Can not load the leaderboard from file " + filename, ex);
         } finally {
             IOUtils.closeQuietly(in);
         }
-        return new ArrayList<Score>();
+        return new ArrayList<>();
     }
 }

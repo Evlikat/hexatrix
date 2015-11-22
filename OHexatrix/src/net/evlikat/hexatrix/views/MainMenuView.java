@@ -1,14 +1,13 @@
 package net.evlikat.hexatrix.views;
 
+
 import net.evlikat.hexatrix.Textures;
 import net.evlikat.hexatrix.scores.IScoreStorage;
 import net.evlikat.hexatrix.scores.Score;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
 import org.andengine.entity.scene.background.Background;
-import org.andengine.entity.scene.background.SpriteBackground;
 import org.andengine.entity.sprite.ButtonSprite;
-import org.andengine.entity.sprite.Sprite;
 import org.andengine.entity.text.Text;
 import org.andengine.entity.text.exception.OutOfCharactersException;
 import org.andengine.input.touch.TouchEvent;
@@ -18,7 +17,6 @@ import java.util.Date;
 import java.util.List;
 
 /**
- *
  * @author Roman Prokhorov
  * @version 1.0 (Jul 03, 2014)
  */
@@ -31,11 +29,14 @@ public class MainMenuView extends GameView {
     private final ButtonSprite startButton;
     private final ButtonSprite leadersButton;
     private final ButtonSprite quitButton;
+    private final MenuCallback callback;
 
     public MainMenuView(Engine engine, Camera camera, Textures textures, IFont font, final MenuCallback callback, final IScoreStorage scoreStorage) {
         super(engine, camera);
+        this.callback = callback;
         this.text = new Text(30, 30, font, "", 255, engine.getVertexBufferObjectManager());
-        this.background = new SpriteBackground(new Sprite(0, 0, textures.getBackground(), engine.getVertexBufferObjectManager()));
+        this.background = new Background(0.1f, 0.1f, 0.1f);
+                //new SpriteBackground(new Sprite(0, 0, textures.getBackground(), engine.getVertexBufferObjectManager()));
         //
         float buttonHeight = camera.getHeight() / 5;
         float buttonLeft = (camera.getWidth() - textures.getStartBtn().getWidth()) / 2;
@@ -45,26 +46,26 @@ public class MainMenuView extends GameView {
         //
         int i = 1;
         this.startButton = new ButtonSprite(buttonLeft, buttonHeight * i++, textures.getStartBtn(),
-            engine.getVertexBufferObjectManager(), new ButtonSprite.OnClickListener() {
+                engine.getVertexBufferObjectManager(), new ButtonSprite.OnClickListener() {
 
-                public void onClick(ButtonSprite pButtonSprite, float pTouchAreaLocalX, float pTouchAreaLocalY) {
-                    callback.toPlayView();
-                }
-            });
+            public void onClick(ButtonSprite pButtonSprite, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+                callback.toPlayView();
+            }
+        });
         this.leadersButton = new ButtonSprite(buttonLeft, buttonHeight * i++, textures.getLeadersBtn(),
-            engine.getVertexBufferObjectManager(), new ButtonSprite.OnClickListener() {
+                engine.getVertexBufferObjectManager(), new ButtonSprite.OnClickListener() {
 
-                public void onClick(ButtonSprite pButtonSprite, float pTouchAreaLocalX, float pTouchAreaLocalY) {
-                    callback.toLeadersView();
-                }
-            });
+            public void onClick(ButtonSprite pButtonSprite, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+                callback.toLeadersView();
+            }
+        });
         this.quitButton = new ButtonSprite(buttonLeft, buttonHeight * i++, textures.getQuitBtn(),
-            engine.getVertexBufferObjectManager(), new ButtonSprite.OnClickListener() {
+                engine.getVertexBufferObjectManager(), new ButtonSprite.OnClickListener() {
 
-                public void onClick(ButtonSprite pButtonSprite, float pTouchAreaLocalX, float pTouchAreaLocalY) {
-                    callback.quit();
-                }
-            });
+            public void onClick(ButtonSprite pButtonSprite, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+                callback.quit();
+            }
+        });
     }
 
     private static int lastScore(List<Score> scores) {
@@ -123,4 +124,8 @@ public class MainMenuView extends GameView {
     protected void onTouch(TouchEvent pSceneTouchEvent) {
     }
 
+    @Override
+    public void onBackPressed() {
+        callback.quit();
+    }
 }

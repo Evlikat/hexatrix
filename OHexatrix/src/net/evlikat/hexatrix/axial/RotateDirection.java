@@ -7,6 +7,6 @@ package net.evlikat.hexatrix.axial;
  */
 public enum RotateDirection {
 
-    LEFT,
-    RIGHT
+    COUNTERCLOCKWISE,
+    CLOCKWISE
 }

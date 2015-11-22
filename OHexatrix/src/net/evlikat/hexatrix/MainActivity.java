@@ -1,5 +1,6 @@
 package net.evlikat.hexatrix;
 
+import android.view.KeyEvent;
 import net.evlikat.hexatrix.scores.Leaderboard;
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.handler.timer.ITimerCallback;
@@ -32,7 +33,7 @@ public class MainActivity extends BaseGameActivity {
     public void onCreateResources(OnCreateResourcesCallback ocrc) throws Exception {
         textures = new Textures(getTextureManager(), getAssets());
         sceneManager = new SceneManager(this, mEngine, camera, textures, new Leaderboard(
-            "/data/data/" + MainActivity.class.getPackage().getName() + "/leaderboard.lb", 10));
+            "/data/data/" + MainActivity.class.getPackage().getName() + "/leaderboard.lb", 20));
 
         ocrc.onCreateResourcesFinished();
     }
@@ -48,6 +49,16 @@ public class MainActivity extends BaseGameActivity {
             }
         }));
         ocsc.onCreateSceneFinished(scene);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            sceneManager.onBackPressed();
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
     }
 
     public void onPopulateScene(Scene scene, OnPopulateSceneCallback opsc) throws Exception {

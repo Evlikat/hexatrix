@@ -14,19 +14,21 @@ public class AxialDirection implements AxialVector {
     public static AxialDirection LeftForward = new AxialDirection(-1, 1);
     public static AxialDirection Forward = new AxialDirection(0, 1);
 
-    private final int Dq;
-    private final int Dr;
+    private final int dq;
+    private final int dr;
 
     private AxialDirection(int dq, int dr) {
-        this.Dq = dq;
-        this.Dr = dr;
+        this.dq = dq;
+        this.dr = dr;
     }
 
+    @Override
     public int getQ() {
-        return Dq;
+        return dq;
     }
 
+    @Override
     public int getR() {
-        return Dr;
+        return dr;
     }
 }

@@ -23,7 +23,7 @@ public class AxialFigure implements IFigure {
     public Collection<AxialPosition> parts;
 
     public Collection<AxialPosition> getPartsPositions() {
-        List<AxialPosition> result = new ArrayList<AxialPosition>();
+        List<AxialPosition> result = new ArrayList<>();
         result.add(position);
         for (AxialPosition partPos : parts) {
             result.add(new AxialPosition(partPos.getQ() + position.getQ(), partPos.getR() + position.getR()));
@@ -36,7 +36,7 @@ public class AxialFigure implements IFigure {
     }
 
     public AxialFigure() {
-        parts = new ArrayList<AxialPosition>();
+        parts = new ArrayList<>();
     }
 
     public AxialFigure(Collection<AxialPosition> relativeParts) {
@@ -45,7 +45,7 @@ public class AxialFigure implements IFigure {
 
     public AxialFigure(AxialPosition position, Collection<AxialPosition> absoluteParts) {
         this.position = position;
-        parts = ToRelatives(position, absoluteParts);
+        parts = toRelatives(position, absoluteParts);
     }
 
     public AxialPosition getPosition() {
@@ -58,14 +58,14 @@ public class AxialFigure implements IFigure {
 
     @Override
     public boolean turn(Collection<AxialPosition> forbiddenPositions, RotateDirection direction) {
-        if (direction == RotateDirection.LEFT) {
+        if (direction == RotateDirection.COUNTERCLOCKWISE) {
             return turn(forbiddenPositions, new CubeRotator() {
 
                 public CubeCoordinates turn(CubeCoordinates xyz) {
                     return new CubeCoordinates(-xyz.getZ(), -xyz.getX(), -xyz.getY());
                 }
             });
-        } else if (direction == RotateDirection.RIGHT) {
+        } else if (direction == RotateDirection.CLOCKWISE) {
             return turn(forbiddenPositions, new CubeRotator() {
 
                 public CubeCoordinates turn(CubeCoordinates xyz) {
@@ -94,9 +94,9 @@ public class AxialFigure implements IFigure {
     }
 
     private boolean turn(Collection<AxialPosition> forbiddenPositions, CubeRotator turner) {
-        Collection<AxialPosition> newPartPositions = new ArrayList<AxialPosition>();
+        Collection<AxialPosition> newPartPositions = new ArrayList<>();
         for (AxialPosition partPos : parts) {
-            AxialPosition newPos = From(turner.turn(From(partPos)));
+            AxialPosition newPos = fromCubeToAxial(turner.turn(fromAxialToCube(partPos)));
             if (forbiddenPositions.contains(newPos.plus(position))) {
                 // Figure can't be turned
                 return false;
@@ -108,19 +108,19 @@ public class AxialFigure implements IFigure {
         return true;
     }
 
-    private static Collection<AxialPosition> ToRelatives(AxialPosition position, Collection<AxialPosition> absoluteParts) {
-        Collection<AxialPosition> relatives = new ArrayList<AxialPosition>();
+    private static Collection<AxialPosition> toRelatives(AxialPosition position, Collection<AxialPosition> absoluteParts) {
+        Collection<AxialPosition> relatives = new ArrayList<>();
         for (AxialPosition absolutePosition : absoluteParts) {
             relatives.add(new AxialPosition(absolutePosition.getQ() - position.getQ(), absolutePosition.getR() - position.getR()));
         }
         return relatives;
     }
 
-    private static AxialPosition From(CubeCoordinates cubeCoords) {
+    private static AxialPosition fromCubeToAxial(CubeCoordinates cubeCoords) {
         return new AxialPosition(cubeCoords.getX(), cubeCoords.getZ());
     }
 
-    private static CubeCoordinates From(AxialPosition axialCoords) {
+    private static CubeCoordinates fromAxialToCube(AxialPosition axialCoords) {
         return new CubeCoordinates(axialCoords.getQ(), -axialCoords.getQ() - axialCoords.getR(), axialCoords.getR());
     }
 }

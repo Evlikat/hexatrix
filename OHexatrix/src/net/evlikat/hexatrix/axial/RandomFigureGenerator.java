@@ -75,10 +75,12 @@ public class RandomFigureGenerator implements FigureGenerator {
             LEFT_LIGHTNING,
             RIGHT_LIGHTNING,
             STICK,
+            STICK,
             LEFT_LEG,
             RIGHT_LEG,
             LEFT_BOLT,
             RIGHT_BOLT,
+            SQUARE,
             SQUARE,
             STAR,
             RAINBOW);
