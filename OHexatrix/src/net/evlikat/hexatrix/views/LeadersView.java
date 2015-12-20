@@ -2,8 +2,10 @@ package net.evlikat.hexatrix.views;
 
 import net.evlikat.hexatrix.scores.IScoreStorage;
 import net.evlikat.hexatrix.scores.Score;
+import net.evlikat.hexatrix.utils.SpriteUtils;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
+import org.andengine.entity.scene.background.Background;
 import org.andengine.entity.text.Text;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.font.IFont;
@@ -23,16 +25,19 @@ public class LeadersView extends GameView {
     private final IScoreStorage scoreStorage;
     private final Text table;
     private String resultsTable;
+    private final Background background;
 
     public LeadersView(Engine engine, Camera camera, IFont font, LeadersCallback leadersCallback, IScoreStorage scoreStorage) {
         super(engine, camera);
         this.leadersCallback = leadersCallback;
         this.scoreStorage = scoreStorage;
         this.table = new Text(30, 30, font, "", 800, engine.getVertexBufferObjectManager());
+        this.background = SpriteUtils.BACKGROUND;
     }
 
     @Override
     public void populate() {
+        scene.setBackground(background);
         scene.attachChild(table);
     }
 

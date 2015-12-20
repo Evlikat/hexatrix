@@ -4,6 +4,7 @@ import net.evlikat.hexatrix.Textures;
 import net.evlikat.hexatrix.axial.EmptyFieldGenerator;
 import net.evlikat.hexatrix.entities.*;
 import net.evlikat.hexatrix.scores.IScoreStorage;
+import net.evlikat.hexatrix.utils.SpriteUtils;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
 import org.andengine.entity.scene.background.Background;
@@ -75,9 +76,7 @@ public class PlayView extends GameView {
                 engine.getVertexBufferObjectManager());
         this.pauseSprite.setVisible(false);
         this.touchListener = new TouchListener(field, (int)(camera.getWidth() / (WIDTH + 2)));
-        this.background = new Background(0.1f, 0.1f, 0.1f);
-        //new SpriteBackground(new Sprite(0, 0, textures.getBackground(), engine.getVertexBufferObjectManager()));
-        //
+        this.background = SpriteUtils.BACKGROUND;
         this.field.addGameFinishedListener(new GameFinishedListener() {
             @Override
             public void onGameFinished() {

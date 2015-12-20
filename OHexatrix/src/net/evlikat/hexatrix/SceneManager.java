@@ -38,7 +38,7 @@ public class SceneManager implements PlayCallback, MenuCallback, LeadersCallback
         this.textures = textures;
         BitmapTextureAtlas fontTexture = new BitmapTextureAtlas(engine.getTextureManager(), 2048, 2048, TextureOptions.BILINEAR);
         this.font = new Font(engine.getFontManager(), fontTexture,
-                Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL), 48, true, Color.WHITE);
+                Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL), 48, true, Color.BLACK);
         this.font.load();
         this.scoreStorage = scoreStorage;
         this.currentView = getMainMenuView();

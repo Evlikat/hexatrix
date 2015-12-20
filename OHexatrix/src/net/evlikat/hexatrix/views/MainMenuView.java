@@ -4,6 +4,7 @@ package net.evlikat.hexatrix.views;
 import net.evlikat.hexatrix.Textures;
 import net.evlikat.hexatrix.scores.IScoreStorage;
 import net.evlikat.hexatrix.scores.Score;
+import net.evlikat.hexatrix.utils.SpriteUtils;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
 import org.andengine.entity.scene.background.Background;
@@ -35,9 +36,7 @@ public class MainMenuView extends GameView {
         super(engine, camera);
         this.callback = callback;
         this.text = new Text(30, 30, font, "", 255, engine.getVertexBufferObjectManager());
-        this.background = new Background(0.1f, 0.1f, 0.1f);
-                //new SpriteBackground(new Sprite(0, 0, textures.getBackground(), engine.getVertexBufferObjectManager()));
-        //
+        this.background = SpriteUtils.BACKGROUND;
         float buttonHeight = camera.getHeight() / 5;
         float buttonLeft = (camera.getWidth() - textures.getStartBtn().getWidth()) / 2;
         // load scores

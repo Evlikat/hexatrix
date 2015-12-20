@@ -3,11 +3,12 @@ package net.evlikat.hexatrix;
 import android.view.KeyEvent;
 import net.evlikat.hexatrix.scores.Leaderboard;
 import org.andengine.engine.camera.Camera;
+import org.andengine.engine.camera.SmoothCamera;
 import org.andengine.engine.handler.timer.ITimerCallback;
 import org.andengine.engine.handler.timer.TimerHandler;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
-import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
+import org.andengine.engine.options.resolutionpolicy.FillResolutionPolicy;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.util.FPSLogger;
 import org.andengine.ui.activity.BaseGameActivity;
@@ -21,19 +22,19 @@ public class MainActivity extends BaseGameActivity {
     private SceneManager sceneManager;
 
     public EngineOptions onCreateEngineOptions() {
-        this.camera = new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT);
+        this.camera = new SmoothCamera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT, 100, 100, 1.0f);
         return new EngineOptions(
-            true,
-            ScreenOrientation.PORTRAIT_FIXED,
-            new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT),
-            this.camera
+                true,
+                ScreenOrientation.PORTRAIT_FIXED,
+                new FillResolutionPolicy(),
+                this.camera
         );
     }
 
     public void onCreateResources(OnCreateResourcesCallback ocrc) throws Exception {
         textures = new Textures(getTextureManager(), getAssets());
         sceneManager = new SceneManager(this, mEngine, camera, textures, new Leaderboard(
-            "/data/data/" + MainActivity.class.getPackage().getName() + "/leaderboard.lb", 20));
+                "/data/data/" + MainActivity.class.getPackage().getName() + "/leaderboard.lb", 20));
 
         ocrc.onCreateResourcesFinished();
     }
