@@ -3,7 +3,7 @@ package net.evlikat.hexatrix;
 import android.view.KeyEvent;
 import net.evlikat.hexatrix.scores.Leaderboard;
 import org.andengine.engine.camera.Camera;
-import org.andengine.engine.camera.SmoothCamera;
+import org.andengine.engine.camera.ZoomCamera;
 import org.andengine.engine.handler.timer.ITimerCallback;
 import org.andengine.engine.handler.timer.TimerHandler;
 import org.andengine.engine.options.EngineOptions;
@@ -22,7 +22,7 @@ public class MainActivity extends BaseGameActivity {
     private SceneManager sceneManager;
 
     public EngineOptions onCreateEngineOptions() {
-        this.camera = new SmoothCamera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT, 100, 100, 1.0f);
+        this.camera = new ZoomCamera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT);
         return new EngineOptions(
                 true,
                 ScreenOrientation.PORTRAIT_FIXED,

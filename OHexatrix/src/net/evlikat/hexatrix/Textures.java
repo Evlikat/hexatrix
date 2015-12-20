@@ -32,18 +32,19 @@ public class Textures {
     }
 
     private void loadTextures(final TextureManager textureManager, final AssetManager assetManager) {
-        this.borderBottom = loadTexture(textureManager, assetManager, "border", 420, 364);
-        this.borderLeft = loadTexture(textureManager, assetManager, "border-left", 420, 364);
-        this.borderRight = loadTexture(textureManager, assetManager, "border-right", 420, 364);
-        this.hexagon0 = loadTexture(textureManager, assetManager, "hexagon0", 420, 364);
-        this.hexagon1 = loadTexture(textureManager, assetManager, "hexagon1", 420, 364);
-        this.brick = loadTexture(textureManager, assetManager, "brick", 420, 364);
-        this.figure = loadTexture(textureManager, assetManager, "figure", 420, 364);
+        this.borderBottom = loadTexture(textureManager, assetManager, "border", 180, 157);
+        this.borderLeft = loadTexture(textureManager, assetManager, "border-left", 180, 157);
+        this.borderRight = loadTexture(textureManager, assetManager, "border-right", 180, 157);
+        this.hexagon0 = loadTexture(textureManager, assetManager, "hexagon0", 180, 157);
+        this.hexagon1 = loadTexture(textureManager, assetManager, "hexagon1", 180, 157);
+        this.brick = loadTexture(textureManager, assetManager, "brick", 180, 157);
+        this.figure = loadTexture(textureManager, assetManager, "figure", 180, 157);
+        this.shadow = loadTexture(textureManager, assetManager, "shadow", 180, 157);
+
         this.pause = loadTexture(textureManager, assetManager, "pause", 420, 364);
         this.startBtn = loadTexture(textureManager, assetManager, "start-btn", 420, 364);
         this.leadersBtn = loadTexture(textureManager, assetManager, "leaders-btn", 420, 364);
         this.quitBtn = loadTexture(textureManager, assetManager, "quit-btn", 420, 364);
-        this.shadow = loadTexture(textureManager, assetManager, "shadow", 420, 364);
     }
 
     private TextureRegion loadTexture(final TextureManager textureManager, final AssetManager assetManager,

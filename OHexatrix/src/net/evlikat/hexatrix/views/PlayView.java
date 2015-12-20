@@ -45,8 +45,8 @@ public class PlayView extends GameView {
 
     private static final float SQ3 = (float) Math.sqrt(3);
 
-    private static final int DEPTH = 25;
-    private static final int WIDTH = 11;
+    private static final int DEPTH = 20;
+    private static final int WIDTH = 7;
 
     private final HexagonalField field;
     private final Background background;
