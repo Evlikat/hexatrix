@@ -114,7 +114,7 @@ public class MainMenuView extends GameView {
         StringBuilder builder = new StringBuilder();
         if (lastScore > -1 && topScore > -1) {
             builder.append("Last score: ").append(lastScore).append("\n");
-            builder.append("Top score:  ").append(topScore);
+            builder.append("Top  score: ").append(topScore);
         }
         text.setText(builder.toString());
     }

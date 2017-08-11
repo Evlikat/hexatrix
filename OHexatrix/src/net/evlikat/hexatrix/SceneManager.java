@@ -1,15 +1,17 @@
 package net.evlikat.hexatrix;
 
-import android.graphics.Color;
-import android.graphics.Typeface;
 import net.evlikat.hexatrix.scores.IScoreStorage;
-import net.evlikat.hexatrix.views.*;
+import net.evlikat.hexatrix.views.GameResults;
+import net.evlikat.hexatrix.views.GameView;
+import net.evlikat.hexatrix.views.LeadersCallback;
+import net.evlikat.hexatrix.views.LeadersView;
+import net.evlikat.hexatrix.views.MainMenuView;
+import net.evlikat.hexatrix.views.MenuCallback;
+import net.evlikat.hexatrix.views.PlayCallback;
+import net.evlikat.hexatrix.views.PlayView;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
-import org.andengine.opengl.font.Font;
 import org.andengine.opengl.font.IFont;
-import org.andengine.opengl.texture.TextureOptions;
-import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 
 /**
  *
@@ -36,10 +38,7 @@ public class SceneManager implements PlayCallback, MenuCallback, LeadersCallback
         this.engine = engine;
         this.camera = camera;
         this.textures = textures;
-        BitmapTextureAtlas fontTexture = new BitmapTextureAtlas(engine.getTextureManager(), 2048, 2048, TextureOptions.BILINEAR);
-        this.font = new Font(engine.getFontManager(), fontTexture,
-                Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL), 48, true, Color.BLACK);
-        this.font.load();
+        this.font = textures.getFont();
         this.scoreStorage = scoreStorage;
         this.currentView = getMainMenuView();
     }

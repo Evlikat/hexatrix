@@ -70,7 +70,8 @@ public class TouchListener implements ITouchListener {
             float diffX = x2 - x1;
             // if fling is out of single click circle
             if (diffX * diffX + diffY * diffY > CLICK_RADIUS * CLICK_RADIUS) {
-                if (Math.abs(diffX) > Math.abs(diffY)) {
+                // protects from both: dropping and moving
+                if (Math.abs(diffX) > Math.min(pixelsPerStep, Math.abs(diffY))) {
                     int steps = calcSteps(diffX);
                     if (diffX > 0) {
                         field.move(MoveDirection.RIGHT, steps);
